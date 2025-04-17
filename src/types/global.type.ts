@@ -3,13 +3,13 @@ export interface CommonResponse {
     message: string;
 }
 
-export interface GlobalIntroduceResponse extends CommonResponse {
+export interface GlobalServiceIntroduceResponse extends CommonResponse {
     version: string;
     contributor: string;
     timezone: string;
 }
 
-export interface GlobalHealthResponse extends CommonResponse {
+export interface GlobalServiceHealthResponse extends CommonResponse {
     status: string;
     uptime: number;
     memoryUsage: {
