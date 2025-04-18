@@ -7,7 +7,7 @@ export default class DosenHandler {
     public static async getPASaya(c: Context) {
         const { email } = c.get("user");
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
-        return c.json(await DosenService.getPASaya(email));
+        return c.json(await DosenService.getPASaya({email}));
     }
     
 }
