@@ -1,6 +1,6 @@
 import { Context, Next } from "hono";
 import AuthHelper from "../helpers/auth.helper";
-import { APIError } from "../utils/api_error.util";
+import { APIError } from "../utils/api-error.util";
 
 export default class AuthMiddleware {
 	public static async JWTBearerTokenExtraction(c: Context, next: Next) {

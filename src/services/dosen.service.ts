@@ -1,6 +1,6 @@
 import DosenRepository from "../repositories/dosen.repository";
 import { DosenServiceGetPASayaResponse } from "../types/dosen.type";
-import { APIError } from "../utils/api_error.util";
+import { APIError } from "../utils/api-error.util";
 
 export default class DosenService {
 

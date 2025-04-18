@@ -1,8 +1,10 @@
+import { APIError } from "../utils/api-error.util";
+
 export default class AuthHelper {
 	// Static helper untuk decode JWT payload
 	public static decodeJwtPayload(token: string): Record<string, unknown> {
 		const parts = token.split(".");
-		if (parts.length !== 3) throw new Error("Invalid JWT format");
+		if (parts.length !== 3) throw new APIError("Waduh, token kamu tidak valid mas! 😡", 401);
 
 		const base64 = AuthHelper.padBase64(parts[1]);
 		const json = atob(base64);
