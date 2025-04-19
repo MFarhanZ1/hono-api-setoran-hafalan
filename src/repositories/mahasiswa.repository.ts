@@ -30,7 +30,8 @@ export default class MahasiswaRepository {
 
     public static async findDaftarMahasiswaPAByDosenNIP({nip}: FindDaftarMahasiswaPAByDosenNIPParamsInterface): Promise<FindDaftarMahasiswaPAByDosenNIPReturnInterface[]> {
         return await prisma.$queryRaw`
-            SELECT mahasiswa.email,
+            SELECT 
+                mahasiswa.email,
 				mahasiswa.nim, 
 				mahasiswa.nama,
 				CONCAT('20', SUBSTRING(mahasiswa.nim FROM 2 FOR 2)) as angkatan,
@@ -38,9 +39,14 @@ export default class MahasiswaRepository {
 					WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 8 THEN (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2 + 1
 					ELSE (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2
 				END as semester
-            FROM mahasiswa
-            WHERE mahasiswa.nip = ${nip}
-            ORDER BY SUBSTRING(mahasiswa.nim FROM 2 FOR 2) DESC, mahasiswa.nama ASC;
+            FROM 
+                mahasiswa
+            WHERE 
+                mahasiswa.nip = ${nip} AND
+                (EXTRACT (YEAR FROM CURRENT_DATE)::int - CONCAT('20', SUBSTRING(mahasiswa.nim FROM 2 FOR 2))::int) <= 8
+            ORDER BY 
+                SUBSTRING(mahasiswa.nim FROM 2 FOR 2) DESC, 
+                mahasiswa.nama ASC;
         `
     }
 
