@@ -6,7 +6,17 @@ export default class SetoranService {
 	}: any): Promise<any> {
 		const totalSurah = await prisma.surah.count();
 
-		const result: any[] = [];
+		const result: {
+			nim: string;
+			info_setoran: {
+				total_wajib_setor: number;
+				total_sudah_setor: number;
+				total_belum_setor: number;
+				persentase_progress_setor: number;
+				terakhir_setor: string | null;
+				tgl_terakhir_setor: Date | null;
+			};
+		}[] = [];
 
 		for (const nim of listNIM) {
 			const totalSudahSetor = await prisma.setoran.count({
