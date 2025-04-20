@@ -52,3 +52,13 @@ export interface FindDetailByNIMReturnInterface {
 		}
 	} | null;
 }
+
+export interface CreateSetoranParamsInterface {
+	tgl_setoran: string;
+	nim: string;
+	nip: string;
+	data_setoran: {
+		nomor_surah: number;
+		nama_surah: string;
+	}[];
+}
