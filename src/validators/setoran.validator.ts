@@ -29,3 +29,25 @@ export const postSetoranSchema = z.object({
 		)
 		.optional(),
 });
+
+export const deleteSetoranSchema = z.object({
+	data_setoran: z.array(
+		z.object({
+			id: z.string({
+				required_error: "Maaf, tiap id wajib diisi yak, mas! 😁",
+				invalid_type_error:
+					"Waduh, tiap id wajib berupa string yak, mas! 😁"
+			}),
+			nomor_surah: z.number({
+				required_error: "Maaf, tiap nomor_surah wajib diisi yak, mas! 😁",
+				invalid_type_error:
+					"Waduh, tiap nomor_surah wajib berupa angka yak, mas! 😁",
+			}),
+			nama_surah: z.string({
+				required_error: "Maaf, tiap nama_surah wajib diisi yak, mas! 😁",
+				invalid_type_error:
+					"Waduh, tiap nama_surah wajib berupa string yak, mas! 😁",
+			}),
+		})
+	),
+});
