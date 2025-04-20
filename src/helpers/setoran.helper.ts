@@ -1,6 +1,7 @@
+import { FindAllByNIPReturnInterface } from "../types/dosen/repository.type";
 import { FindAllMahasiswaPAByDosenNIPReturnInterface } from "../types/mahasiswa/repository.type";
-import { MapMahasiswaDenganRingkasanInterface } from "../types/setoran/helper.type";
-import { FindAllRingkasanByNIMReturnInterface } from "../types/setoran/repository.type";
+import { MapMahasiswaWithRingkasanInterface } from "../types/setoran/helper.type";
+import { FindAllRingkasanByNIMReturnInterface, FindDetailByNIMReturnInterface } from "../types/setoran/repository.type";
 
 export default class SetoranHelper {
     public static formatHumanizeDateDiff(tanggal: Date | null | undefined): string {
@@ -52,7 +53,7 @@ export default class SetoranHelper {
 		return "Lebih dari 7 Tahun yang lalu";
 	}
 
-	public static mapMahasiswaDenganRingkasan(daftarMahasiswa: FindAllMahasiswaPAByDosenNIPReturnInterface[], ringkasanSetoran: FindAllRingkasanByNIMReturnInterface[]): MapMahasiswaDenganRingkasanInterface[] {
+	public static mapMahasiswaWithRingkasan(daftarMahasiswa: FindAllMahasiswaPAByDosenNIPReturnInterface[], ringkasanSetoran: FindAllRingkasanByNIMReturnInterface[]): MapMahasiswaWithRingkasanInterface[] {
 		// buat dulu objek ringkasan sebagai kamus besar nya
 		const ringkasanMap = new Map(ringkasanSetoran.map((r) => [r.nim, r]));
 
@@ -68,5 +69,32 @@ export default class SetoranHelper {
 			};
 		});
 	}
+
+	public static extractAllDosenNIPFromSetoran(detailSetoran: FindDetailByNIMReturnInterface[] | null): string[] {
+		const nips: Set<string> = new Set();
+		detailSetoran?.forEach((setoran) => {
+			if (setoran.sudah_setor) {
+				const nip = setoran.info_setoran?.dosen_yang_mengesahkan?.nip;
+				nips.add(nip!);
+			}
+		});
+		return Array.from(nips);
+	}
 	
+	public static mapSetoranWithDosen(daftarSetoran: FindDetailByNIMReturnInterface[] | null, daftarDosen: FindAllByNIPReturnInterface[] | null): FindDetailByNIMReturnInterface[] | undefined {
+		return daftarSetoran?.map((setoran) => {
+			const dosen = daftarDosen?.find((dosen) => dosen.nip === setoran.info_setoran?.dosen_yang_mengesahkan?.nip);
+			return {
+				...setoran,
+				info_setoran: setoran.sudah_setor ? {
+					...setoran.info_setoran,
+					dosen_yang_mengesahkan: {
+						...setoran.info_setoran?.dosen_yang_mengesahkan,
+						nama: dosen?.nama,
+						email: dosen?.email
+					}
+				} : null
+			}
+		})
+	}
 }
