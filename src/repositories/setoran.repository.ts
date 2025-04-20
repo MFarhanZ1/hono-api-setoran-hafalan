@@ -1,7 +1,7 @@
 import { Prisma } from "../generated/prisma";
 import SetoranHelper from "../helpers/setoran.helper";
 import prisma from "../infrastructures/db.infrastructure";
-import { FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindDetailByNIMParamsInterface, FindDetailByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface, FindRingkasanPerSyaratByNIMParamsInterface, FindRingkasanPerSyaratByNIMReturnInterface } from "../types/setoran/repository.type";
+import { CreateSetoranParamsInterface, FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindDetailByNIMParamsInterface, FindDetailByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface, FindRingkasanPerSyaratByNIMParamsInterface, FindRingkasanPerSyaratByNIMReturnInterface } from "../types/setoran/repository.type";
 
 export default class SetoranRepository {
 	public static async findRingkasanByNIM({ nim }: FindRingkasanByNIMParamsInterface): Promise<FindRingkasanByNIMReturnInterface | null> {
@@ -117,7 +117,7 @@ export default class SetoranRepository {
         `
 	}
 
-    public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: any): Promise<void> {
+    public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: CreateSetoranParamsInterface): Promise<void> {
 
         const values = data_setoran.map((data: {nomor_surah: number}) =>
             Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.nomor_surah})`
