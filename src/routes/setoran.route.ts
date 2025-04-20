@@ -7,5 +7,6 @@ const setoranRoute = new Hono({ router: new RegExpRouter() });
 
 setoranRoute.get("/dosen/pa-saya", AuthMiddleware.JWTBearerTokenExtraction, SetoranHandler.getPASaya);
 setoranRoute.get("/mahasiswa/setoran-saya", AuthMiddleware.JWTBearerTokenExtraction, SetoranHandler.getSetoranSaya);
+setoranRoute.get("/mahasiswa/setoran/:nim", AuthMiddleware.JWTBearerTokenExtraction, SetoranHandler.getSetoranMahasiswa);
 
 export default setoranRoute;
