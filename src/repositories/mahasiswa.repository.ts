@@ -1,14 +1,46 @@
 import prisma from "../infrastructures/db.infrastructure";
-import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindAllMahasiswaPAByDosenNIPParamsInterface, FindAllMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface } from "../types/mahasiswa/repository.type";
+import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindAllMahasiswaPAByDosenNIPParamsInterface, FindAllMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface, FindByNIMParamsInterface, FindByNIMReturnInterface } from "../types/mahasiswa/repository.type";
 
 export default class MahasiswaRepository {
     
     public static async findByEmail({email}: FindByEmailParamsInterface): Promise<FindByEmailReturnInterface | null> {
-        return await prisma.mahasiswa.findUnique({
-            where: {
-                email: email
-            }
-        })
+        const res: FindByEmailReturnInterface[] = await prisma.$queryRaw`
+            SELECT 
+                mahasiswa.email,
+                mahasiswa.nim, 
+                mahasiswa.nama,
+                CONCAT('20', SUBSTRING(mahasiswa.nim FROM 2 FOR 2)) as angkatan,
+                CASE
+                    WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 8 THEN (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2 + 1
+                    ELSE (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2
+                END as semester,
+                mahasiswa.nip as nip_dosen_pa
+            FROM 
+                mahasiswa
+            WHERE 
+                mahasiswa.email = ${email};
+        `
+        return res[0];
+    }
+    
+    public static async findByNIM({nim}: FindByNIMParamsInterface): Promise<FindByNIMReturnInterface | null> {
+        const res: FindByEmailReturnInterface[] = await prisma.$queryRaw`
+            SELECT 
+                mahasiswa.email,
+                mahasiswa.nim, 
+                mahasiswa.nama,
+                CONCAT('20', SUBSTRING(mahasiswa.nim FROM 2 FOR 2)) as angkatan,
+                CASE
+                    WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 8 THEN (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2 + 1
+                    ELSE (SUBSTRING(EXTRACT(YEAR FROM CURRENT_DATE)::text FROM 2 FOR 4)::int - SUBSTRING(mahasiswa.nim FROM 2 FOR 2)::int) * 2
+                END as semester,
+                mahasiswa.nip as nip_dosen_pa
+            FROM 
+                mahasiswa
+            WHERE 
+                mahasiswa.nim = ${nim};
+        `
+        return res[0];
     }
 
     public static async findRingkasanMahasiswaPAPerAngkatanByDosenNIP({nip}: FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface): Promise<FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface[]> {
