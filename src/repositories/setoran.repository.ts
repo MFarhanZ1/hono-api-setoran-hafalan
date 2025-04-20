@@ -1,9 +1,10 @@
+import SetoranHelper from "../helpers/setoran.helper";
 import prisma from "../infrastructures/db.infrastructure";
-import { FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface } from "../types/setoran/repository.type";
+import { FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface } from "../types/setoran/repository.type";
 
 export default class SetoranRepository {
-	public static async findRingkasanByNIM({ nim }: any): Promise<any | null> {
-		return await prisma.$queryRaw`
+	public static async findRingkasanByNIM({ nim }: FindRingkasanByNIMParamsInterface): Promise<FindRingkasanByNIMReturnInterface | null> {
+		const res: FindRingkasanByNIMReturnInterface[] = await prisma.$queryRaw`
             SELECT
                 (SELECT COUNT(*) FROM surah)::int AS total_wajib_setor,
                 COUNT(setoran.id)::int AS total_sudah_setor, 
@@ -13,10 +14,14 @@ export default class SetoranRepository {
             FROM setoran
             WHERE setoran.nim = ${nim};
         `;
+        return {
+            ...res[0],
+            terakhir_setor: SetoranHelper.formatHumanizeDateDiff(res[0].tgl_terakhir_setor),
+        };
 	}
 
     public static async findAllRingkasanByNIM({ listNIM }: FindAllRingkasanByNIMParamsInterface): Promise<FindAllRingkasanByNIMReturnInterface[]> {
-        return await prisma.$queryRaw`
+        const res: FindAllRingkasanByNIMReturnInterface[] = await prisma.$queryRaw`
             WITH nim_list AS (
                 SELECT unnest(${listNIM}::text[]) AS nim
             )
@@ -36,5 +41,13 @@ export default class SetoranRepository {
             LEFT JOIN setoran s ON nl.nim = s.nim
             GROUP BY nl.nim;
         `;
+        
+        return res.map((mhs) => ({
+            ...mhs, 
+            info_setoran: {
+                ...mhs.info_setoran,
+                terakhir_setor: SetoranHelper.formatHumanizeDateDiff(mhs.info_setoran.tgl_terakhir_setor),
+            }
+        }));
     }    
 }
