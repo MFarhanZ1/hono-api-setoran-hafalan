@@ -1,5 +1,5 @@
 import prisma from "../infrastructures/db.infrastructure";
-import { FindByEmailReturnInterface, FindByEmailParamsInterface, FindByNIPParamsInterface, FindByNIPReturnInterface } from "../types/dosen/repository.type";
+import { FindByEmailReturnInterface, FindByEmailParamsInterface, FindByNIPParamsInterface, FindByNIPReturnInterface, FindAllByNIPParamsInterface, FindAllByNIPReturnInterface } from "../types/dosen/repository.type";
 
 export default class DosenRepository {
     
@@ -15,6 +15,16 @@ export default class DosenRepository {
         return await prisma.dosen.findUnique({
             where: {
                 nip: nip
+            }
+        })
+    }
+
+    public static async findAllByNIP({listNIP}: FindAllByNIPParamsInterface): Promise<FindAllByNIPReturnInterface[] | null> {
+        return await prisma.dosen.findMany({
+            where: {
+                nip: {
+                    in: listNIP || []
+                }
             }
         })
     }
