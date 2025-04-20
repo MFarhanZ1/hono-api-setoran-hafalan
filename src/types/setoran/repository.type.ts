@@ -62,3 +62,11 @@ export interface CreateSetoranParamsInterface {
 		nama_surah: string;
 	}[];
 }
+
+export interface DeleteSetoranParamsInterface {	
+	data_setoran: {
+		id: string;
+		nomor_surah: number;
+		nama_surah: string;
+	}[];
+}
