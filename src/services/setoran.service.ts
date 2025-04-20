@@ -7,22 +7,23 @@ import {
 } from "../types/setoran/service.type";
 import SetoranRepository from "../repositories/setoran.repository";
 import DosenService from "./dosen.service";
+import MahasiswaService from "./mahasiswa.service";
 
 export default class SetoranService {
 	public static async getPASaya({
 		email,
 	}: GetPASayaRequestInterface): Promise<GetPASayaResponseInterface> {
+		
 		// ambil data dosen berdasarkan email
 		const dosen = await DosenService.getByEmail({ email });
-		if (!dosen)
-			throw new APIError("Waduh, datanya gak ditemukan, mas! 😭", 404);
+		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 
-		// ambil nip dosen dari data dosen untuk mendapatkan data ringkasan mhs pa dan daftar mhs pa
+		// ambil nip dosen dari data dosen untuk mendapatkan data ringkasan dan daftar mhs pa
 		const { nip } = dosen;
-		const [ringkasanAngkatan, daftarMahasiswa] = await Promise.all([
-			MahasiswaRepository.findRingkasanMahasiswaPAPerAngkatanByDosenNIP({ nip }),
-			MahasiswaRepository.findAllMahasiswaPAByDosenNIP({ nip }),
-		]);
+		const { 
+			ringkasan: ringkasanAngkatan, 
+			daftar: daftarMahasiswa 
+		} = await MahasiswaService.getInfoMahasiswaPAByDosenNIP({ nip });
 
 		// mengambil semua nim mhs dari daftar mhs yang didapatkan, lalu ambil semua ringkasan setoran dari nim tersebut
 		const listNIM = daftarMahasiswa.map((mhs) => mhs.nim);
@@ -34,7 +35,7 @@ export default class SetoranService {
 			ringkasanSetoran
 		);
 
-		// kembalikan response sesuai yang diinginkan
+		// kembalikan response sesuai hasil gabungan semua data tersebut
 		return {
 			response: true,
 			message: "Berikut info dosen lengkap serta detail mahasiswa per angkatan (max 8 akt)! 😁",
@@ -50,19 +51,34 @@ export default class SetoranService {
 
 	public static async getSetoranSaya({ email }: { email: string }) {
 
-		const mahasiswa = await MahasiswaRepository.findByEmail({ email });
-		if (!mahasiswa) throw new APIError("Waduh, datanya gak ditemukan, mas! 😭", 404);
+		// ambil data mahasiswa berdasarkan email
+		const mahasiswa = await MahasiswaService.getByEmail({ email });
+		if (!mahasiswa) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
+
+		// ambil nip dosen pa dari data mahasiswa untuk mendapatkan data ringkasan mhs pa dan daftar mhs pa
+		const { nip_dosen_pa } = mahasiswa;
+		const dosenPA = await DosenService.getByNIP({ nip: nip_dosen_pa });
+
+		// ambil data ringkasan setoran mahasiswa
+		const ringkasanSetoran = await SetoranRepository.findRingkasanByNIM({ nim: mahasiswa.nim });
 
 		return {
 			response: true,
 			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",
 			data: {
-				...mahasiswa,
-				dosen_pa: {
-					nama: "Pizaini, S.T., M.Kom.,",
-					nip: "130517107",
-					email: "pizaini@uin-suska.ac.id",
+				info: {
+					nama: mahasiswa.nama,
+					nim: mahasiswa.nim,
+					email: mahasiswa.email,
+					angkatan: mahasiswa.angkatan,
+					semester: mahasiswa.semester,
+					dosen_pa: {
+						...dosenPA
+					},
 				},
+				setoran: {
+					info_dasar: ringkasanSetoran
+				}
 			}		
 		};
 	}
