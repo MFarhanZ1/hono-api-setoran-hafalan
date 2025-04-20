@@ -6,5 +6,6 @@ import AuthMiddleware from "../middlewares/auth.middleware";
 const setoranRoute = new Hono({ router: new RegExpRouter() });
 
 setoranRoute.get("/dosen/pa-saya", AuthMiddleware.JWTBearerTokenExtraction, SetoranHandler.getPASaya);
+setoranRoute.get("/mahasiswa/setoran-saya", AuthMiddleware.JWTBearerTokenExtraction, SetoranHandler.getSetoranSaya);
 
 export default setoranRoute;
