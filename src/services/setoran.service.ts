@@ -30,7 +30,7 @@ export default class SetoranService {
 		const ringkasanSetoran = await SetoranRepository.findAllRingkasanByNIM({ listNIM });
 
 		// gabungkan ringkasan setoran per-mhs dengan daftar mhs (pengganti join)
-		const mahasiswaDenganRingkasan = SetoranHelper.mapMahasiswaDenganRingkasan(
+		const mahasiswaDenganRingkasan = SetoranHelper.mapMahasiswaWithRingkasan(
 			daftarMahasiswa,
 			ringkasanSetoran
 		);
@@ -61,7 +61,15 @@ export default class SetoranService {
 
 		// ambil data ringkasan setoran mahasiswa
 		const ringkasanSetoran = await SetoranRepository.findRingkasanByNIM({ nim: mahasiswa.nim });
+		const ringkasanSetoranPerSyarat = await SetoranRepository.findRingkasanPerSyaratByNIM({ nim: mahasiswa.nim });
+		const detailSetoran = await SetoranRepository.findDetailByNIM({ nim: mahasiswa.nim });
 
+		// ambil semua nip dari data detail setoran
+		const listNIP = SetoranHelper.extractAllDosenNIPFromSetoran(detailSetoran);
+		const dosenSetoran = await DosenService.getAllByNIP({ listNIP });
+		const detailSetoranDenganDosen = SetoranHelper.mapSetoranWithDosen(detailSetoran, dosenSetoran);
+
+		// kembalikan response sesuai hasil gabungan semua data tersebut
 		return {
 			response: true,
 			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",
@@ -77,7 +85,9 @@ export default class SetoranService {
 					},
 				},
 				setoran: {
-					info_dasar: ringkasanSetoran
+					info_dasar: ringkasanSetoran,
+					ringkasan: ringkasanSetoranPerSyarat,
+					detail: detailSetoranDenganDosen
 				}
 			}		
 		};
