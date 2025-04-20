@@ -7,3 +7,13 @@ export interface FindByEmailReturnInterface {
     nama: string;
     email: string;
 }
+
+export interface FindByNIPParamsInterface {
+    nip: string;
+}
+
+export interface FindByNIPReturnInterface {
+    nip: string;
+    nama: string;
+    email: string;
+}
