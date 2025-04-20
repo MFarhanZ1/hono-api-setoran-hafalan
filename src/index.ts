@@ -5,7 +5,7 @@ import { RegExpRouter } from "hono/router/reg-exp-router";
 import { BlankEnv, BlankSchema } from "hono/types";
 import GlobalHandler from "./handlers/global.handler";
 import globalRoute from "./routes/global.route";
-import dosenRoute from "./routes/dosen.route";
+import setoranRoute from "./routes/setoran.route";
 
 // Init Hono Object and Load environment variables from .env file
 const app: Hono<BlankEnv, BlankSchema, "/"> = new Hono({ router: new RegExpRouter() });
@@ -28,11 +28,12 @@ app.onError(GlobalHandler.error);
 
 // Load all available routes
 app.route("/", globalRoute);
-app.route("/dosen", dosenRoute);
+app.route("/", setoranRoute);
 
 export default {
   port: APP_PORT || 5000,
-	fetch: app.fetch,
+  fetch: app.fetch,
+  hostname: '0.0.0.0',
 };
 
 console.log(`[INFO] Server is on fire at port ${APP_PORT}! 🔥`);
