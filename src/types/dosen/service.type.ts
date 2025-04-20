@@ -17,3 +17,13 @@ export interface GetByNIPResponseInterface {
     nama: string;
     email: string;
 }
+
+export interface GetAllByNIPRequestInterface {
+    listNIP: string[];
+}
+
+export interface GetAllByNIPResponseInterface {
+    nip: string;
+    nama: string;
+    email: string;
+}
