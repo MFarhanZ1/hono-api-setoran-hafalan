@@ -21,34 +21,37 @@ export default class SetoranHelper {
 		if (diffDays === 5) return "5 Hari yang lalu";
 
 		if (diffDays < 7) return "Minggu ini";
-		if (diffDays < 14) return "2 Minggu yang lalu";
-		if (diffDays < 21) return "3 Minggu yang lalu";
+		if (diffDays < 14) return "1 Minggu yang lalu";
+		if (diffDays < 21) return "2 Minggu yang lalu";
+		if (diffDays < 31) return "Bulan ini";
 
 		const diffMonths =
 			(now.getFullYear() - tgl.getFullYear()) * 12 +
 			(now.getMonth() - tgl.getMonth());
 
 		if (diffMonths === 0) return "Bulan ini";
-		if (diffMonths === 1) return "2 Bulan yang lalu";
-		if (diffMonths === 2) return "3 Bulan yang lalu";
-		if (diffMonths === 3) return "4 Bulan yang lalu";
-		if (diffMonths === 4) return "5 Bulan yang lalu";
-		if (diffMonths === 5) return "6 Bulan yang lalu";
-		if (diffMonths === 6) return "7 Bulan yang lalu";
-		if (diffMonths === 7) return "8 Bulan yang lalu";
-		if (diffMonths === 8) return "9 Bulan yang lalu";
-		if (diffMonths === 9) return "10 Bulan yang lalu";
-		if (diffMonths === 10) return "11 Bulan yang lalu";
+		if (diffMonths === 1) return "1 Bulan yang lalu";
+		if (diffMonths === 2) return "2 Bulan yang lalu";
+		if (diffMonths === 3) return "3 Bulan yang lalu";
+		if (diffMonths === 4) return "4 Bulan yang lalu";
+		if (diffMonths === 5) return "5 Bulan yang lalu";
+		if (diffMonths === 6) return "6 Bulan yang lalu";
+		if (diffMonths === 7) return "7 Bulan yang lalu";
+		if (diffMonths === 8) return "8 Bulan yang lalu";
+		if (diffMonths === 9) return "9 Bulan yang lalu";
+		if (diffMonths === 10) return "10 Bulan yang lalu";
+		if (diffMonths === 11) return "11 Bulan yang lalu";
 
 		const diffYears = now.getFullYear() - tgl.getFullYear();
 
 		if (diffYears === 0) return "Tahun ini";
-		if (diffYears === 1) return "2 Tahun yang lalu";
-		if (diffYears === 2) return "3 Tahun yang lalu";
-		if (diffYears === 3) return "4 Tahun yang lalu";
-		if (diffYears === 4) return "5 Tahun yang lalu";
-		if (diffYears === 5) return "6 Tahun yang lalu";
-		if (diffYears === 6) return "7 Tahun yang lalu";
+		if (diffYears === 1) return "1 Tahun yang lalu";
+		if (diffYears === 2) return "2 Tahun yang lalu";
+		if (diffYears === 3) return "3 Tahun yang lalu";
+		if (diffYears === 4) return "4 Tahun yang lalu";
+		if (diffYears === 5) return "5 Tahun yang lalu";
+		if (diffYears === 6) return "6 Tahun yang lalu";
+		if (diffYears === 7) return "7 Tahun yang lalu";
 
 		return "Lebih dari 7 Tahun yang lalu";
 	}
