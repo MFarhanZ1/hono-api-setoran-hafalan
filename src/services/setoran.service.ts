@@ -117,6 +117,8 @@ export default class SetoranService {
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
 
+		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
+
 		// simpan data setoran
 		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
 
@@ -124,6 +126,25 @@ export default class SetoranService {
 		return {
 			response: true,
 			message: "Yeay, proses validasi setoran berhasil! ✨",
+		};
+	}
+	
+	public static async deleteSetoranMahasiswa({ email, nim, data_setoran }: { email: string, nim: string, data_setoran: any }) {		
+		
+		// ambil data dosen berdasarkan email buat ngambil nip nya
+		const dosen = await DosenService.getByEmail({ email });
+		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
+		const { nip } = dosen;
+
+		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
+
+		// simpan data setoran
+		await SetoranRepository.deleteSetoran({ data_setoran });
+
+		// kembalikan response
+		return {
+			response: true,
+			message: "Yeay, proses pembatalan setoran telah berhasil! ✨",
 		};
 	}
 }
