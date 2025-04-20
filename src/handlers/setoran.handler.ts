@@ -2,12 +2,18 @@ import { Context } from "hono";
 import SetoranService from "../services/setoran.service";
 import { APIError } from "../utils/api-error.util";
 
-export default class DosenHandler {
+export default class SetoranHandler {
 
     public static async getPASaya(c: Context) {
         const { email } = c.get("user");
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
         return c.json(await SetoranService.getPASaya({email}));
+    }
+
+    public static async getSetoranSaya(c: Context) {
+        const { email } = c.get("user");
+        if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
+        return c.json(await SetoranService.getSetoranSaya({email}));
     }
     
 }
