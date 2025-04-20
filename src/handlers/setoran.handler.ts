@@ -15,5 +15,10 @@ export default class SetoranHandler {
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
         return c.json(await SetoranService.getSetoranSaya({email}));
     }
+
+    public static async getSetoranMahasiswa(c: Context) { 
+        const { nim } = c.req.param();       
+        return c.json(await SetoranService.getSetoranMahasiswa({nim}));
+    }
     
 }
