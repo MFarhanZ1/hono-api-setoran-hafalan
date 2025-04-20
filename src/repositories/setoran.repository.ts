@@ -1,7 +1,7 @@
 import { Prisma } from "../generated/prisma";
 import SetoranHelper from "../helpers/setoran.helper";
 import prisma from "../infrastructures/db.infrastructure";
-import { CreateSetoranParamsInterface, FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindDetailByNIMParamsInterface, FindDetailByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface, FindRingkasanPerSyaratByNIMParamsInterface, FindRingkasanPerSyaratByNIMReturnInterface } from "../types/setoran/repository.type";
+import { CreateSetoranParamsInterface, DeleteSetoranParamsInterface, FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindDetailByNIMParamsInterface, FindDetailByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface, FindRingkasanPerSyaratByNIMParamsInterface, FindRingkasanPerSyaratByNIMReturnInterface } from "../types/setoran/repository.type";
 
 export default class SetoranRepository {
 	public static async findRingkasanByNIM({ nim }: FindRingkasanByNIMParamsInterface): Promise<FindRingkasanByNIMReturnInterface | null> {
@@ -130,6 +130,18 @@ export default class SetoranRepository {
             ON CONFLICT (nim, nomor_surah) DO NOTHING;
         `
         );
+    }
+
+    public static async deleteSetoran({ data_setoran }: DeleteSetoranParamsInterface): Promise<void> {
+
+        const id_setoran = data_setoran.map((data: { id: string }) => data.id);
+
+        await prisma.$executeRaw(
+            Prisma.sql`
+                DELETE FROM setoran
+                WHERE id IN (${Prisma.join(id_setoran.map(id => Prisma.sql`${id}::uuid`))})
+            `
+        );          
     }
     
 }
