@@ -7,3 +7,13 @@ export interface GetByEmailResponseInterface {
     nama: string;
     email: string;
 }
+
+export interface GetByNIPRequestInterface {
+    nip: string;
+}
+
+export interface GetByNIPResponseInterface {
+    nip: string;
+    nama: string;
+    email: string;
+}

@@ -1,15 +1,27 @@
 export interface FindByEmailParamsInterface {
-	nim: string;
-	nama: string;
 	email: string;
-	nip: string;
 }
 
 export interface FindByEmailReturnInterface {
 	nim: string;
 	nama: string;
 	email: string;
-	nip: string;
+	angkatan: string;
+	semester: number;
+	nip_dosen_pa: string;
+}
+
+export interface FindByNIMParamsInterface {
+	nim: string;
+}
+
+export interface FindByNIMReturnInterface {
+	nim: string;
+	nama: string;
+	email: string;
+	angkatan: string;
+	semester: number;
+	nip_dosen_pa: string;
 }
 
 export interface FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface {
