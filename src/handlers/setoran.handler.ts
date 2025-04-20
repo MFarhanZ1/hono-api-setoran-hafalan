@@ -30,5 +30,15 @@ export default class SetoranHandler {
 
         return c.json(await SetoranService.postSetoranMahasiswa({email, nim, data_setoran, tgl_setoran}));
     }
+
+    public static async deleteSetoranMahasiswa(c: Context) {     
+        const { email } = c.get("user");
+        if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
+
+        const { nim } = c.req.param();
+        const { data_setoran } = await c.req.json();
+
+        return c.json(await SetoranService.deleteSetoranMahasiswa({email, nim, data_setoran}));
+    }
     
 }
