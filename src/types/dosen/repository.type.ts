@@ -17,3 +17,13 @@ export interface FindByNIPReturnInterface {
     nama: string;
     email: string;
 }
+
+export interface FindAllByNIPParamsInterface {
+    listNIP: string[] | null;
+}
+
+export interface FindAllByNIPReturnInterface {
+    nip: string;
+    nama: string;
+    email: string;
+}
