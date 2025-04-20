@@ -64,7 +64,6 @@ export default class SetoranHelper {
 				...mhs,
 				info_setoran: {
 					...infoRingkasanSetoran,
-					terakhir_setor: SetoranHelper.formatHumanizeDateDiff(infoRingkasanSetoran?.tgl_terakhir_setor),
 				},
 			};
 		});
