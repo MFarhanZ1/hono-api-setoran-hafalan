@@ -115,12 +115,9 @@ export default class SetoranService {
 		const dosen = await DosenService.getByEmail({ email });
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
-		
-		console.log(nip);
-		console.log(nim);
-		console.log(data_setoran);
-		console.log(tgl_setoran);
-		
+
+		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
+
 		return {
 			response: true,
 			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",

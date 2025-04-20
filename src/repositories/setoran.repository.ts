@@ -1,3 +1,4 @@
+import { Prisma } from "../generated/prisma";
 import SetoranHelper from "../helpers/setoran.helper";
 import prisma from "../infrastructures/db.infrastructure";
 import { FindAllRingkasanByNIMParamsInterface, FindAllRingkasanByNIMReturnInterface, FindDetailByNIMParamsInterface, FindDetailByNIMReturnInterface, FindRingkasanByNIMParamsInterface, FindRingkasanByNIMReturnInterface, FindRingkasanPerSyaratByNIMParamsInterface, FindRingkasanPerSyaratByNIMReturnInterface } from "../types/setoran/repository.type";
@@ -115,4 +116,20 @@ export default class SetoranRepository {
                 s.nomor ASC;
         `
 	}
+
+    public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: any): Promise<void> {
+
+        const values = data_setoran.map((data: {nomor_surah: number}) =>
+            Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.nomor_surah})`
+        );
+
+        await prisma.$executeRaw(
+            Prisma.sql`
+            INSERT INTO setoran (tgl_setoran, nim, nip, nomor_surah)
+            VALUES ${Prisma.join(values)}
+            ON CONFLICT (nim, nomor_surah) DO NOTHING;
+        `
+        );
+    }
+    
 }
