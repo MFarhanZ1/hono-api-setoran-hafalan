@@ -54,7 +54,7 @@ export interface FindDetailByNIMReturnInterface {
 }
 
 export interface CreateSetoranParamsInterface {
-	tgl_setoran: string;
+	tgl_setoran: Date | null;
 	nim: string;
 	nip: string;
 	data_setoran: {
