@@ -111,16 +111,19 @@ export default class SetoranService {
 	}
 	
 	public static async postSetoranMahasiswa({ email, nim, data_setoran, tgl_setoran }: { email: string, nim: string, data_setoran: any, tgl_setoran: Date }) {		
+		
 		// ambil data dosen berdasarkan email buat ngambil nip nya
 		const dosen = await DosenService.getByEmail({ email });
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
 
+		// simpan data setoran
 		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
 
+		// kembalikan response
 		return {
 			response: true,
-			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",
+			message: "Yeay, proses validasi setoran berhasil! ✨",
 		};
 	}
 }
