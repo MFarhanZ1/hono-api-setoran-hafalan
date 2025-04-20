@@ -1,5 +1,5 @@
 import prisma from "../infrastructures/db.infrastructure";
-import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindDaftarMahasiswaPAByDosenNIPParamsInterface, FindDaftarMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface } from "../types/mahasiswa/repository.type";
+import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindAllMahasiswaPAByDosenNIPParamsInterface, FindAllMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface } from "../types/mahasiswa/repository.type";
 
 export default class MahasiswaRepository {
     
@@ -28,7 +28,7 @@ export default class MahasiswaRepository {
         `
     }
 
-    public static async findDaftarMahasiswaPAByDosenNIP({nip}: FindDaftarMahasiswaPAByDosenNIPParamsInterface): Promise<FindDaftarMahasiswaPAByDosenNIPReturnInterface[]> {
+    public static async findAllMahasiswaPAByDosenNIP({nip}: FindAllMahasiswaPAByDosenNIPParamsInterface): Promise<FindAllMahasiswaPAByDosenNIPReturnInterface[]> {
         return await prisma.$queryRaw`
             SELECT 
                 mahasiswa.email,
