@@ -3,7 +3,7 @@ import prisma from "../src/infrastructures/db.infrastructure";
 console.log("[INFO] Seeding database...");
 
 async function main() {
-	console.log("[DEBUG] Running createMany...");
+	console.log("[DEBUG] Running all seeding tasks...");
 	const result = await prisma.surah.createMany({
 		data: [
             { nomor: 78, nama: 'An-Naba\'', label: 'KP' },
@@ -47,7 +47,7 @@ async function main() {
 		skipDuplicates: true,
 	});
 
-	console.log("[RESULT] ", result.count > 0 ? result : "Data was inserted previously, no new data inserted! 😇");
+	console.log("[RESULT]", result.count > 0 ? result : "Data was inserted previously, no new data inserted! 😇");
 }
 
 main()
