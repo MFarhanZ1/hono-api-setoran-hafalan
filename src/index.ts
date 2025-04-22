@@ -14,7 +14,7 @@ const { APP_PORT }: NodeJS.ProcessEnv = process.env;
 // Load all available middlewares
 app.use('*', logger())
 app.use('*', cors({
-  origin: '*', // restrict this in production
+  origin: process.env.NODE_ENV === 'production' ? "https://dashboard.tif.uin-suska.ac.id" : "*", // restrict this in production
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization'],
   exposeHeaders: ['Content-Length', 'X-Request-Id'],
@@ -33,7 +33,6 @@ app.route("/", setoranRoute);
 export default {
   port: APP_PORT || 5000,
   fetch: app.fetch,
-  hostname: '0.0.0.0',
 };
 
 console.log(`[INFO] Server is on fire at port ${APP_PORT}! 🔥`);
