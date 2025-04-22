@@ -5,6 +5,7 @@ import AuthMiddleware from "../middlewares/auth.middleware";
 import { zValidator } from "@hono/zod-validator";
 import { deleteSetoranSchema, postSetoranSchema } from "../validators/setoran.validator";
 import { zodError } from "../utils/zod-error.util";
+import LogMiddleware from "../middlewares/log.middleware";
 
 const setoranRoute = new Hono({ router: new RegExpRouter() });
 
@@ -25,12 +26,14 @@ setoranRoute.get(
 );
 setoranRoute.post(
 	"/mahasiswa/setoran/:nim",
+	LogMiddleware.extractNetworkInformation,
 	zValidator("json", postSetoranSchema, zodError),
 	AuthMiddleware.JWTBearerTokenExtraction,
 	SetoranHandler.postSetoranMahasiswa
 );
 setoranRoute.delete(
 	"/mahasiswa/setoran/:nim",
+	LogMiddleware.extractNetworkInformation,
 	zValidator("json", deleteSetoranSchema, zodError),
 	AuthMiddleware.JWTBearerTokenExtraction,
 	SetoranHandler.deleteSetoranMahasiswa
