@@ -28,7 +28,10 @@ export default class SetoranHandler {
         const { nim } = c.req.param();
         const { data_setoran, tgl_setoran } = await c.req.json();
 
-        return c.json(await SetoranService.postSetoranMahasiswa({email, nim, data_setoran, tgl_setoran}));
+        // dapatkan user agent dan ip user buat log
+        const network_log_data = c.get("network_log_data");
+
+        return c.json(await SetoranService.postSetoranMahasiswa({email, nim, data_setoran, tgl_setoran, network_log_data}));
     }
 
     public static async deleteSetoranMahasiswa(c: Context) {     
@@ -38,7 +41,10 @@ export default class SetoranHandler {
         const { nim } = c.req.param();
         const { data_setoran } = await c.req.json();
 
-        return c.json(await SetoranService.deleteSetoranMahasiswa({email, nim, data_setoran}));
+        // dapatkan user agent dan ip user buat log
+        const network_log_data = c.get("network_log_data");
+
+        return c.json(await SetoranService.deleteSetoranMahasiswa({email, nim, data_setoran, network_log_data}));
     }
-    
+
 }
