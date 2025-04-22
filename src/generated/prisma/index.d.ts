@@ -33,6 +33,11 @@ export type setoran = $Result.DefaultSelection<Prisma.$setoranPayload>
  * 
  */
 export type surah = $Result.DefaultSelection<Prisma.$surahPayload>
+/**
+ * Model log_setoran_hafalan
+ * 
+ */
+export type log_setoran_hafalan = $Result.DefaultSelection<Prisma.$log_setoran_hafalanPayload>
 
 /**
  * Enums
@@ -48,11 +53,23 @@ export namespace $Enums {
 
 export type type_label_surah = (typeof type_label_surah)[keyof typeof type_label_surah]
 
+
+export const Aksi: {
+  Validasi: 'Validasi',
+  Batalkan: 'Batalkan'
+};
+
+export type Aksi = (typeof Aksi)[keyof typeof Aksi]
+
 }
 
 export type type_label_surah = $Enums.type_label_surah
 
 export const type_label_surah: typeof $Enums.type_label_surah
+
+export type Aksi = $Enums.Aksi
+
+export const Aksi: typeof $Enums.Aksi
 
 /**
  * ##  Prisma Client ʲˢ
@@ -218,6 +235,16 @@ export class PrismaClient<
     * ```
     */
   get surah(): Prisma.surahDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.log_setoran_hafalan`: Exposes CRUD operations for the **log_setoran_hafalan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Log_setoran_hafalans
+    * const log_setoran_hafalans = await prisma.log_setoran_hafalan.findMany()
+    * ```
+    */
+  get log_setoran_hafalan(): Prisma.log_setoran_hafalanDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -661,7 +688,8 @@ export namespace Prisma {
     dosen: 'dosen',
     mahasiswa: 'mahasiswa',
     setoran: 'setoran',
-    surah: 'surah'
+    surah: 'surah',
+    log_setoran_hafalan: 'log_setoran_hafalan'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -680,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "dosen" | "mahasiswa" | "setoran" | "surah"
+      modelProps: "dosen" | "mahasiswa" | "setoran" | "surah" | "log_setoran_hafalan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -980,6 +1008,80 @@ export namespace Prisma {
           }
         }
       }
+      log_setoran_hafalan: {
+        payload: Prisma.$log_setoran_hafalanPayload<ExtArgs>
+        fields: Prisma.log_setoran_hafalanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.log_setoran_hafalanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.log_setoran_hafalanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          findFirst: {
+            args: Prisma.log_setoran_hafalanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.log_setoran_hafalanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          findMany: {
+            args: Prisma.log_setoran_hafalanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>[]
+          }
+          create: {
+            args: Prisma.log_setoran_hafalanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          createMany: {
+            args: Prisma.log_setoran_hafalanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.log_setoran_hafalanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>[]
+          }
+          delete: {
+            args: Prisma.log_setoran_hafalanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          update: {
+            args: Prisma.log_setoran_hafalanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          deleteMany: {
+            args: Prisma.log_setoran_hafalanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.log_setoran_hafalanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.log_setoran_hafalanUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>[]
+          }
+          upsert: {
+            args: Prisma.log_setoran_hafalanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$log_setoran_hafalanPayload>
+          }
+          aggregate: {
+            args: Prisma.Log_setoran_hafalanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLog_setoran_hafalan>
+          }
+          groupBy: {
+            args: Prisma.log_setoran_hafalanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Log_setoran_hafalanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.log_setoran_hafalanCountArgs<ExtArgs>
+            result: $Utils.Optional<Log_setoran_hafalanCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1068,6 +1170,7 @@ export namespace Prisma {
     mahasiswa?: mahasiswaOmit
     setoran?: setoranOmit
     surah?: surahOmit
+    log_setoran_hafalan?: log_setoran_hafalanOmit
   }
 
   /* Types for Logging */
@@ -1164,11 +1267,13 @@ export namespace Prisma {
   export type DosenCountOutputType = {
     mahasiswa: number
     setoran: number
+    log_setoran_hafalan: number
   }
 
   export type DosenCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | DosenCountOutputTypeCountMahasiswaArgs
     setoran?: boolean | DosenCountOutputTypeCountSetoranArgs
+    log_setoran_hafalan?: boolean | DosenCountOutputTypeCountLog_setoran_hafalanArgs
   }
 
   // Custom InputTypes
@@ -1196,6 +1301,13 @@ export namespace Prisma {
     where?: setoranWhereInput
   }
 
+  /**
+   * DosenCountOutputType without action
+   */
+  export type DosenCountOutputTypeCountLog_setoran_hafalanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_setoran_hafalanWhereInput
+  }
+
 
   /**
    * Count Type MahasiswaCountOutputType
@@ -1203,10 +1315,12 @@ export namespace Prisma {
 
   export type MahasiswaCountOutputType = {
     setoran: number
+    log_setoran_hafalan: number
   }
 
   export type MahasiswaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     setoran?: boolean | MahasiswaCountOutputTypeCountSetoranArgs
+    log_setoran_hafalan?: boolean | MahasiswaCountOutputTypeCountLog_setoran_hafalanArgs
   }
 
   // Custom InputTypes
@@ -1225,6 +1339,13 @@ export namespace Prisma {
    */
   export type MahasiswaCountOutputTypeCountSetoranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: setoranWhereInput
+  }
+
+  /**
+   * MahasiswaCountOutputType without action
+   */
+  export type MahasiswaCountOutputTypeCountLog_setoran_hafalanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_setoran_hafalanWhereInput
   }
 
 
@@ -1413,6 +1534,7 @@ export namespace Prisma {
     email?: boolean
     mahasiswa?: boolean | dosen$mahasiswaArgs<ExtArgs>
     setoran?: boolean | dosen$setoranArgs<ExtArgs>
+    log_setoran_hafalan?: boolean | dosen$log_setoran_hafalanArgs<ExtArgs>
     _count?: boolean | DosenCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dosen"]>
 
@@ -1438,6 +1560,7 @@ export namespace Prisma {
   export type dosenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | dosen$mahasiswaArgs<ExtArgs>
     setoran?: boolean | dosen$setoranArgs<ExtArgs>
+    log_setoran_hafalan?: boolean | dosen$log_setoran_hafalanArgs<ExtArgs>
     _count?: boolean | DosenCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type dosenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1448,6 +1571,7 @@ export namespace Prisma {
     objects: {
       mahasiswa: Prisma.$mahasiswaPayload<ExtArgs>[]
       setoran: Prisma.$setoranPayload<ExtArgs>[]
+      log_setoran_hafalan: Prisma.$log_setoran_hafalanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       nip: string
@@ -1849,6 +1973,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mahasiswa<T extends dosen$mahasiswaArgs<ExtArgs> = {}>(args?: Subset<T, dosen$mahasiswaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$mahasiswaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     setoran<T extends dosen$setoranArgs<ExtArgs> = {}>(args?: Subset<T, dosen$setoranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$setoranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    log_setoran_hafalan<T extends dosen$log_setoran_hafalanArgs<ExtArgs> = {}>(args?: Subset<T, dosen$log_setoran_hafalanArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2317,6 +2442,30 @@ export namespace Prisma {
   }
 
   /**
+   * dosen.log_setoran_hafalan
+   */
+  export type dosen$log_setoran_hafalanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    where?: log_setoran_hafalanWhereInput
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Log_setoran_hafalanScalarFieldEnum | Log_setoran_hafalanScalarFieldEnum[]
+  }
+
+  /**
    * dosen without action
    */
   export type dosenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2493,6 +2642,7 @@ export namespace Prisma {
     nip?: boolean
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
     setoran?: boolean | mahasiswa$setoranArgs<ExtArgs>
+    log_setoran_hafalan?: boolean | mahasiswa$log_setoran_hafalanArgs<ExtArgs>
     _count?: boolean | MahasiswaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mahasiswa"]>
 
@@ -2523,6 +2673,7 @@ export namespace Prisma {
   export type mahasiswaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
     setoran?: boolean | mahasiswa$setoranArgs<ExtArgs>
+    log_setoran_hafalan?: boolean | mahasiswa$log_setoran_hafalanArgs<ExtArgs>
     _count?: boolean | MahasiswaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type mahasiswaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2537,6 +2688,7 @@ export namespace Prisma {
     objects: {
       dosen: Prisma.$dosenPayload<ExtArgs>
       setoran: Prisma.$setoranPayload<ExtArgs>[]
+      log_setoran_hafalan: Prisma.$log_setoran_hafalanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       nim: string
@@ -2939,6 +3091,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     dosen<T extends dosenDefaultArgs<ExtArgs> = {}>(args?: Subset<T, dosenDefaultArgs<ExtArgs>>): Prisma__dosenClient<$Result.GetResult<Prisma.$dosenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     setoran<T extends mahasiswa$setoranArgs<ExtArgs> = {}>(args?: Subset<T, mahasiswa$setoranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$setoranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    log_setoran_hafalan<T extends mahasiswa$log_setoran_hafalanArgs<ExtArgs> = {}>(args?: Subset<T, mahasiswa$log_setoran_hafalanArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3389,6 +3542,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SetoranScalarFieldEnum | SetoranScalarFieldEnum[]
+  }
+
+  /**
+   * mahasiswa.log_setoran_hafalan
+   */
+  export type mahasiswa$log_setoran_hafalanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    where?: log_setoran_hafalanWhereInput
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Log_setoran_hafalanScalarFieldEnum | Log_setoran_hafalanScalarFieldEnum[]
   }
 
   /**
@@ -5610,6 +5787,1145 @@ export namespace Prisma {
 
 
   /**
+   * Model log_setoran_hafalan
+   */
+
+  export type AggregateLog_setoran_hafalan = {
+    _count: Log_setoran_hafalanCountAggregateOutputType | null
+    _avg: Log_setoran_hafalanAvgAggregateOutputType | null
+    _sum: Log_setoran_hafalanSumAggregateOutputType | null
+    _min: Log_setoran_hafalanMinAggregateOutputType | null
+    _max: Log_setoran_hafalanMaxAggregateOutputType | null
+  }
+
+  export type Log_setoran_hafalanAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Log_setoran_hafalanSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Log_setoran_hafalanMinAggregateOutputType = {
+    id: number | null
+    keterangan_yang_disetor: string | null
+    aksi: $Enums.Aksi | null
+    ip: string | null
+    user_agent: string | null
+    timestamp: Date | null
+    nim: string | null
+    nip: string | null
+  }
+
+  export type Log_setoran_hafalanMaxAggregateOutputType = {
+    id: number | null
+    keterangan_yang_disetor: string | null
+    aksi: $Enums.Aksi | null
+    ip: string | null
+    user_agent: string | null
+    timestamp: Date | null
+    nim: string | null
+    nip: string | null
+  }
+
+  export type Log_setoran_hafalanCountAggregateOutputType = {
+    id: number
+    keterangan_yang_disetor: number
+    aksi: number
+    ip: number
+    user_agent: number
+    timestamp: number
+    nim: number
+    nip: number
+    _all: number
+  }
+
+
+  export type Log_setoran_hafalanAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Log_setoran_hafalanSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Log_setoran_hafalanMinAggregateInputType = {
+    id?: true
+    keterangan_yang_disetor?: true
+    aksi?: true
+    ip?: true
+    user_agent?: true
+    timestamp?: true
+    nim?: true
+    nip?: true
+  }
+
+  export type Log_setoran_hafalanMaxAggregateInputType = {
+    id?: true
+    keterangan_yang_disetor?: true
+    aksi?: true
+    ip?: true
+    user_agent?: true
+    timestamp?: true
+    nim?: true
+    nip?: true
+  }
+
+  export type Log_setoran_hafalanCountAggregateInputType = {
+    id?: true
+    keterangan_yang_disetor?: true
+    aksi?: true
+    ip?: true
+    user_agent?: true
+    timestamp?: true
+    nim?: true
+    nip?: true
+    _all?: true
+  }
+
+  export type Log_setoran_hafalanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_setoran_hafalan to aggregate.
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_setoran_hafalans to fetch.
+     */
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_setoran_hafalans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_setoran_hafalans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned log_setoran_hafalans
+    **/
+    _count?: true | Log_setoran_hafalanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Log_setoran_hafalanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Log_setoran_hafalanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Log_setoran_hafalanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Log_setoran_hafalanMaxAggregateInputType
+  }
+
+  export type GetLog_setoran_hafalanAggregateType<T extends Log_setoran_hafalanAggregateArgs> = {
+        [P in keyof T & keyof AggregateLog_setoran_hafalan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLog_setoran_hafalan[P]>
+      : GetScalarType<T[P], AggregateLog_setoran_hafalan[P]>
+  }
+
+
+
+
+  export type log_setoran_hafalanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: log_setoran_hafalanWhereInput
+    orderBy?: log_setoran_hafalanOrderByWithAggregationInput | log_setoran_hafalanOrderByWithAggregationInput[]
+    by: Log_setoran_hafalanScalarFieldEnum[] | Log_setoran_hafalanScalarFieldEnum
+    having?: log_setoran_hafalanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Log_setoran_hafalanCountAggregateInputType | true
+    _avg?: Log_setoran_hafalanAvgAggregateInputType
+    _sum?: Log_setoran_hafalanSumAggregateInputType
+    _min?: Log_setoran_hafalanMinAggregateInputType
+    _max?: Log_setoran_hafalanMaxAggregateInputType
+  }
+
+  export type Log_setoran_hafalanGroupByOutputType = {
+    id: number
+    keterangan_yang_disetor: string | null
+    aksi: $Enums.Aksi
+    ip: string | null
+    user_agent: string | null
+    timestamp: Date
+    nim: string
+    nip: string
+    _count: Log_setoran_hafalanCountAggregateOutputType | null
+    _avg: Log_setoran_hafalanAvgAggregateOutputType | null
+    _sum: Log_setoran_hafalanSumAggregateOutputType | null
+    _min: Log_setoran_hafalanMinAggregateOutputType | null
+    _max: Log_setoran_hafalanMaxAggregateOutputType | null
+  }
+
+  type GetLog_setoran_hafalanGroupByPayload<T extends log_setoran_hafalanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Log_setoran_hafalanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Log_setoran_hafalanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Log_setoran_hafalanGroupByOutputType[P]>
+            : GetScalarType<T[P], Log_setoran_hafalanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type log_setoran_hafalanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    keterangan_yang_disetor?: boolean
+    aksi?: boolean
+    ip?: boolean
+    user_agent?: boolean
+    timestamp?: boolean
+    nim?: boolean
+    nip?: boolean
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["log_setoran_hafalan"]>
+
+  export type log_setoran_hafalanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    keterangan_yang_disetor?: boolean
+    aksi?: boolean
+    ip?: boolean
+    user_agent?: boolean
+    timestamp?: boolean
+    nim?: boolean
+    nip?: boolean
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["log_setoran_hafalan"]>
+
+  export type log_setoran_hafalanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    keterangan_yang_disetor?: boolean
+    aksi?: boolean
+    ip?: boolean
+    user_agent?: boolean
+    timestamp?: boolean
+    nim?: boolean
+    nip?: boolean
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["log_setoran_hafalan"]>
+
+  export type log_setoran_hafalanSelectScalar = {
+    id?: boolean
+    keterangan_yang_disetor?: boolean
+    aksi?: boolean
+    ip?: boolean
+    user_agent?: boolean
+    timestamp?: boolean
+    nim?: boolean
+    nip?: boolean
+  }
+
+  export type log_setoran_hafalanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "keterangan_yang_disetor" | "aksi" | "ip" | "user_agent" | "timestamp" | "nim" | "nip", ExtArgs["result"]["log_setoran_hafalan"]>
+  export type log_setoran_hafalanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }
+  export type log_setoran_hafalanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }
+  export type log_setoran_hafalanIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
+    dosen?: boolean | dosenDefaultArgs<ExtArgs>
+  }
+
+  export type $log_setoran_hafalanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "log_setoran_hafalan"
+    objects: {
+      mahasiswa: Prisma.$mahasiswaPayload<ExtArgs>
+      dosen: Prisma.$dosenPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      keterangan_yang_disetor: string | null
+      aksi: $Enums.Aksi
+      ip: string | null
+      user_agent: string | null
+      timestamp: Date
+      nim: string
+      nip: string
+    }, ExtArgs["result"]["log_setoran_hafalan"]>
+    composites: {}
+  }
+
+  type log_setoran_hafalanGetPayload<S extends boolean | null | undefined | log_setoran_hafalanDefaultArgs> = $Result.GetResult<Prisma.$log_setoran_hafalanPayload, S>
+
+  type log_setoran_hafalanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<log_setoran_hafalanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Log_setoran_hafalanCountAggregateInputType | true
+    }
+
+  export interface log_setoran_hafalanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['log_setoran_hafalan'], meta: { name: 'log_setoran_hafalan' } }
+    /**
+     * Find zero or one Log_setoran_hafalan that matches the filter.
+     * @param {log_setoran_hafalanFindUniqueArgs} args - Arguments to find a Log_setoran_hafalan
+     * @example
+     * // Get one Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends log_setoran_hafalanFindUniqueArgs>(args: SelectSubset<T, log_setoran_hafalanFindUniqueArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Log_setoran_hafalan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {log_setoran_hafalanFindUniqueOrThrowArgs} args - Arguments to find a Log_setoran_hafalan
+     * @example
+     * // Get one Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends log_setoran_hafalanFindUniqueOrThrowArgs>(args: SelectSubset<T, log_setoran_hafalanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Log_setoran_hafalan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanFindFirstArgs} args - Arguments to find a Log_setoran_hafalan
+     * @example
+     * // Get one Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends log_setoran_hafalanFindFirstArgs>(args?: SelectSubset<T, log_setoran_hafalanFindFirstArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Log_setoran_hafalan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanFindFirstOrThrowArgs} args - Arguments to find a Log_setoran_hafalan
+     * @example
+     * // Get one Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends log_setoran_hafalanFindFirstOrThrowArgs>(args?: SelectSubset<T, log_setoran_hafalanFindFirstOrThrowArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Log_setoran_hafalans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Log_setoran_hafalans
+     * const log_setoran_hafalans = await prisma.log_setoran_hafalan.findMany()
+     * 
+     * // Get first 10 Log_setoran_hafalans
+     * const log_setoran_hafalans = await prisma.log_setoran_hafalan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const log_setoran_hafalanWithIdOnly = await prisma.log_setoran_hafalan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends log_setoran_hafalanFindManyArgs>(args?: SelectSubset<T, log_setoran_hafalanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Log_setoran_hafalan.
+     * @param {log_setoran_hafalanCreateArgs} args - Arguments to create a Log_setoran_hafalan.
+     * @example
+     * // Create one Log_setoran_hafalan
+     * const Log_setoran_hafalan = await prisma.log_setoran_hafalan.create({
+     *   data: {
+     *     // ... data to create a Log_setoran_hafalan
+     *   }
+     * })
+     * 
+     */
+    create<T extends log_setoran_hafalanCreateArgs>(args: SelectSubset<T, log_setoran_hafalanCreateArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Log_setoran_hafalans.
+     * @param {log_setoran_hafalanCreateManyArgs} args - Arguments to create many Log_setoran_hafalans.
+     * @example
+     * // Create many Log_setoran_hafalans
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends log_setoran_hafalanCreateManyArgs>(args?: SelectSubset<T, log_setoran_hafalanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Log_setoran_hafalans and returns the data saved in the database.
+     * @param {log_setoran_hafalanCreateManyAndReturnArgs} args - Arguments to create many Log_setoran_hafalans.
+     * @example
+     * // Create many Log_setoran_hafalans
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Log_setoran_hafalans and only return the `id`
+     * const log_setoran_hafalanWithIdOnly = await prisma.log_setoran_hafalan.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends log_setoran_hafalanCreateManyAndReturnArgs>(args?: SelectSubset<T, log_setoran_hafalanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Log_setoran_hafalan.
+     * @param {log_setoran_hafalanDeleteArgs} args - Arguments to delete one Log_setoran_hafalan.
+     * @example
+     * // Delete one Log_setoran_hafalan
+     * const Log_setoran_hafalan = await prisma.log_setoran_hafalan.delete({
+     *   where: {
+     *     // ... filter to delete one Log_setoran_hafalan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends log_setoran_hafalanDeleteArgs>(args: SelectSubset<T, log_setoran_hafalanDeleteArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Log_setoran_hafalan.
+     * @param {log_setoran_hafalanUpdateArgs} args - Arguments to update one Log_setoran_hafalan.
+     * @example
+     * // Update one Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends log_setoran_hafalanUpdateArgs>(args: SelectSubset<T, log_setoran_hafalanUpdateArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Log_setoran_hafalans.
+     * @param {log_setoran_hafalanDeleteManyArgs} args - Arguments to filter Log_setoran_hafalans to delete.
+     * @example
+     * // Delete a few Log_setoran_hafalans
+     * const { count } = await prisma.log_setoran_hafalan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends log_setoran_hafalanDeleteManyArgs>(args?: SelectSubset<T, log_setoran_hafalanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Log_setoran_hafalans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Log_setoran_hafalans
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends log_setoran_hafalanUpdateManyArgs>(args: SelectSubset<T, log_setoran_hafalanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Log_setoran_hafalans and returns the data updated in the database.
+     * @param {log_setoran_hafalanUpdateManyAndReturnArgs} args - Arguments to update many Log_setoran_hafalans.
+     * @example
+     * // Update many Log_setoran_hafalans
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Log_setoran_hafalans and only return the `id`
+     * const log_setoran_hafalanWithIdOnly = await prisma.log_setoran_hafalan.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends log_setoran_hafalanUpdateManyAndReturnArgs>(args: SelectSubset<T, log_setoran_hafalanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Log_setoran_hafalan.
+     * @param {log_setoran_hafalanUpsertArgs} args - Arguments to update or create a Log_setoran_hafalan.
+     * @example
+     * // Update or create a Log_setoran_hafalan
+     * const log_setoran_hafalan = await prisma.log_setoran_hafalan.upsert({
+     *   create: {
+     *     // ... data to create a Log_setoran_hafalan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Log_setoran_hafalan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends log_setoran_hafalanUpsertArgs>(args: SelectSubset<T, log_setoran_hafalanUpsertArgs<ExtArgs>>): Prisma__log_setoran_hafalanClient<$Result.GetResult<Prisma.$log_setoran_hafalanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Log_setoran_hafalans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanCountArgs} args - Arguments to filter Log_setoran_hafalans to count.
+     * @example
+     * // Count the number of Log_setoran_hafalans
+     * const count = await prisma.log_setoran_hafalan.count({
+     *   where: {
+     *     // ... the filter for the Log_setoran_hafalans we want to count
+     *   }
+     * })
+    **/
+    count<T extends log_setoran_hafalanCountArgs>(
+      args?: Subset<T, log_setoran_hafalanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Log_setoran_hafalanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Log_setoran_hafalan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Log_setoran_hafalanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Log_setoran_hafalanAggregateArgs>(args: Subset<T, Log_setoran_hafalanAggregateArgs>): Prisma.PrismaPromise<GetLog_setoran_hafalanAggregateType<T>>
+
+    /**
+     * Group by Log_setoran_hafalan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {log_setoran_hafalanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends log_setoran_hafalanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: log_setoran_hafalanGroupByArgs['orderBy'] }
+        : { orderBy?: log_setoran_hafalanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, log_setoran_hafalanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLog_setoran_hafalanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the log_setoran_hafalan model
+   */
+  readonly fields: log_setoran_hafalanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for log_setoran_hafalan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__log_setoran_hafalanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    mahasiswa<T extends mahasiswaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mahasiswaDefaultArgs<ExtArgs>>): Prisma__mahasiswaClient<$Result.GetResult<Prisma.$mahasiswaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    dosen<T extends dosenDefaultArgs<ExtArgs> = {}>(args?: Subset<T, dosenDefaultArgs<ExtArgs>>): Prisma__dosenClient<$Result.GetResult<Prisma.$dosenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the log_setoran_hafalan model
+   */
+  interface log_setoran_hafalanFieldRefs {
+    readonly id: FieldRef<"log_setoran_hafalan", 'Int'>
+    readonly keterangan_yang_disetor: FieldRef<"log_setoran_hafalan", 'String'>
+    readonly aksi: FieldRef<"log_setoran_hafalan", 'Aksi'>
+    readonly ip: FieldRef<"log_setoran_hafalan", 'String'>
+    readonly user_agent: FieldRef<"log_setoran_hafalan", 'String'>
+    readonly timestamp: FieldRef<"log_setoran_hafalan", 'DateTime'>
+    readonly nim: FieldRef<"log_setoran_hafalan", 'String'>
+    readonly nip: FieldRef<"log_setoran_hafalan", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * log_setoran_hafalan findUnique
+   */
+  export type log_setoran_hafalanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter, which log_setoran_hafalan to fetch.
+     */
+    where: log_setoran_hafalanWhereUniqueInput
+  }
+
+  /**
+   * log_setoran_hafalan findUniqueOrThrow
+   */
+  export type log_setoran_hafalanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter, which log_setoran_hafalan to fetch.
+     */
+    where: log_setoran_hafalanWhereUniqueInput
+  }
+
+  /**
+   * log_setoran_hafalan findFirst
+   */
+  export type log_setoran_hafalanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter, which log_setoran_hafalan to fetch.
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_setoran_hafalans to fetch.
+     */
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_setoran_hafalans.
+     */
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_setoran_hafalans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_setoran_hafalans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_setoran_hafalans.
+     */
+    distinct?: Log_setoran_hafalanScalarFieldEnum | Log_setoran_hafalanScalarFieldEnum[]
+  }
+
+  /**
+   * log_setoran_hafalan findFirstOrThrow
+   */
+  export type log_setoran_hafalanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter, which log_setoran_hafalan to fetch.
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_setoran_hafalans to fetch.
+     */
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for log_setoran_hafalans.
+     */
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_setoran_hafalans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_setoran_hafalans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of log_setoran_hafalans.
+     */
+    distinct?: Log_setoran_hafalanScalarFieldEnum | Log_setoran_hafalanScalarFieldEnum[]
+  }
+
+  /**
+   * log_setoran_hafalan findMany
+   */
+  export type log_setoran_hafalanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter, which log_setoran_hafalans to fetch.
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of log_setoran_hafalans to fetch.
+     */
+    orderBy?: log_setoran_hafalanOrderByWithRelationInput | log_setoran_hafalanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing log_setoran_hafalans.
+     */
+    cursor?: log_setoran_hafalanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` log_setoran_hafalans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` log_setoran_hafalans.
+     */
+    skip?: number
+    distinct?: Log_setoran_hafalanScalarFieldEnum | Log_setoran_hafalanScalarFieldEnum[]
+  }
+
+  /**
+   * log_setoran_hafalan create
+   */
+  export type log_setoran_hafalanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a log_setoran_hafalan.
+     */
+    data: XOR<log_setoran_hafalanCreateInput, log_setoran_hafalanUncheckedCreateInput>
+  }
+
+  /**
+   * log_setoran_hafalan createMany
+   */
+  export type log_setoran_hafalanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many log_setoran_hafalans.
+     */
+    data: log_setoran_hafalanCreateManyInput | log_setoran_hafalanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * log_setoran_hafalan createManyAndReturn
+   */
+  export type log_setoran_hafalanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * The data used to create many log_setoran_hafalans.
+     */
+    data: log_setoran_hafalanCreateManyInput | log_setoran_hafalanCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * log_setoran_hafalan update
+   */
+  export type log_setoran_hafalanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a log_setoran_hafalan.
+     */
+    data: XOR<log_setoran_hafalanUpdateInput, log_setoran_hafalanUncheckedUpdateInput>
+    /**
+     * Choose, which log_setoran_hafalan to update.
+     */
+    where: log_setoran_hafalanWhereUniqueInput
+  }
+
+  /**
+   * log_setoran_hafalan updateMany
+   */
+  export type log_setoran_hafalanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update log_setoran_hafalans.
+     */
+    data: XOR<log_setoran_hafalanUpdateManyMutationInput, log_setoran_hafalanUncheckedUpdateManyInput>
+    /**
+     * Filter which log_setoran_hafalans to update
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * Limit how many log_setoran_hafalans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * log_setoran_hafalan updateManyAndReturn
+   */
+  export type log_setoran_hafalanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * The data used to update log_setoran_hafalans.
+     */
+    data: XOR<log_setoran_hafalanUpdateManyMutationInput, log_setoran_hafalanUncheckedUpdateManyInput>
+    /**
+     * Filter which log_setoran_hafalans to update
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * Limit how many log_setoran_hafalans to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * log_setoran_hafalan upsert
+   */
+  export type log_setoran_hafalanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the log_setoran_hafalan to update in case it exists.
+     */
+    where: log_setoran_hafalanWhereUniqueInput
+    /**
+     * In case the log_setoran_hafalan found by the `where` argument doesn't exist, create a new log_setoran_hafalan with this data.
+     */
+    create: XOR<log_setoran_hafalanCreateInput, log_setoran_hafalanUncheckedCreateInput>
+    /**
+     * In case the log_setoran_hafalan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<log_setoran_hafalanUpdateInput, log_setoran_hafalanUncheckedUpdateInput>
+  }
+
+  /**
+   * log_setoran_hafalan delete
+   */
+  export type log_setoran_hafalanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+    /**
+     * Filter which log_setoran_hafalan to delete.
+     */
+    where: log_setoran_hafalanWhereUniqueInput
+  }
+
+  /**
+   * log_setoran_hafalan deleteMany
+   */
+  export type log_setoran_hafalanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which log_setoran_hafalans to delete
+     */
+    where?: log_setoran_hafalanWhereInput
+    /**
+     * Limit how many log_setoran_hafalans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * log_setoran_hafalan without action
+   */
+  export type log_setoran_hafalanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the log_setoran_hafalan
+     */
+    select?: log_setoran_hafalanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the log_setoran_hafalan
+     */
+    omit?: log_setoran_hafalanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: log_setoran_hafalanInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5661,6 +6977,20 @@ export namespace Prisma {
   };
 
   export type SurahScalarFieldEnum = (typeof SurahScalarFieldEnum)[keyof typeof SurahScalarFieldEnum]
+
+
+  export const Log_setoran_hafalanScalarFieldEnum: {
+    id: 'id',
+    keterangan_yang_disetor: 'keterangan_yang_disetor',
+    aksi: 'aksi',
+    ip: 'ip',
+    user_agent: 'user_agent',
+    timestamp: 'timestamp',
+    nim: 'nim',
+    nip: 'nip'
+  };
+
+  export type Log_setoran_hafalanScalarFieldEnum = (typeof Log_setoran_hafalanScalarFieldEnum)[keyof typeof Log_setoran_hafalanScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5749,6 +7079,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Aksi'
+   */
+  export type EnumAksiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Aksi'>
+    
+
+
+  /**
+   * Reference to a field of type 'Aksi[]'
+   */
+  export type ListEnumAksiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Aksi[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5774,6 +7118,7 @@ export namespace Prisma {
     email?: StringFilter<"dosen"> | string
     mahasiswa?: MahasiswaListRelationFilter
     setoran?: SetoranListRelationFilter
+    log_setoran_hafalan?: Log_setoran_hafalanListRelationFilter
   }
 
   export type dosenOrderByWithRelationInput = {
@@ -5782,6 +7127,7 @@ export namespace Prisma {
     email?: SortOrder
     mahasiswa?: mahasiswaOrderByRelationAggregateInput
     setoran?: setoranOrderByRelationAggregateInput
+    log_setoran_hafalan?: log_setoran_hafalanOrderByRelationAggregateInput
   }
 
   export type dosenWhereUniqueInput = Prisma.AtLeast<{
@@ -5793,6 +7139,7 @@ export namespace Prisma {
     nama?: StringFilter<"dosen"> | string
     mahasiswa?: MahasiswaListRelationFilter
     setoran?: SetoranListRelationFilter
+    log_setoran_hafalan?: Log_setoran_hafalanListRelationFilter
   }, "nip" | "email">
 
   export type dosenOrderByWithAggregationInput = {
@@ -5823,6 +7170,7 @@ export namespace Prisma {
     nip?: StringFilter<"mahasiswa"> | string
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
     setoran?: SetoranListRelationFilter
+    log_setoran_hafalan?: Log_setoran_hafalanListRelationFilter
   }
 
   export type mahasiswaOrderByWithRelationInput = {
@@ -5832,6 +7180,7 @@ export namespace Prisma {
     nip?: SortOrder
     dosen?: dosenOrderByWithRelationInput
     setoran?: setoranOrderByRelationAggregateInput
+    log_setoran_hafalan?: log_setoran_hafalanOrderByRelationAggregateInput
   }
 
   export type mahasiswaWhereUniqueInput = Prisma.AtLeast<{
@@ -5844,6 +7193,7 @@ export namespace Prisma {
     nip?: StringFilter<"mahasiswa"> | string
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
     setoran?: SetoranListRelationFilter
+    log_setoran_hafalan?: Log_setoran_hafalanListRelationFilter
   }, "nim" | "email">
 
   export type mahasiswaOrderByWithAggregationInput = {
@@ -5982,12 +7332,88 @@ export namespace Prisma {
     label?: Enumtype_label_surahNullableWithAggregatesFilter<"surah"> | $Enums.type_label_surah | null
   }
 
+  export type log_setoran_hafalanWhereInput = {
+    AND?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
+    OR?: log_setoran_hafalanWhereInput[]
+    NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
+    id?: IntFilter<"log_setoran_hafalan"> | number
+    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
+    nim?: StringFilter<"log_setoran_hafalan"> | string
+    nip?: StringFilter<"log_setoran_hafalan"> | string
+    mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
+    dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
+  }
+
+  export type log_setoran_hafalanOrderByWithRelationInput = {
+    id?: SortOrder
+    keterangan_yang_disetor?: SortOrderInput | SortOrder
+    aksi?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    nim?: SortOrder
+    nip?: SortOrder
+    mahasiswa?: mahasiswaOrderByWithRelationInput
+    dosen?: dosenOrderByWithRelationInput
+  }
+
+  export type log_setoran_hafalanWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
+    OR?: log_setoran_hafalanWhereInput[]
+    NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
+    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
+    nim?: StringFilter<"log_setoran_hafalan"> | string
+    nip?: StringFilter<"log_setoran_hafalan"> | string
+    mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
+    dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
+  }, "id">
+
+  export type log_setoran_hafalanOrderByWithAggregationInput = {
+    id?: SortOrder
+    keterangan_yang_disetor?: SortOrderInput | SortOrder
+    aksi?: SortOrder
+    ip?: SortOrderInput | SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    nim?: SortOrder
+    nip?: SortOrder
+    _count?: log_setoran_hafalanCountOrderByAggregateInput
+    _avg?: log_setoran_hafalanAvgOrderByAggregateInput
+    _max?: log_setoran_hafalanMaxOrderByAggregateInput
+    _min?: log_setoran_hafalanMinOrderByAggregateInput
+    _sum?: log_setoran_hafalanSumOrderByAggregateInput
+  }
+
+  export type log_setoran_hafalanScalarWhereWithAggregatesInput = {
+    AND?: log_setoran_hafalanScalarWhereWithAggregatesInput | log_setoran_hafalanScalarWhereWithAggregatesInput[]
+    OR?: log_setoran_hafalanScalarWhereWithAggregatesInput[]
+    NOT?: log_setoran_hafalanScalarWhereWithAggregatesInput | log_setoran_hafalanScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"log_setoran_hafalan"> | number
+    keterangan_yang_disetor?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
+    aksi?: EnumAksiWithAggregatesFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    ip?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
+    user_agent?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
+    timestamp?: DateTimeWithAggregatesFilter<"log_setoran_hafalan"> | Date | string
+    nim?: StringWithAggregatesFilter<"log_setoran_hafalan"> | string
+    nip?: StringWithAggregatesFilter<"log_setoran_hafalan"> | string
+  }
+
   export type dosenCreateInput = {
     nip: string
     nama: string
     email: string
     mahasiswa?: mahasiswaCreateNestedManyWithoutDosenInput
     setoran?: setoranCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutDosenInput
   }
 
   export type dosenUncheckedCreateInput = {
@@ -5996,6 +7422,7 @@ export namespace Prisma {
     email: string
     mahasiswa?: mahasiswaUncheckedCreateNestedManyWithoutDosenInput
     setoran?: setoranUncheckedCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutDosenInput
   }
 
   export type dosenUpdateInput = {
@@ -6004,6 +7431,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     mahasiswa?: mahasiswaUpdateManyWithoutDosenNestedInput
     setoran?: setoranUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutDosenNestedInput
   }
 
   export type dosenUncheckedUpdateInput = {
@@ -6012,6 +7440,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     mahasiswa?: mahasiswaUncheckedUpdateManyWithoutDosenNestedInput
     setoran?: setoranUncheckedUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutDosenNestedInput
   }
 
   export type dosenCreateManyInput = {
@@ -6038,6 +7467,7 @@ export namespace Prisma {
     email: string
     dosen: dosenCreateNestedOneWithoutMahasiswaInput
     setoran?: setoranCreateNestedManyWithoutMahasiswaInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaUncheckedCreateInput = {
@@ -6046,6 +7476,7 @@ export namespace Prisma {
     email: string
     nip: string
     setoran?: setoranUncheckedCreateNestedManyWithoutMahasiswaInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaUpdateInput = {
@@ -6054,6 +7485,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     dosen?: dosenUpdateOneRequiredWithoutMahasiswaNestedInput
     setoran?: setoranUpdateManyWithoutMahasiswaNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type mahasiswaUncheckedUpdateInput = {
@@ -6062,6 +7494,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     nip?: StringFieldUpdateOperationsInput | string
     setoran?: setoranUncheckedUpdateManyWithoutMahasiswaNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type mahasiswaCreateManyInput = {
@@ -6190,6 +7623,78 @@ export namespace Prisma {
     label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
   }
 
+  export type log_setoran_hafalanCreateInput = {
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    mahasiswa: mahasiswaCreateNestedOneWithoutLog_setoran_hafalanInput
+    dosen: dosenCreateNestedOneWithoutLog_setoran_hafalanInput
+  }
+
+  export type log_setoran_hafalanUncheckedCreateInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nim: string
+    nip: string
+  }
+
+  export type log_setoran_hafalanUpdateInput = {
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    mahasiswa?: mahasiswaUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput
+    dosen?: dosenUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nim?: StringFieldUpdateOperationsInput | string
+    nip?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type log_setoran_hafalanCreateManyInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nim: string
+    nip: string
+  }
+
+  export type log_setoran_hafalanUpdateManyMutationInput = {
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nim?: StringFieldUpdateOperationsInput | string
+    nip?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -6217,11 +7722,21 @@ export namespace Prisma {
     none?: setoranWhereInput
   }
 
+  export type Log_setoran_hafalanListRelationFilter = {
+    every?: log_setoran_hafalanWhereInput
+    some?: log_setoran_hafalanWhereInput
+    none?: log_setoran_hafalanWhereInput
+  }
+
   export type mahasiswaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type setoranOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type log_setoran_hafalanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6464,6 +7979,122 @@ export namespace Prisma {
     _max?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type EnumAksiFilter<$PrismaModel = never> = {
+    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
+    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    not?: NestedEnumAksiFilter<$PrismaModel> | $Enums.Aksi
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type log_setoran_hafalanCountOrderByAggregateInput = {
+    id?: SortOrder
+    keterangan_yang_disetor?: SortOrder
+    aksi?: SortOrder
+    ip?: SortOrder
+    user_agent?: SortOrder
+    timestamp?: SortOrder
+    nim?: SortOrder
+    nip?: SortOrder
+  }
+
+  export type log_setoran_hafalanAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type log_setoran_hafalanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    keterangan_yang_disetor?: SortOrder
+    aksi?: SortOrder
+    ip?: SortOrder
+    user_agent?: SortOrder
+    timestamp?: SortOrder
+    nim?: SortOrder
+    nip?: SortOrder
+  }
+
+  export type log_setoran_hafalanMinOrderByAggregateInput = {
+    id?: SortOrder
+    keterangan_yang_disetor?: SortOrder
+    aksi?: SortOrder
+    ip?: SortOrder
+    user_agent?: SortOrder
+    timestamp?: SortOrder
+    nim?: SortOrder
+    nip?: SortOrder
+  }
+
+  export type log_setoran_hafalanSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumAksiWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
+    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    not?: NestedEnumAksiWithAggregatesFilter<$PrismaModel> | $Enums.Aksi
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAksiFilter<$PrismaModel>
+    _max?: NestedEnumAksiFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type mahasiswaCreateNestedManyWithoutDosenInput = {
     create?: XOR<mahasiswaCreateWithoutDosenInput, mahasiswaUncheckedCreateWithoutDosenInput> | mahasiswaCreateWithoutDosenInput[] | mahasiswaUncheckedCreateWithoutDosenInput[]
     connectOrCreate?: mahasiswaCreateOrConnectWithoutDosenInput | mahasiswaCreateOrConnectWithoutDosenInput[]
@@ -6478,6 +8109,13 @@ export namespace Prisma {
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
   }
 
+  export type log_setoran_hafalanCreateNestedManyWithoutDosenInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput> | log_setoran_hafalanCreateWithoutDosenInput[] | log_setoran_hafalanUncheckedCreateWithoutDosenInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutDosenInput | log_setoran_hafalanCreateOrConnectWithoutDosenInput[]
+    createMany?: log_setoran_hafalanCreateManyDosenInputEnvelope
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+  }
+
   export type mahasiswaUncheckedCreateNestedManyWithoutDosenInput = {
     create?: XOR<mahasiswaCreateWithoutDosenInput, mahasiswaUncheckedCreateWithoutDosenInput> | mahasiswaCreateWithoutDosenInput[] | mahasiswaUncheckedCreateWithoutDosenInput[]
     connectOrCreate?: mahasiswaCreateOrConnectWithoutDosenInput | mahasiswaCreateOrConnectWithoutDosenInput[]
@@ -6490,6 +8128,13 @@ export namespace Prisma {
     connectOrCreate?: setoranCreateOrConnectWithoutDosenInput | setoranCreateOrConnectWithoutDosenInput[]
     createMany?: setoranCreateManyDosenInputEnvelope
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
+  }
+
+  export type log_setoran_hafalanUncheckedCreateNestedManyWithoutDosenInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput> | log_setoran_hafalanCreateWithoutDosenInput[] | log_setoran_hafalanUncheckedCreateWithoutDosenInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutDosenInput | log_setoran_hafalanCreateOrConnectWithoutDosenInput[]
+    createMany?: log_setoran_hafalanCreateManyDosenInputEnvelope
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6524,6 +8169,20 @@ export namespace Prisma {
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
   }
 
+  export type log_setoran_hafalanUpdateManyWithoutDosenNestedInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput> | log_setoran_hafalanCreateWithoutDosenInput[] | log_setoran_hafalanUncheckedCreateWithoutDosenInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutDosenInput | log_setoran_hafalanCreateOrConnectWithoutDosenInput[]
+    upsert?: log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput | log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput[]
+    createMany?: log_setoran_hafalanCreateManyDosenInputEnvelope
+    set?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    disconnect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    delete?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    update?: log_setoran_hafalanUpdateWithWhereUniqueWithoutDosenInput | log_setoran_hafalanUpdateWithWhereUniqueWithoutDosenInput[]
+    updateMany?: log_setoran_hafalanUpdateManyWithWhereWithoutDosenInput | log_setoran_hafalanUpdateManyWithWhereWithoutDosenInput[]
+    deleteMany?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
+  }
+
   export type mahasiswaUncheckedUpdateManyWithoutDosenNestedInput = {
     create?: XOR<mahasiswaCreateWithoutDosenInput, mahasiswaUncheckedCreateWithoutDosenInput> | mahasiswaCreateWithoutDosenInput[] | mahasiswaUncheckedCreateWithoutDosenInput[]
     connectOrCreate?: mahasiswaCreateOrConnectWithoutDosenInput | mahasiswaCreateOrConnectWithoutDosenInput[]
@@ -6552,6 +8211,20 @@ export namespace Prisma {
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
   }
 
+  export type log_setoran_hafalanUncheckedUpdateManyWithoutDosenNestedInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput> | log_setoran_hafalanCreateWithoutDosenInput[] | log_setoran_hafalanUncheckedCreateWithoutDosenInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutDosenInput | log_setoran_hafalanCreateOrConnectWithoutDosenInput[]
+    upsert?: log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput | log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput[]
+    createMany?: log_setoran_hafalanCreateManyDosenInputEnvelope
+    set?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    disconnect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    delete?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    update?: log_setoran_hafalanUpdateWithWhereUniqueWithoutDosenInput | log_setoran_hafalanUpdateWithWhereUniqueWithoutDosenInput[]
+    updateMany?: log_setoran_hafalanUpdateManyWithWhereWithoutDosenInput | log_setoran_hafalanUpdateManyWithWhereWithoutDosenInput[]
+    deleteMany?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
+  }
+
   export type dosenCreateNestedOneWithoutMahasiswaInput = {
     create?: XOR<dosenCreateWithoutMahasiswaInput, dosenUncheckedCreateWithoutMahasiswaInput>
     connectOrCreate?: dosenCreateOrConnectWithoutMahasiswaInput
@@ -6565,11 +8238,25 @@ export namespace Prisma {
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
   }
 
+  export type log_setoran_hafalanCreateNestedManyWithoutMahasiswaInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput> | log_setoran_hafalanCreateWithoutMahasiswaInput[] | log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput | log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput[]
+    createMany?: log_setoran_hafalanCreateManyMahasiswaInputEnvelope
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+  }
+
   export type setoranUncheckedCreateNestedManyWithoutMahasiswaInput = {
     create?: XOR<setoranCreateWithoutMahasiswaInput, setoranUncheckedCreateWithoutMahasiswaInput> | setoranCreateWithoutMahasiswaInput[] | setoranUncheckedCreateWithoutMahasiswaInput[]
     connectOrCreate?: setoranCreateOrConnectWithoutMahasiswaInput | setoranCreateOrConnectWithoutMahasiswaInput[]
     createMany?: setoranCreateManyMahasiswaInputEnvelope
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
+  }
+
+  export type log_setoran_hafalanUncheckedCreateNestedManyWithoutMahasiswaInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput> | log_setoran_hafalanCreateWithoutMahasiswaInput[] | log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput | log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput[]
+    createMany?: log_setoran_hafalanCreateManyMahasiswaInputEnvelope
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
   }
 
   export type dosenUpdateOneRequiredWithoutMahasiswaNestedInput = {
@@ -6594,6 +8281,20 @@ export namespace Prisma {
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
   }
 
+  export type log_setoran_hafalanUpdateManyWithoutMahasiswaNestedInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput> | log_setoran_hafalanCreateWithoutMahasiswaInput[] | log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput | log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput[]
+    upsert?: log_setoran_hafalanUpsertWithWhereUniqueWithoutMahasiswaInput | log_setoran_hafalanUpsertWithWhereUniqueWithoutMahasiswaInput[]
+    createMany?: log_setoran_hafalanCreateManyMahasiswaInputEnvelope
+    set?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    disconnect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    delete?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    update?: log_setoran_hafalanUpdateWithWhereUniqueWithoutMahasiswaInput | log_setoran_hafalanUpdateWithWhereUniqueWithoutMahasiswaInput[]
+    updateMany?: log_setoran_hafalanUpdateManyWithWhereWithoutMahasiswaInput | log_setoran_hafalanUpdateManyWithWhereWithoutMahasiswaInput[]
+    deleteMany?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
+  }
+
   export type setoranUncheckedUpdateManyWithoutMahasiswaNestedInput = {
     create?: XOR<setoranCreateWithoutMahasiswaInput, setoranUncheckedCreateWithoutMahasiswaInput> | setoranCreateWithoutMahasiswaInput[] | setoranUncheckedCreateWithoutMahasiswaInput[]
     connectOrCreate?: setoranCreateOrConnectWithoutMahasiswaInput | setoranCreateOrConnectWithoutMahasiswaInput[]
@@ -6606,6 +8307,20 @@ export namespace Prisma {
     update?: setoranUpdateWithWhereUniqueWithoutMahasiswaInput | setoranUpdateWithWhereUniqueWithoutMahasiswaInput[]
     updateMany?: setoranUpdateManyWithWhereWithoutMahasiswaInput | setoranUpdateManyWithWhereWithoutMahasiswaInput[]
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaNestedInput = {
+    create?: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput> | log_setoran_hafalanCreateWithoutMahasiswaInput[] | log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput[]
+    connectOrCreate?: log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput | log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput[]
+    upsert?: log_setoran_hafalanUpsertWithWhereUniqueWithoutMahasiswaInput | log_setoran_hafalanUpsertWithWhereUniqueWithoutMahasiswaInput[]
+    createMany?: log_setoran_hafalanCreateManyMahasiswaInputEnvelope
+    set?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    disconnect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    delete?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    connect?: log_setoran_hafalanWhereUniqueInput | log_setoran_hafalanWhereUniqueInput[]
+    update?: log_setoran_hafalanUpdateWithWhereUniqueWithoutMahasiswaInput | log_setoran_hafalanUpdateWithWhereUniqueWithoutMahasiswaInput[]
+    updateMany?: log_setoran_hafalanUpdateManyWithWhereWithoutMahasiswaInput | log_setoran_hafalanUpdateManyWithWhereWithoutMahasiswaInput[]
+    deleteMany?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
   }
 
   export type mahasiswaCreateNestedOneWithoutSetoranInput = {
@@ -6706,6 +8421,46 @@ export namespace Prisma {
     update?: setoranUpdateWithWhereUniqueWithoutSurahInput | setoranUpdateWithWhereUniqueWithoutSurahInput[]
     updateMany?: setoranUpdateManyWithWhereWithoutSurahInput | setoranUpdateManyWithWhereWithoutSurahInput[]
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
+  }
+
+  export type mahasiswaCreateNestedOneWithoutLog_setoran_hafalanInput = {
+    create?: XOR<mahasiswaCreateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedCreateWithoutLog_setoran_hafalanInput>
+    connectOrCreate?: mahasiswaCreateOrConnectWithoutLog_setoran_hafalanInput
+    connect?: mahasiswaWhereUniqueInput
+  }
+
+  export type dosenCreateNestedOneWithoutLog_setoran_hafalanInput = {
+    create?: XOR<dosenCreateWithoutLog_setoran_hafalanInput, dosenUncheckedCreateWithoutLog_setoran_hafalanInput>
+    connectOrCreate?: dosenCreateOrConnectWithoutLog_setoran_hafalanInput
+    connect?: dosenWhereUniqueInput
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type EnumAksiFieldUpdateOperationsInput = {
+    set?: $Enums.Aksi
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type mahasiswaUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput = {
+    create?: XOR<mahasiswaCreateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedCreateWithoutLog_setoran_hafalanInput>
+    connectOrCreate?: mahasiswaCreateOrConnectWithoutLog_setoran_hafalanInput
+    upsert?: mahasiswaUpsertWithoutLog_setoran_hafalanInput
+    connect?: mahasiswaWhereUniqueInput
+    update?: XOR<XOR<mahasiswaUpdateToOneWithWhereWithoutLog_setoran_hafalanInput, mahasiswaUpdateWithoutLog_setoran_hafalanInput>, mahasiswaUncheckedUpdateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type dosenUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput = {
+    create?: XOR<dosenCreateWithoutLog_setoran_hafalanInput, dosenUncheckedCreateWithoutLog_setoran_hafalanInput>
+    connectOrCreate?: dosenCreateOrConnectWithoutLog_setoran_hafalanInput
+    upsert?: dosenUpsertWithoutLog_setoran_hafalanInput
+    connect?: dosenWhereUniqueInput
+    update?: XOR<XOR<dosenUpdateToOneWithWhereWithoutLog_setoran_hafalanInput, dosenUpdateWithoutLog_setoran_hafalanInput>, dosenUncheckedUpdateWithoutLog_setoran_hafalanInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6855,11 +8610,85 @@ export namespace Prisma {
     _max?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumAksiFilter<$PrismaModel = never> = {
+    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
+    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    not?: NestedEnumAksiFilter<$PrismaModel> | $Enums.Aksi
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAksiWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
+    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
+    not?: NestedEnumAksiWithAggregatesFilter<$PrismaModel> | $Enums.Aksi
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAksiFilter<$PrismaModel>
+    _max?: NestedEnumAksiFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type mahasiswaCreateWithoutDosenInput = {
     nim: string
     nama: string
     email: string
     setoran?: setoranCreateNestedManyWithoutMahasiswaInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaUncheckedCreateWithoutDosenInput = {
@@ -6867,6 +8696,7 @@ export namespace Prisma {
     nama: string
     email: string
     setoran?: setoranUncheckedCreateNestedManyWithoutMahasiswaInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaCreateOrConnectWithoutDosenInput = {
@@ -6902,6 +8732,35 @@ export namespace Prisma {
 
   export type setoranCreateManyDosenInputEnvelope = {
     data: setoranCreateManyDosenInput | setoranCreateManyDosenInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type log_setoran_hafalanCreateWithoutDosenInput = {
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    mahasiswa: mahasiswaCreateNestedOneWithoutLog_setoran_hafalanInput
+  }
+
+  export type log_setoran_hafalanUncheckedCreateWithoutDosenInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nim: string
+  }
+
+  export type log_setoran_hafalanCreateOrConnectWithoutDosenInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    create: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput>
+  }
+
+  export type log_setoran_hafalanCreateManyDosenInputEnvelope = {
+    data: log_setoran_hafalanCreateManyDosenInput | log_setoran_hafalanCreateManyDosenInput[]
     skipDuplicates?: boolean
   }
 
@@ -6959,11 +8818,42 @@ export namespace Prisma {
     nomor_surah?: IntFilter<"setoran"> | number
   }
 
+  export type log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    update: XOR<log_setoran_hafalanUpdateWithoutDosenInput, log_setoran_hafalanUncheckedUpdateWithoutDosenInput>
+    create: XOR<log_setoran_hafalanCreateWithoutDosenInput, log_setoran_hafalanUncheckedCreateWithoutDosenInput>
+  }
+
+  export type log_setoran_hafalanUpdateWithWhereUniqueWithoutDosenInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    data: XOR<log_setoran_hafalanUpdateWithoutDosenInput, log_setoran_hafalanUncheckedUpdateWithoutDosenInput>
+  }
+
+  export type log_setoran_hafalanUpdateManyWithWhereWithoutDosenInput = {
+    where: log_setoran_hafalanScalarWhereInput
+    data: XOR<log_setoran_hafalanUpdateManyMutationInput, log_setoran_hafalanUncheckedUpdateManyWithoutDosenInput>
+  }
+
+  export type log_setoran_hafalanScalarWhereInput = {
+    AND?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
+    OR?: log_setoran_hafalanScalarWhereInput[]
+    NOT?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
+    id?: IntFilter<"log_setoran_hafalan"> | number
+    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
+    nim?: StringFilter<"log_setoran_hafalan"> | string
+    nip?: StringFilter<"log_setoran_hafalan"> | string
+  }
+
   export type dosenCreateWithoutMahasiswaInput = {
     nip: string
     nama: string
     email: string
     setoran?: setoranCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutDosenInput
   }
 
   export type dosenUncheckedCreateWithoutMahasiswaInput = {
@@ -6971,6 +8861,7 @@ export namespace Prisma {
     nama: string
     email: string
     setoran?: setoranUncheckedCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutDosenInput
   }
 
   export type dosenCreateOrConnectWithoutMahasiswaInput = {
@@ -7004,6 +8895,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type log_setoran_hafalanCreateWithoutMahasiswaInput = {
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    dosen: dosenCreateNestedOneWithoutLog_setoran_hafalanInput
+  }
+
+  export type log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nip: string
+  }
+
+  export type log_setoran_hafalanCreateOrConnectWithoutMahasiswaInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    create: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput>
+  }
+
+  export type log_setoran_hafalanCreateManyMahasiswaInputEnvelope = {
+    data: log_setoran_hafalanCreateManyMahasiswaInput | log_setoran_hafalanCreateManyMahasiswaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type dosenUpsertWithoutMahasiswaInput = {
     update: XOR<dosenUpdateWithoutMahasiswaInput, dosenUncheckedUpdateWithoutMahasiswaInput>
     create: XOR<dosenCreateWithoutMahasiswaInput, dosenUncheckedCreateWithoutMahasiswaInput>
@@ -7020,6 +8940,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     setoran?: setoranUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutDosenNestedInput
   }
 
   export type dosenUncheckedUpdateWithoutMahasiswaInput = {
@@ -7027,6 +8948,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     setoran?: setoranUncheckedUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutDosenNestedInput
   }
 
   export type setoranUpsertWithWhereUniqueWithoutMahasiswaInput = {
@@ -7045,11 +8967,28 @@ export namespace Prisma {
     data: XOR<setoranUpdateManyMutationInput, setoranUncheckedUpdateManyWithoutMahasiswaInput>
   }
 
+  export type log_setoran_hafalanUpsertWithWhereUniqueWithoutMahasiswaInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    update: XOR<log_setoran_hafalanUpdateWithoutMahasiswaInput, log_setoran_hafalanUncheckedUpdateWithoutMahasiswaInput>
+    create: XOR<log_setoran_hafalanCreateWithoutMahasiswaInput, log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput>
+  }
+
+  export type log_setoran_hafalanUpdateWithWhereUniqueWithoutMahasiswaInput = {
+    where: log_setoran_hafalanWhereUniqueInput
+    data: XOR<log_setoran_hafalanUpdateWithoutMahasiswaInput, log_setoran_hafalanUncheckedUpdateWithoutMahasiswaInput>
+  }
+
+  export type log_setoran_hafalanUpdateManyWithWhereWithoutMahasiswaInput = {
+    where: log_setoran_hafalanScalarWhereInput
+    data: XOR<log_setoran_hafalanUpdateManyMutationInput, log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaInput>
+  }
+
   export type mahasiswaCreateWithoutSetoranInput = {
     nim: string
     nama: string
     email: string
     dosen: dosenCreateNestedOneWithoutMahasiswaInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaUncheckedCreateWithoutSetoranInput = {
@@ -7057,6 +8996,7 @@ export namespace Prisma {
     nama: string
     email: string
     nip: string
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutMahasiswaInput
   }
 
   export type mahasiswaCreateOrConnectWithoutSetoranInput = {
@@ -7069,6 +9009,7 @@ export namespace Prisma {
     nama: string
     email: string
     mahasiswa?: mahasiswaCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanCreateNestedManyWithoutDosenInput
   }
 
   export type dosenUncheckedCreateWithoutSetoranInput = {
@@ -7076,6 +9017,7 @@ export namespace Prisma {
     nama: string
     email: string
     mahasiswa?: mahasiswaUncheckedCreateNestedManyWithoutDosenInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedCreateNestedManyWithoutDosenInput
   }
 
   export type dosenCreateOrConnectWithoutSetoranInput = {
@@ -7116,6 +9058,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     dosen?: dosenUpdateOneRequiredWithoutMahasiswaNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type mahasiswaUncheckedUpdateWithoutSetoranInput = {
@@ -7123,6 +9066,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     nip?: StringFieldUpdateOperationsInput | string
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type dosenUpsertWithoutSetoranInput = {
@@ -7141,6 +9085,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     mahasiswa?: mahasiswaUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutDosenNestedInput
   }
 
   export type dosenUncheckedUpdateWithoutSetoranInput = {
@@ -7148,6 +9093,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     mahasiswa?: mahasiswaUncheckedUpdateManyWithoutDosenNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutDosenNestedInput
   }
 
   export type surahUpsertWithoutSetoranInput = {
@@ -7215,6 +9161,102 @@ export namespace Prisma {
     data: XOR<setoranUpdateManyMutationInput, setoranUncheckedUpdateManyWithoutSurahInput>
   }
 
+  export type mahasiswaCreateWithoutLog_setoran_hafalanInput = {
+    nim: string
+    nama: string
+    email: string
+    dosen: dosenCreateNestedOneWithoutMahasiswaInput
+    setoran?: setoranCreateNestedManyWithoutMahasiswaInput
+  }
+
+  export type mahasiswaUncheckedCreateWithoutLog_setoran_hafalanInput = {
+    nim: string
+    nama: string
+    email: string
+    nip: string
+    setoran?: setoranUncheckedCreateNestedManyWithoutMahasiswaInput
+  }
+
+  export type mahasiswaCreateOrConnectWithoutLog_setoran_hafalanInput = {
+    where: mahasiswaWhereUniqueInput
+    create: XOR<mahasiswaCreateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedCreateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type dosenCreateWithoutLog_setoran_hafalanInput = {
+    nip: string
+    nama: string
+    email: string
+    mahasiswa?: mahasiswaCreateNestedManyWithoutDosenInput
+    setoran?: setoranCreateNestedManyWithoutDosenInput
+  }
+
+  export type dosenUncheckedCreateWithoutLog_setoran_hafalanInput = {
+    nip: string
+    nama: string
+    email: string
+    mahasiswa?: mahasiswaUncheckedCreateNestedManyWithoutDosenInput
+    setoran?: setoranUncheckedCreateNestedManyWithoutDosenInput
+  }
+
+  export type dosenCreateOrConnectWithoutLog_setoran_hafalanInput = {
+    where: dosenWhereUniqueInput
+    create: XOR<dosenCreateWithoutLog_setoran_hafalanInput, dosenUncheckedCreateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type mahasiswaUpsertWithoutLog_setoran_hafalanInput = {
+    update: XOR<mahasiswaUpdateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedUpdateWithoutLog_setoran_hafalanInput>
+    create: XOR<mahasiswaCreateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedCreateWithoutLog_setoran_hafalanInput>
+    where?: mahasiswaWhereInput
+  }
+
+  export type mahasiswaUpdateToOneWithWhereWithoutLog_setoran_hafalanInput = {
+    where?: mahasiswaWhereInput
+    data: XOR<mahasiswaUpdateWithoutLog_setoran_hafalanInput, mahasiswaUncheckedUpdateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type mahasiswaUpdateWithoutLog_setoran_hafalanInput = {
+    nim?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    dosen?: dosenUpdateOneRequiredWithoutMahasiswaNestedInput
+    setoran?: setoranUpdateManyWithoutMahasiswaNestedInput
+  }
+
+  export type mahasiswaUncheckedUpdateWithoutLog_setoran_hafalanInput = {
+    nim?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    nip?: StringFieldUpdateOperationsInput | string
+    setoran?: setoranUncheckedUpdateManyWithoutMahasiswaNestedInput
+  }
+
+  export type dosenUpsertWithoutLog_setoran_hafalanInput = {
+    update: XOR<dosenUpdateWithoutLog_setoran_hafalanInput, dosenUncheckedUpdateWithoutLog_setoran_hafalanInput>
+    create: XOR<dosenCreateWithoutLog_setoran_hafalanInput, dosenUncheckedCreateWithoutLog_setoran_hafalanInput>
+    where?: dosenWhereInput
+  }
+
+  export type dosenUpdateToOneWithWhereWithoutLog_setoran_hafalanInput = {
+    where?: dosenWhereInput
+    data: XOR<dosenUpdateWithoutLog_setoran_hafalanInput, dosenUncheckedUpdateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type dosenUpdateWithoutLog_setoran_hafalanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mahasiswa?: mahasiswaUpdateManyWithoutDosenNestedInput
+    setoran?: setoranUpdateManyWithoutDosenNestedInput
+  }
+
+  export type dosenUncheckedUpdateWithoutLog_setoran_hafalanInput = {
+    nip?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mahasiswa?: mahasiswaUncheckedUpdateManyWithoutDosenNestedInput
+    setoran?: setoranUncheckedUpdateManyWithoutDosenNestedInput
+  }
+
   export type mahasiswaCreateManyDosenInput = {
     nim: string
     nama: string
@@ -7229,11 +9271,22 @@ export namespace Prisma {
     nomor_surah: number
   }
 
+  export type log_setoran_hafalanCreateManyDosenInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nim: string
+  }
+
   export type mahasiswaUpdateWithoutDosenInput = {
     nim?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     setoran?: setoranUpdateManyWithoutMahasiswaNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type mahasiswaUncheckedUpdateWithoutDosenInput = {
@@ -7241,6 +9294,7 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     setoran?: setoranUncheckedUpdateManyWithoutMahasiswaNestedInput
+    log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaNestedInput
   }
 
   export type mahasiswaUncheckedUpdateManyWithoutDosenInput = {
@@ -7273,12 +9327,51 @@ export namespace Prisma {
     nomor_surah?: IntFieldUpdateOperationsInput | number
   }
 
+  export type log_setoran_hafalanUpdateWithoutDosenInput = {
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    mahasiswa?: mahasiswaUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateWithoutDosenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nim?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateManyWithoutDosenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nim?: StringFieldUpdateOperationsInput | string
+  }
+
   export type setoranCreateManyMahasiswaInput = {
     id?: string
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     nip: string
     nomor_surah: number
+  }
+
+  export type log_setoran_hafalanCreateManyMahasiswaInput = {
+    id?: number
+    keterangan_yang_disetor?: string | null
+    aksi: $Enums.Aksi
+    ip?: string | null
+    user_agent?: string | null
+    timestamp?: Date | string
+    nip: string
   }
 
   export type setoranUpdateWithoutMahasiswaInput = {
@@ -7303,6 +9396,35 @@ export namespace Prisma {
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nip?: StringFieldUpdateOperationsInput | string
     nomor_surah?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type log_setoran_hafalanUpdateWithoutMahasiswaInput = {
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    dosen?: dosenUpdateOneRequiredWithoutLog_setoran_hafalanNestedInput
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateWithoutMahasiswaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nip?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    nip?: StringFieldUpdateOperationsInput | string
   }
 
   export type setoranCreateManySurahInput = {

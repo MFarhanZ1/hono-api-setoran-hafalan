@@ -145,6 +145,17 @@ exports.Prisma.SurahScalarFieldEnum = {
   label: 'label'
 };
 
+exports.Prisma.Log_setoran_hafalanScalarFieldEnum = {
+  id: 'id',
+  keterangan_yang_disetor: 'keterangan_yang_disetor',
+  aksi: 'aksi',
+  ip: 'ip',
+  user_agent: 'user_agent',
+  timestamp: 'timestamp',
+  nim: 'nim',
+  nip: 'nip'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -167,11 +178,17 @@ exports.type_label_surah = exports.$Enums.type_label_surah = {
   SIDANG_TA: 'SIDANG_TA'
 };
 
+exports.Aksi = exports.$Enums.Aksi = {
+  Validasi: 'Validasi',
+  Batalkan: 'Batalkan'
+};
+
 exports.Prisma.ModelName = {
   dosen: 'dosen',
   mahasiswa: 'mahasiswa',
   setoran: 'setoran',
-  surah: 'surah'
+  surah: 'surah',
+  log_setoran_hafalan: 'log_setoran_hafalan'
 };
 
 /**
