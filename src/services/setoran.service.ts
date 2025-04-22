@@ -91,6 +91,8 @@ export default class SetoranService {
 		const dosenSetoran = await DosenService.getAllByNIP({ listNIP });
 		const detailSetoranDenganDosen = SetoranHelper.mapSetoranWithDosen(detailSetoran, dosenSetoran);
 	
+		const log = await SetoranService.getLogSetoranMahasiswa({ nim });
+
 		return {
 			info: {
 				nama: mahasiswa.nama,
@@ -103,6 +105,7 @@ export default class SetoranService {
 				},
 			},
 			setoran: {
+				log: log,
 				info_dasar: ringkasanSetoran,
 				ringkasan: ringkasanSetoranPerSyarat,
 				detail: detailSetoranDenganDosen
@@ -110,18 +113,20 @@ export default class SetoranService {
 		};
 	}
 	
-	public static async postSetoranMahasiswa({ email, nim, data_setoran, tgl_setoran }: { email: string, nim: string, data_setoran: any, tgl_setoran: Date }) {		
-		
+	public static async postSetoranMahasiswa({ email, nim, data_setoran, tgl_setoran, network_log_data }: { email: string, nim: string, data_setoran: any, tgl_setoran: Date, network_log_data: any }) {		
+
 		// ambil data dosen berdasarkan email buat ngambil nip nya
 		const dosen = await DosenService.getByEmail({ email });
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
 
-		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
-
 		// simpan data setoran
 		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
 
+		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
+		const keterangan_yang_disetor = data_setoran.map((item: any) => item.nama_surah).join(', ') + ' serta memilih tanggal setoran ' + tgl_setoran;
+		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan_yang_disetor, aksi: 'Validasi' });
+		
 		// kembalikan response
 		return {
 			response: true,
@@ -129,22 +134,41 @@ export default class SetoranService {
 		};
 	}
 	
-	public static async deleteSetoranMahasiswa({ email, nim, data_setoran }: { email: string, nim: string, data_setoran: any }) {		
-		
+	public static async deleteSetoranMahasiswa({ email, nim, data_setoran, network_log_data }: { email: string, nim: string, data_setoran: any, network_log_data: any }) {
+					
 		// ambil data dosen berdasarkan email buat ngambil nip nya
 		const dosen = await DosenService.getByEmail({ email });
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
-
-		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
-
+		
 		// simpan data setoran
 		await SetoranRepository.deleteSetoran({ data_setoran });
+		
+		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
+		const keterangan_yang_disetor = data_setoran.map((item: any) => item.nama_surah).join(', ');
+		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan_yang_disetor, aksi: 'Batalkan' });
 
 		// kembalikan response
 		return {
 			response: true,
 			message: "Yeay, proses pembatalan setoran telah berhasil! ✨",
 		};
+	}
+
+	private static async getLogSetoranMahasiswa({ nim }: { nim: string }) {
+		const logSetoranMahasiswa = await SetoranRepository.findLogSetoranByNIM({ nim });
+		const dosenSetoran = await DosenService.getAllByNIP({ listNIP: logSetoranMahasiswa.map((item: any) => item.nip) });
+
+		return logSetoranMahasiswa.map((log: any) => {
+			const dosen = dosenSetoran?.find((dosen) => dosen.nip === log.nip);
+			const newLog = {...log}
+			delete newLog.nip
+			return {
+				...newLog,				
+				dosen_yang_mengesahkan: {
+					...dosen
+				}
+			}
+		})
 	}
 }
