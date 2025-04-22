@@ -3617,8 +3617,8 @@ export namespace Prisma {
     nip?: boolean
     nomor_surah?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3629,8 +3629,8 @@ export namespace Prisma {
     nip?: boolean
     nomor_surah?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3641,8 +3641,8 @@ export namespace Prisma {
     nip?: boolean
     nomor_surah?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectScalar = {
@@ -3657,26 +3657,26 @@ export namespace Prisma {
   export type setoranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tgl_setoran" | "tgl_validasi" | "nim" | "nip" | "nomor_surah", ExtArgs["result"]["setoran"]>
   export type setoranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }
   export type setoranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }
   export type setoranIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
+    surah?: boolean | surahDefaultArgs<ExtArgs>
   }
 
   export type $setoranPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "setoran"
     objects: {
       mahasiswa: Prisma.$mahasiswaPayload<ExtArgs>
-      surah: Prisma.$surahPayload<ExtArgs>
       dosen: Prisma.$dosenPayload<ExtArgs>
+      surah: Prisma.$surahPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4080,8 +4080,8 @@ export namespace Prisma {
   export interface Prisma__setoranClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mahasiswa<T extends mahasiswaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mahasiswaDefaultArgs<ExtArgs>>): Prisma__mahasiswaClient<$Result.GetResult<Prisma.$mahasiswaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    surah<T extends surahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, surahDefaultArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     dosen<T extends dosenDefaultArgs<ExtArgs> = {}>(args?: Subset<T, dosenDefaultArgs<ExtArgs>>): Prisma__dosenClient<$Result.GetResult<Prisma.$dosenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    surah<T extends surahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, surahDefaultArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5877,8 +5877,8 @@ export namespace Prisma {
     nip?: StringFilter<"setoran"> | string
     nomor_surah?: IntFilter<"setoran"> | number
     mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
-    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
+    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
   }
 
   export type setoranOrderByWithRelationInput = {
@@ -5889,8 +5889,8 @@ export namespace Prisma {
     nip?: SortOrder
     nomor_surah?: SortOrder
     mahasiswa?: mahasiswaOrderByWithRelationInput
-    surah?: surahOrderByWithRelationInput
     dosen?: dosenOrderByWithRelationInput
+    surah?: surahOrderByWithRelationInput
   }
 
   export type setoranWhereUniqueInput = Prisma.AtLeast<{
@@ -5905,8 +5905,8 @@ export namespace Prisma {
     nip?: StringFilter<"setoran"> | string
     nomor_surah?: IntFilter<"setoran"> | number
     mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
-    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
+    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
   }, "id" | "nim_nomor_surah">
 
   export type setoranOrderByWithAggregationInput = {
@@ -6089,8 +6089,8 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     mahasiswa: mahasiswaCreateNestedOneWithoutSetoranInput
-    surah: surahCreateNestedOneWithoutSetoranInput
     dosen: dosenCreateNestedOneWithoutSetoranInput
+    surah: surahCreateNestedOneWithoutSetoranInput
   }
 
   export type setoranUncheckedCreateInput = {
@@ -6107,8 +6107,8 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mahasiswa?: mahasiswaUpdateOneRequiredWithoutSetoranNestedInput
-    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
     dosen?: dosenUpdateOneRequiredWithoutSetoranNestedInput
+    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
   }
 
   export type setoranUncheckedUpdateInput = {
@@ -6614,16 +6614,16 @@ export namespace Prisma {
     connect?: mahasiswaWhereUniqueInput
   }
 
-  export type surahCreateNestedOneWithoutSetoranInput = {
-    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
-    connect?: surahWhereUniqueInput
-  }
-
   export type dosenCreateNestedOneWithoutSetoranInput = {
     create?: XOR<dosenCreateWithoutSetoranInput, dosenUncheckedCreateWithoutSetoranInput>
     connectOrCreate?: dosenCreateOrConnectWithoutSetoranInput
     connect?: dosenWhereUniqueInput
+  }
+
+  export type surahCreateNestedOneWithoutSetoranInput = {
+    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
+    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
+    connect?: surahWhereUniqueInput
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -6638,20 +6638,20 @@ export namespace Prisma {
     update?: XOR<XOR<mahasiswaUpdateToOneWithWhereWithoutSetoranInput, mahasiswaUpdateWithoutSetoranInput>, mahasiswaUncheckedUpdateWithoutSetoranInput>
   }
 
-  export type surahUpdateOneRequiredWithoutSetoranNestedInput = {
-    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
-    upsert?: surahUpsertWithoutSetoranInput
-    connect?: surahWhereUniqueInput
-    update?: XOR<XOR<surahUpdateToOneWithWhereWithoutSetoranInput, surahUpdateWithoutSetoranInput>, surahUncheckedUpdateWithoutSetoranInput>
-  }
-
   export type dosenUpdateOneRequiredWithoutSetoranNestedInput = {
     create?: XOR<dosenCreateWithoutSetoranInput, dosenUncheckedCreateWithoutSetoranInput>
     connectOrCreate?: dosenCreateOrConnectWithoutSetoranInput
     upsert?: dosenUpsertWithoutSetoranInput
     connect?: dosenWhereUniqueInput
     update?: XOR<XOR<dosenUpdateToOneWithWhereWithoutSetoranInput, dosenUpdateWithoutSetoranInput>, dosenUncheckedUpdateWithoutSetoranInput>
+  }
+
+  export type surahUpdateOneRequiredWithoutSetoranNestedInput = {
+    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
+    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
+    upsert?: surahUpsertWithoutSetoranInput
+    connect?: surahWhereUniqueInput
+    update?: XOR<XOR<surahUpdateToOneWithWhereWithoutSetoranInput, surahUpdateWithoutSetoranInput>, surahUncheckedUpdateWithoutSetoranInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6982,8 +6982,8 @@ export namespace Prisma {
     id?: string
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
-    surah: surahCreateNestedOneWithoutSetoranInput
     dosen: dosenCreateNestedOneWithoutSetoranInput
+    surah: surahCreateNestedOneWithoutSetoranInput
   }
 
   export type setoranUncheckedCreateWithoutMahasiswaInput = {
@@ -7064,23 +7064,6 @@ export namespace Prisma {
     create: XOR<mahasiswaCreateWithoutSetoranInput, mahasiswaUncheckedCreateWithoutSetoranInput>
   }
 
-  export type surahCreateWithoutSetoranInput = {
-    nomor: number
-    nama: string
-    label?: $Enums.type_label_surah | null
-  }
-
-  export type surahUncheckedCreateWithoutSetoranInput = {
-    nomor: number
-    nama: string
-    label?: $Enums.type_label_surah | null
-  }
-
-  export type surahCreateOrConnectWithoutSetoranInput = {
-    where: surahWhereUniqueInput
-    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-  }
-
   export type dosenCreateWithoutSetoranInput = {
     nip: string
     nama: string
@@ -7098,6 +7081,23 @@ export namespace Prisma {
   export type dosenCreateOrConnectWithoutSetoranInput = {
     where: dosenWhereUniqueInput
     create: XOR<dosenCreateWithoutSetoranInput, dosenUncheckedCreateWithoutSetoranInput>
+  }
+
+  export type surahCreateWithoutSetoranInput = {
+    nomor: number
+    nama: string
+    label?: $Enums.type_label_surah | null
+  }
+
+  export type surahUncheckedCreateWithoutSetoranInput = {
+    nomor: number
+    nama: string
+    label?: $Enums.type_label_surah | null
+  }
+
+  export type surahCreateOrConnectWithoutSetoranInput = {
+    where: surahWhereUniqueInput
+    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
   }
 
   export type mahasiswaUpsertWithoutSetoranInput = {
@@ -7125,29 +7125,6 @@ export namespace Prisma {
     nip?: StringFieldUpdateOperationsInput | string
   }
 
-  export type surahUpsertWithoutSetoranInput = {
-    update: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
-    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    where?: surahWhereInput
-  }
-
-  export type surahUpdateToOneWithWhereWithoutSetoranInput = {
-    where?: surahWhereInput
-    data: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
-  }
-
-  export type surahUpdateWithoutSetoranInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
-    nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
-  }
-
-  export type surahUncheckedUpdateWithoutSetoranInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
-    nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
-  }
-
   export type dosenUpsertWithoutSetoranInput = {
     update: XOR<dosenUpdateWithoutSetoranInput, dosenUncheckedUpdateWithoutSetoranInput>
     create: XOR<dosenCreateWithoutSetoranInput, dosenUncheckedCreateWithoutSetoranInput>
@@ -7171,6 +7148,29 @@ export namespace Prisma {
     nama?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     mahasiswa?: mahasiswaUncheckedUpdateManyWithoutDosenNestedInput
+  }
+
+  export type surahUpsertWithoutSetoranInput = {
+    update: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
+    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
+    where?: surahWhereInput
+  }
+
+  export type surahUpdateToOneWithWhereWithoutSetoranInput = {
+    where?: surahWhereInput
+    data: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
+  }
+
+  export type surahUpdateWithoutSetoranInput = {
+    nomor?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
+  }
+
+  export type surahUncheckedUpdateWithoutSetoranInput = {
+    nomor?: IntFieldUpdateOperationsInput | number
+    nama?: StringFieldUpdateOperationsInput | string
+    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
   }
 
   export type setoranCreateWithoutSurahInput = {
@@ -7285,8 +7285,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
     dosen?: dosenUpdateOneRequiredWithoutSetoranNestedInput
+    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
   }
 
   export type setoranUncheckedUpdateWithoutMahasiswaInput = {
