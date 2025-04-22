@@ -1,25 +1,24 @@
-# Build stage
-FROM oven/bun:1 AS builder
+FROM oven/bun:1
 
 WORKDIR /app
 
-# Copy package files first for better caching
+ENV NODE_ENV=production
+
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
-# Copy rest of the files
-COPY . ./
+# Copy source code
+COPY . .
 
-# Build the binary
-RUN bun build src/index.ts --compile --outfile server
+# Generate Prisma Client
+RUN bunx prisma generate
 
-# Final stage
-FROM debian:bookworm-slim
+# Copy and prepare entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-WORKDIR /app
-
-# Copy only the compiled binary
-COPY --from=builder /app/server ./server
-
-# Run the binary
-CMD ["./server"]
+# Use entrypoint script as startup command
+CMD ["/entrypoint.sh"]
