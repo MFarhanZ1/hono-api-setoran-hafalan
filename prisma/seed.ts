@@ -47,7 +47,7 @@ async function main() {
 		skipDuplicates: true,
 	});
 
-	console.log("[DEBUG] Result of inserted surah createMany:", result.count > 0 ? result : "Data was inserted previously, no new data inserted.");
+	console.log("[RESULT] ", result.count > 0 ? result : "Data was inserted previously, no new data inserted! 😇");
 }
 
 main()
