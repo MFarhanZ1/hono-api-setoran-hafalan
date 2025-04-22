@@ -9,20 +9,22 @@ datasource db {
 }
 
 model dosen {
-  nip       String      @id(map: "pk_nip_dosen") @db.VarChar(18)
-  nama      String      @db.VarChar(255)
-  email     String      @unique @db.VarChar(255)
-  mahasiswa mahasiswa[]
-  setoran   setoran[]
+  nip                 String                @id(map: "pk_nip_dosen") @db.VarChar(18)
+  nama                String                @db.VarChar(255)
+  email               String                @unique @db.VarChar(255)
+  mahasiswa           mahasiswa[]
+  setoran             setoran[]
+  log_setoran_hafalan log_setoran_hafalan[]
 }
 
 model mahasiswa {
-  nim     String    @id(map: "pk_nim_mahasiswa") @db.VarChar(11)
-  nama    String    @db.VarChar(255)
-  email   String    @unique @db.VarChar(36)
-  nip     String    @db.VarChar(18)
-  dosen   dosen     @relation(fields: [nip], references: [nip], onDelete: NoAction, onUpdate: Cascade, map: "fk_nip_mahasiswa")
-  setoran setoran[]
+  nim                 String                @id(map: "pk_nim_mahasiswa") @db.VarChar(11)
+  nama                String                @db.VarChar(255)
+  email               String                @unique @db.VarChar(36)
+  nip                 String                @db.VarChar(18)
+  dosen               dosen                 @relation(fields: [nip], references: [nip], onDelete: NoAction, onUpdate: Cascade, map: "fk_nip_mahasiswa")
+  setoran             setoran[]
+  log_setoran_hafalan log_setoran_hafalan[]
 }
 
 model setoran {
@@ -46,10 +48,31 @@ model surah {
   setoran setoran[]
 }
 
+model log_setoran_hafalan {
+  id                      Int      @id @default(autoincrement()) @db.Integer
+  keterangan_yang_disetor String?  @db.VarChar(255)
+  aksi                    Aksi
+  ip                      String?  @db.VarChar(45)
+  user_agent              String?  @db.VarChar(255)
+  timestamp               DateTime @default(now()) @db.Timestamp(6)
+  nim                     String   @db.VarChar(11)
+  nip                     String   @db.VarChar(18)
+
+  mahasiswa mahasiswa @relation(fields: [nim], references: [nim], onDelete: NoAction, onUpdate: Cascade, map: "fk_nim_log_setoran_hafalan")
+  dosen     dosen     @relation(fields: [nip], references: [nip], onDelete: NoAction, onUpdate: Cascade, map: "fk_nip_log_setoran_hafalan")
+
+  @@map("log_setoran_hafalan")
+}
+
 enum type_label_surah {
   KP
   SEMKP
   DAFTAR_TA
   SEMPRO
   SIDANG_TA
+}
+
+enum Aksi {
+  Validasi
+  Batalkan
 }
