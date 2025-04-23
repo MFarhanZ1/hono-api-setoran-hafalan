@@ -161,6 +161,9 @@ export default class SetoranRepository {
         return await prisma.log_setoran_hafalan.findMany({
             where: {
                 nim: nim
+            },
+            orderBy: {
+                timestamp: 'desc'
             }
         })
     }
