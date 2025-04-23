@@ -1,6 +1,9 @@
 -- CreateEnum
 CREATE TYPE "type_label_surah" AS ENUM ('KP', 'SEMKP', 'DAFTAR_TA', 'SEMPRO', 'SIDANG_TA');
 
+-- CreateEnum
+CREATE TYPE "Aksi" AS ENUM ('Validasi', 'Batalkan');
+
 -- CreateTable
 CREATE TABLE "dosen" (
     "nip" VARCHAR(18) NOT NULL,
@@ -41,6 +44,20 @@ CREATE TABLE "surah" (
     CONSTRAINT "pk_nomor_surah" PRIMARY KEY ("nomor")
 );
 
+-- CreateTable
+CREATE TABLE "log_setoran_hafalan" (
+    "id" SERIAL NOT NULL,
+    "keterangan" TEXT,
+    "aksi" "Aksi" NOT NULL,
+    "ip" VARCHAR(45),
+    "user_agent" VARCHAR(255),
+    "timestamp" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "nim" VARCHAR(11) NOT NULL,
+    "nip" VARCHAR(18) NOT NULL,
+
+    CONSTRAINT "log_setoran_hafalan_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "dosen_email_key" ON "dosen"("email");
 
@@ -61,3 +78,9 @@ ALTER TABLE "setoran" ADD CONSTRAINT "fk_nip_setoran" FOREIGN KEY ("nip") REFERE
 
 -- AddForeignKey
 ALTER TABLE "setoran" ADD CONSTRAINT "fk_nomor_surah_setoran" FOREIGN KEY ("nomor_surah") REFERENCES "surah"("nomor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- AddForeignKey
+ALTER TABLE "log_setoran_hafalan" ADD CONSTRAINT "fk_nim_log_setoran_hafalan" FOREIGN KEY ("nim") REFERENCES "mahasiswa"("nim") ON DELETE NO ACTION ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "log_setoran_hafalan" ADD CONSTRAINT "fk_nip_log_setoran_hafalan" FOREIGN KEY ("nip") REFERENCES "dosen"("nip") ON DELETE NO ACTION ON UPDATE CASCADE;

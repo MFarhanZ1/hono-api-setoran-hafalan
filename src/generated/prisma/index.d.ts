@@ -5808,7 +5808,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanMinAggregateOutputType = {
     id: number | null
-    keterangan_yang_disetor: string | null
+    keterangan: string | null
     aksi: $Enums.Aksi | null
     ip: string | null
     user_agent: string | null
@@ -5819,7 +5819,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanMaxAggregateOutputType = {
     id: number | null
-    keterangan_yang_disetor: string | null
+    keterangan: string | null
     aksi: $Enums.Aksi | null
     ip: string | null
     user_agent: string | null
@@ -5830,7 +5830,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanCountAggregateOutputType = {
     id: number
-    keterangan_yang_disetor: number
+    keterangan: number
     aksi: number
     ip: number
     user_agent: number
@@ -5851,7 +5851,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanMinAggregateInputType = {
     id?: true
-    keterangan_yang_disetor?: true
+    keterangan?: true
     aksi?: true
     ip?: true
     user_agent?: true
@@ -5862,7 +5862,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanMaxAggregateInputType = {
     id?: true
-    keterangan_yang_disetor?: true
+    keterangan?: true
     aksi?: true
     ip?: true
     user_agent?: true
@@ -5873,7 +5873,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanCountAggregateInputType = {
     id?: true
-    keterangan_yang_disetor?: true
+    keterangan?: true
     aksi?: true
     ip?: true
     user_agent?: true
@@ -5971,7 +5971,7 @@ export namespace Prisma {
 
   export type Log_setoran_hafalanGroupByOutputType = {
     id: number
-    keterangan_yang_disetor: string | null
+    keterangan: string | null
     aksi: $Enums.Aksi
     ip: string | null
     user_agent: string | null
@@ -6001,7 +6001,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    keterangan_yang_disetor?: boolean
+    keterangan?: boolean
     aksi?: boolean
     ip?: boolean
     user_agent?: boolean
@@ -6014,7 +6014,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    keterangan_yang_disetor?: boolean
+    keterangan?: boolean
     aksi?: boolean
     ip?: boolean
     user_agent?: boolean
@@ -6027,7 +6027,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    keterangan_yang_disetor?: boolean
+    keterangan?: boolean
     aksi?: boolean
     ip?: boolean
     user_agent?: boolean
@@ -6040,7 +6040,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanSelectScalar = {
     id?: boolean
-    keterangan_yang_disetor?: boolean
+    keterangan?: boolean
     aksi?: boolean
     ip?: boolean
     user_agent?: boolean
@@ -6049,7 +6049,7 @@ export namespace Prisma {
     nip?: boolean
   }
 
-  export type log_setoran_hafalanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "keterangan_yang_disetor" | "aksi" | "ip" | "user_agent" | "timestamp" | "nim" | "nip", ExtArgs["result"]["log_setoran_hafalan"]>
+  export type log_setoran_hafalanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "keterangan" | "aksi" | "ip" | "user_agent" | "timestamp" | "nim" | "nip", ExtArgs["result"]["log_setoran_hafalan"]>
   export type log_setoran_hafalanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
@@ -6071,7 +6071,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      keterangan_yang_disetor: string | null
+      keterangan: string | null
       aksi: $Enums.Aksi
       ip: string | null
       user_agent: string | null
@@ -6504,7 +6504,7 @@ export namespace Prisma {
    */
   interface log_setoran_hafalanFieldRefs {
     readonly id: FieldRef<"log_setoran_hafalan", 'Int'>
-    readonly keterangan_yang_disetor: FieldRef<"log_setoran_hafalan", 'String'>
+    readonly keterangan: FieldRef<"log_setoran_hafalan", 'String'>
     readonly aksi: FieldRef<"log_setoran_hafalan", 'Aksi'>
     readonly ip: FieldRef<"log_setoran_hafalan", 'String'>
     readonly user_agent: FieldRef<"log_setoran_hafalan", 'String'>
@@ -6981,7 +6981,7 @@ export namespace Prisma {
 
   export const Log_setoran_hafalanScalarFieldEnum: {
     id: 'id',
-    keterangan_yang_disetor: 'keterangan_yang_disetor',
+    keterangan: 'keterangan',
     aksi: 'aksi',
     ip: 'ip',
     user_agent: 'user_agent',
@@ -7337,7 +7337,7 @@ export namespace Prisma {
     OR?: log_setoran_hafalanWhereInput[]
     NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
     id?: IntFilter<"log_setoran_hafalan"> | number
-    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
@@ -7350,7 +7350,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanOrderByWithRelationInput = {
     id?: SortOrder
-    keterangan_yang_disetor?: SortOrderInput | SortOrder
+    keterangan?: SortOrderInput | SortOrder
     aksi?: SortOrder
     ip?: SortOrderInput | SortOrder
     user_agent?: SortOrderInput | SortOrder
@@ -7366,7 +7366,7 @@ export namespace Prisma {
     AND?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
     OR?: log_setoran_hafalanWhereInput[]
     NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
-    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
@@ -7379,7 +7379,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanOrderByWithAggregationInput = {
     id?: SortOrder
-    keterangan_yang_disetor?: SortOrderInput | SortOrder
+    keterangan?: SortOrderInput | SortOrder
     aksi?: SortOrder
     ip?: SortOrderInput | SortOrder
     user_agent?: SortOrderInput | SortOrder
@@ -7398,7 +7398,7 @@ export namespace Prisma {
     OR?: log_setoran_hafalanScalarWhereWithAggregatesInput[]
     NOT?: log_setoran_hafalanScalarWhereWithAggregatesInput | log_setoran_hafalanScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"log_setoran_hafalan"> | number
-    keterangan_yang_disetor?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
+    keterangan?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
     aksi?: EnumAksiWithAggregatesFilter<"log_setoran_hafalan"> | $Enums.Aksi
     ip?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
@@ -7624,7 +7624,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanCreateInput = {
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -7635,7 +7635,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedCreateInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -7645,7 +7645,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanUpdateInput = {
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7656,7 +7656,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7667,7 +7667,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCreateManyInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -7677,7 +7677,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanUpdateManyMutationInput = {
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7686,7 +7686,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8014,7 +8014,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCountOrderByAggregateInput = {
     id?: SortOrder
-    keterangan_yang_disetor?: SortOrder
+    keterangan?: SortOrder
     aksi?: SortOrder
     ip?: SortOrder
     user_agent?: SortOrder
@@ -8029,7 +8029,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanMaxOrderByAggregateInput = {
     id?: SortOrder
-    keterangan_yang_disetor?: SortOrder
+    keterangan?: SortOrder
     aksi?: SortOrder
     ip?: SortOrder
     user_agent?: SortOrder
@@ -8040,7 +8040,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanMinOrderByAggregateInput = {
     id?: SortOrder
-    keterangan_yang_disetor?: SortOrder
+    keterangan?: SortOrder
     aksi?: SortOrder
     ip?: SortOrder
     user_agent?: SortOrder
@@ -8736,7 +8736,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanCreateWithoutDosenInput = {
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -8746,7 +8746,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedCreateWithoutDosenInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -8839,7 +8839,7 @@ export namespace Prisma {
     OR?: log_setoran_hafalanScalarWhereInput[]
     NOT?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
     id?: IntFilter<"log_setoran_hafalan"> | number
-    keterangan_yang_disetor?: StringNullableFilter<"log_setoran_hafalan"> | string | null
+    keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
@@ -8896,7 +8896,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanCreateWithoutMahasiswaInput = {
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -8906,7 +8906,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -9273,7 +9273,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCreateManyDosenInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -9328,7 +9328,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanUpdateWithoutDosenInput = {
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9338,7 +9338,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateWithoutDosenInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9348,7 +9348,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateManyWithoutDosenInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9366,7 +9366,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCreateManyMahasiswaInput = {
     id?: number
-    keterangan_yang_disetor?: string | null
+    keterangan?: string | null
     aksi: $Enums.Aksi
     ip?: string | null
     user_agent?: string | null
@@ -9399,7 +9399,7 @@ export namespace Prisma {
   }
 
   export type log_setoran_hafalanUpdateWithoutMahasiswaInput = {
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9409,7 +9409,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateWithoutMahasiswaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9419,7 +9419,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    keterangan_yang_disetor?: NullableStringFieldUpdateOperationsInput | string | null
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null

@@ -147,7 +147,7 @@ exports.Prisma.SurahScalarFieldEnum = {
 
 exports.Prisma.Log_setoran_hafalanScalarFieldEnum = {
   id: 'id',
-  keterangan_yang_disetor: 'keterangan_yang_disetor',
+  keterangan: 'keterangan',
   aksi: 'aksi',
   ip: 'ip',
   user_agent: 'user_agent',
