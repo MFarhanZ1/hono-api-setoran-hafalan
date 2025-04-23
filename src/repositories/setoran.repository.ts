@@ -144,10 +144,10 @@ export default class SetoranRepository {
         );          
     }
 
-    public static async createLogSetoran({keterangan_yang_disetor, aksi, ip, user_agent, nim, nip}: any) {
+    public static async createLogSetoran({keterangan, aksi, ip, user_agent, nim, nip}: any) {
         await prisma.log_setoran_hafalan.create({
             data: {
-                keterangan_yang_disetor: keterangan_yang_disetor,
+                keterangan: keterangan,
                 aksi: aksi,
                 ip: ip,
                 user_agent: user_agent,
