@@ -1,18 +1,18 @@
 import { Hono } from "hono";
-import { logger } from "hono/logger";
 import { cors } from "hono/cors";
 import { RegExpRouter } from "hono/router/reg-exp-router";
 import { BlankEnv, BlankSchema } from "hono/types";
 import GlobalHandler from "./handlers/global.handler";
 import globalRoute from "./routes/global.route";
 import setoranRoute from "./routes/setoran.route";
+import LogMiddleware from "./middlewares/log.middleware";
 
 // Init Hono Object and Load environment variables from .env file
 const app: Hono<BlankEnv, BlankSchema, "/"> = new Hono({ router: new RegExpRouter() });
 const { APP_PORT }: NodeJS.ProcessEnv = process.env;
 
 // Load all available middlewares
-app.use('*', logger())
+app.use('*', LogMiddleware.hanzLogger);
 app.use('*', cors({
   origin: process.env.NODE_ENV === 'production' ? "https://dashboard.tif.uin-suska.ac.id" : "*", // restrict this in production
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -20,7 +20,7 @@ app.use('*', cors({
   exposeHeaders: ['Content-Length', 'X-Request-Id'],
   maxAge: 3600,
   credentials: true
-}))
+}));
 
 // Load all default routes for common handling
 app.notFound(GlobalHandler.notFound);
