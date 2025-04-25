@@ -9,6 +9,7 @@
   "dependencies": {
     "@hono/zod-validator": "^0.4.3",
     "@prisma/client": "6.6.0",
+    "colorette": "^2.0.20",
     "hono": "^4.7.7",
     "prisma": "^6.6.0",
     "zod": "^3.24.3"
