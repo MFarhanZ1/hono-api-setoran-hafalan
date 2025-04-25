@@ -30,7 +30,7 @@ export default class LogMiddleware {
 	
 		const time = LogHelper.formatDate(new Date());
 	
-		console.log(`${time} <-- 🤯 Request dari IP: ${ip}`);
+		console.log(`--\n${time} <-- 🤯 Request dari IP: ${ip}`);
 		console.log(`${time} <-- [REQ] ${method} ${path}`);
 		
 		await next();
@@ -39,6 +39,6 @@ export default class LogMiddleware {
 		const status = LogHelper.colorStatus(c.res.status);
 		const after = LogHelper.formatDate(new Date());
 		
-		console.log(`${after} --> [RES] ${status} ~ ${duration}\n--`);
+		console.log(`${after} --> [RES] ${status} ~ ${duration}`);
 	};
 }
