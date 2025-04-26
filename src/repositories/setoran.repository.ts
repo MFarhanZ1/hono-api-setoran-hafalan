@@ -7,10 +7,10 @@ export default class SetoranRepository {
 	public static async findRingkasanByNIM({ nim }: FindRingkasanByNIMParamsInterface): Promise<FindRingkasanByNIMReturnInterface | null> {
 		const res: FindRingkasanByNIMReturnInterface[] = await prisma.$queryRaw`
             SELECT
-                (SELECT COUNT(*) FROM surah)::int AS total_wajib_setor,
+                (SELECT COUNT(*) FROM komponen_setoran)::int AS total_wajib_setor,
                 COUNT(setoran.id)::int AS total_sudah_setor, 
-                (SELECT COUNT(*) FROM surah)::int - COUNT(setoran.id)::int AS total_belum_setor,
-                ROUND((COUNT(setoran.id)::numeric / (SELECT COUNT(*) FROM surah)::numeric) * 100, 2)::float AS persentase_progres_setor,
+                (SELECT COUNT(*) FROM komponen_setoran)::int - COUNT(setoran.id)::int AS total_belum_setor,
+                ROUND((COUNT(setoran.id)::numeric / (SELECT COUNT(*) FROM komponen_setoran)::numeric) * 100, 2)::float AS persentase_progres_setor,
                 MAX(setoran.tgl_setoran) AS tgl_terakhir_setor
             FROM setoran
             WHERE setoran.nim = ${nim};
@@ -29,11 +29,11 @@ export default class SetoranRepository {
             SELECT
                 nl.nim,
                 JSON_BUILD_OBJECT(
-                    'total_wajib_setor', (SELECT COUNT(*) FROM surah)::int,
+                    'total_wajib_setor', (SELECT COUNT(*) FROM komponen_setoran)::int,
                     'total_sudah_setor', COUNT(s.id)::int,
-                    'total_belum_setor', (SELECT COUNT(*) FROM surah)::int - COUNT(s.id)::int,
+                    'total_belum_setor', (SELECT COUNT(*) FROM komponen_setoran)::int - COUNT(s.id)::int,
                     'persentase_progres_setor', ROUND(
-                        (COUNT(s.id)::numeric / NULLIF((SELECT COUNT(*) FROM surah)::numeric, 0)) * 100,
+                        (COUNT(s.id)::numeric / NULLIF((SELECT COUNT(*) FROM komponen_setoran)::numeric, 0)) * 100,
                         2
                     )::float,
                     'tgl_terakhir_setor', MAX(s.tgl_setoran)
@@ -55,7 +55,7 @@ export default class SetoranRepository {
     public static async findRingkasanPerSyaratByNIM({ nim }: FindRingkasanPerSyaratByNIMParamsInterface): Promise<FindRingkasanPerSyaratByNIMReturnInterface[] | null> {
 		return await prisma.$queryRaw`
             SELECT 
-                surah.label "label",
+                komponen_setoran.label "label",
                 COUNT(*)::int "total_wajib_setor",
                 COUNT(setoran.id)::int "total_sudah_setor",
                 (COUNT(*)::numeric - COUNT(setoran.id)::numeric)::int AS "total_belum_setor",
@@ -66,29 +66,22 @@ export default class SetoranRepository {
                 )::float				
                 AS "persentase_progres_setor"
             FROM
-                surah
+                komponen_setoran
             LEFT JOIN
-                setoran ON setoran.nomor_surah = surah.nomor AND setoran.nim = ${nim}
+                setoran ON setoran.id_komponen_setoran = komponen_setoran.id AND setoran.nim = ${nim}
             GROUP BY
-                surah.label
+                komponen_setoran.label
             ORDER BY
-                CASE
-                    WHEN surah.label = 'KP' THEN 1
-                    WHEN surah.label = 'SEMKP' THEN 2
-                    WHEN surah.label = 'DAFTAR_TA' THEN 3
-                    WHEN surah.label = 'SEMPRO' THEN 4
-                    WHEN surah.label = 'SIDANG_TA' THEN 5
-                    ELSE 6
-                END;
+                komponen_setoran.label ASC
         `;
 	}
 
     public static async findDetailByNIM({ nim }: FindDetailByNIMParamsInterface): Promise<FindDetailByNIMReturnInterface[] | null> {
 		return await prisma.$queryRaw`
             SELECT 
-                s.nomor,
-                s.nama,
-                s.label,
+                ks.id,
+                ks.nama,
+                ks.label,
                 CASE 
                     WHEN COUNT(st.id) > 0 THEN true
                     ELSE false
@@ -107,27 +100,27 @@ export default class SetoranRepository {
                     null
                 ) -> 0 AS info_setoran 
             FROM 
-                surah s
+                komponen_setoran ks
             LEFT JOIN 
-                setoran st ON st.nomor_surah = s.nomor AND st.nim = ${nim}
+                setoran st ON st.id_komponen_setoran = ks.id AND st.nim = ${nim}
             GROUP BY 
-                s.nomor, s.nama, s.label
+                ks.id, ks.nama, ks.label
             ORDER BY 
-                s.nomor ASC;
+                ks.label ASC;
         `
 	}
 
     public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: CreateSetoranParamsInterface): Promise<void> {
 
-        const values = data_setoran.map((data: {nomor_surah: number}) =>
-            Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.nomor_surah})`
+        const values = data_setoran.map((data: {id_komponen_setoran: string}) =>
+            Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.id_komponen_setoran}::uuid)`
         );
 
         await prisma.$executeRaw(
             Prisma.sql`
-            INSERT INTO setoran (tgl_setoran, nim, nip, nomor_surah)
+            INSERT INTO setoran (tgl_setoran, nim, nip, id_komponen_setoran)
             VALUES ${Prisma.join(values)}
-            ON CONFLICT (nim, nomor_surah) DO NOTHING;
+            ON CONFLICT (nim, id_komponen_setoran) DO NOTHING;
         `
         );
     }
