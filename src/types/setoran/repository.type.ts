@@ -37,7 +37,7 @@ export interface FindDetailByNIMParamsInterface {
 }
 
 export interface FindDetailByNIMReturnInterface {
-	nomor: number;
+	id_komponen_setoran: string;
 	nama: string;
 	label: string;
 	sudah_setor: boolean;
@@ -58,7 +58,7 @@ export interface CreateSetoranParamsInterface {
 	nim: string;
 	nip: string;
 	data_setoran: {
-		nomor_surah: number;
+		id_komponen_setoran: string;
 		nama_surah: string;
 	}[];
 }
@@ -66,7 +66,6 @@ export interface CreateSetoranParamsInterface {
 export interface DeleteSetoranParamsInterface {	
 	data_setoran: {
 		id: string;
-		nomor_surah: number;
 		nama_surah: string;
 	}[];
 }
