@@ -125,7 +125,7 @@ export default class SetoranService {
 
 		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
 		const keterangan = data_setoran.map((item: any) => item.nama_surah).join(', ') + ', serta memilih tanggal setoran ' + tgl_setoran;
-		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'Validasi' });
+		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'VALIDASI' });
 		
 		// kembalikan response
 		return {
@@ -146,7 +146,7 @@ export default class SetoranService {
 		
 		// email dosen pa, nim mhs, nip, dan nama surah di data_setoran untuk log
 		const keterangan = data_setoran.map((item: any) => item.nama_surah).join(', ');
-		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'Batalkan' });
+		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'BATALKAN' });
 
 		// kembalikan response
 		return {
