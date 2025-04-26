@@ -136,12 +136,14 @@ exports.Prisma.SetoranScalarFieldEnum = {
   tgl_validasi: 'tgl_validasi',
   nim: 'nim',
   nip: 'nip',
-  nomor_surah: 'nomor_surah'
+  id_komponen_setoran: 'id_komponen_setoran'
 };
 
-exports.Prisma.SurahScalarFieldEnum = {
-  nomor: 'nomor',
+exports.Prisma.Komponen_setoranScalarFieldEnum = {
+  id: 'id',
   nama: 'nama',
+  external_id: 'external_id',
+  jenis: 'jenis',
   label: 'label'
 };
 
@@ -170,7 +172,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.type_label_surah = exports.$Enums.type_label_surah = {
+exports.type_jenis_komponen_setoran = exports.$Enums.type_jenis_komponen_setoran = {
+  SURAH: 'SURAH',
+  DOA: 'DOA',
+  BACAAN_SHOLAT: 'BACAAN_SHOLAT',
+  HADIST: 'HADIST'
+};
+
+exports.type_label_komponen_setoran = exports.$Enums.type_label_komponen_setoran = {
   KP: 'KP',
   SEMKP: 'SEMKP',
   DAFTAR_TA: 'DAFTAR_TA',
@@ -178,16 +187,16 @@ exports.type_label_surah = exports.$Enums.type_label_surah = {
   SIDANG_TA: 'SIDANG_TA'
 };
 
-exports.Aksi = exports.$Enums.Aksi = {
-  Validasi: 'Validasi',
-  Batalkan: 'Batalkan'
+exports.type_aksi_log_setoran_hafalan = exports.$Enums.type_aksi_log_setoran_hafalan = {
+  VALIDASI: 'VALIDASI',
+  BATALKAN: 'BATALKAN'
 };
 
 exports.Prisma.ModelName = {
   dosen: 'dosen',
   mahasiswa: 'mahasiswa',
   setoran: 'setoran',
-  surah: 'surah',
+  komponen_setoran: 'komponen_setoran',
   log_setoran_hafalan: 'log_setoran_hafalan'
 };
 
