@@ -72,7 +72,7 @@ export default class SetoranRepository {
             GROUP BY
                 komponen_setoran.label
             ORDER BY
-                komponen_setoran.label ASC
+                komponen_setoran.label ASC;
         `;
 	}
 
@@ -106,7 +106,8 @@ export default class SetoranRepository {
             GROUP BY 
                 ks.id, ks.nama, ks.label
             ORDER BY 
-                ks.label ASC;
+                ks.label ASC,
+                ks.external_id ASC;
         `
 	}
 
