@@ -29,10 +29,10 @@ export type mahasiswa = $Result.DefaultSelection<Prisma.$mahasiswaPayload>
  */
 export type setoran = $Result.DefaultSelection<Prisma.$setoranPayload>
 /**
- * Model surah
+ * Model komponen_setoran
  * 
  */
-export type surah = $Result.DefaultSelection<Prisma.$surahPayload>
+export type komponen_setoran = $Result.DefaultSelection<Prisma.$komponen_setoranPayload>
 /**
  * Model log_setoran_hafalan
  * 
@@ -43,7 +43,17 @@ export type log_setoran_hafalan = $Result.DefaultSelection<Prisma.$log_setoran_h
  * Enums
  */
 export namespace $Enums {
-  export const type_label_surah: {
+  export const type_jenis_komponen_setoran: {
+  SURAH: 'SURAH',
+  DOA: 'DOA',
+  BACAAN_SHOLAT: 'BACAAN_SHOLAT',
+  HADIST: 'HADIST'
+};
+
+export type type_jenis_komponen_setoran = (typeof type_jenis_komponen_setoran)[keyof typeof type_jenis_komponen_setoran]
+
+
+export const type_label_komponen_setoran: {
   KP: 'KP',
   SEMKP: 'SEMKP',
   DAFTAR_TA: 'DAFTAR_TA',
@@ -51,25 +61,29 @@ export namespace $Enums {
   SIDANG_TA: 'SIDANG_TA'
 };
 
-export type type_label_surah = (typeof type_label_surah)[keyof typeof type_label_surah]
+export type type_label_komponen_setoran = (typeof type_label_komponen_setoran)[keyof typeof type_label_komponen_setoran]
 
 
-export const Aksi: {
-  Validasi: 'Validasi',
-  Batalkan: 'Batalkan'
+export const type_aksi_log_setoran_hafalan: {
+  VALIDASI: 'VALIDASI',
+  BATALKAN: 'BATALKAN'
 };
 
-export type Aksi = (typeof Aksi)[keyof typeof Aksi]
+export type type_aksi_log_setoran_hafalan = (typeof type_aksi_log_setoran_hafalan)[keyof typeof type_aksi_log_setoran_hafalan]
 
 }
 
-export type type_label_surah = $Enums.type_label_surah
+export type type_jenis_komponen_setoran = $Enums.type_jenis_komponen_setoran
 
-export const type_label_surah: typeof $Enums.type_label_surah
+export const type_jenis_komponen_setoran: typeof $Enums.type_jenis_komponen_setoran
 
-export type Aksi = $Enums.Aksi
+export type type_label_komponen_setoran = $Enums.type_label_komponen_setoran
 
-export const Aksi: typeof $Enums.Aksi
+export const type_label_komponen_setoran: typeof $Enums.type_label_komponen_setoran
+
+export type type_aksi_log_setoran_hafalan = $Enums.type_aksi_log_setoran_hafalan
+
+export const type_aksi_log_setoran_hafalan: typeof $Enums.type_aksi_log_setoran_hafalan
 
 /**
  * ##  Prisma Client ʲˢ
@@ -227,14 +241,14 @@ export class PrismaClient<
   get setoran(): Prisma.setoranDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.surah`: Exposes CRUD operations for the **surah** model.
+   * `prisma.komponen_setoran`: Exposes CRUD operations for the **komponen_setoran** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Surahs
-    * const surahs = await prisma.surah.findMany()
+    * // Fetch zero or more Komponen_setorans
+    * const komponen_setorans = await prisma.komponen_setoran.findMany()
     * ```
     */
-  get surah(): Prisma.surahDelegate<ExtArgs, ClientOptions>;
+  get komponen_setoran(): Prisma.komponen_setoranDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.log_setoran_hafalan`: Exposes CRUD operations for the **log_setoran_hafalan** model.
@@ -688,7 +702,7 @@ export namespace Prisma {
     dosen: 'dosen',
     mahasiswa: 'mahasiswa',
     setoran: 'setoran',
-    surah: 'surah',
+    komponen_setoran: 'komponen_setoran',
     log_setoran_hafalan: 'log_setoran_hafalan'
   };
 
@@ -708,7 +722,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "dosen" | "mahasiswa" | "setoran" | "surah" | "log_setoran_hafalan"
+      modelProps: "dosen" | "mahasiswa" | "setoran" | "komponen_setoran" | "log_setoran_hafalan"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -934,77 +948,77 @@ export namespace Prisma {
           }
         }
       }
-      surah: {
-        payload: Prisma.$surahPayload<ExtArgs>
-        fields: Prisma.surahFieldRefs
+      komponen_setoran: {
+        payload: Prisma.$komponen_setoranPayload<ExtArgs>
+        fields: Prisma.komponen_setoranFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.surahFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload> | null
+            args: Prisma.komponen_setoranFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.surahFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           findFirst: {
-            args: Prisma.surahFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload> | null
+            args: Prisma.komponen_setoranFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.surahFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           findMany: {
-            args: Prisma.surahFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>[]
+            args: Prisma.komponen_setoranFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>[]
           }
           create: {
-            args: Prisma.surahCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           createMany: {
-            args: Prisma.surahCreateManyArgs<ExtArgs>
+            args: Prisma.komponen_setoranCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.surahCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>[]
+            args: Prisma.komponen_setoranCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>[]
           }
           delete: {
-            args: Prisma.surahDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           update: {
-            args: Prisma.surahUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           deleteMany: {
-            args: Prisma.surahDeleteManyArgs<ExtArgs>
+            args: Prisma.komponen_setoranDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.surahUpdateManyArgs<ExtArgs>
+            args: Prisma.komponen_setoranUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.surahUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>[]
+            args: Prisma.komponen_setoranUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>[]
           }
           upsert: {
-            args: Prisma.surahUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$surahPayload>
+            args: Prisma.komponen_setoranUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$komponen_setoranPayload>
           }
           aggregate: {
-            args: Prisma.SurahAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSurah>
+            args: Prisma.Komponen_setoranAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKomponen_setoran>
           }
           groupBy: {
-            args: Prisma.surahGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SurahGroupByOutputType>[]
+            args: Prisma.komponen_setoranGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Komponen_setoranGroupByOutputType>[]
           }
           count: {
-            args: Prisma.surahCountArgs<ExtArgs>
-            result: $Utils.Optional<SurahCountAggregateOutputType> | number
+            args: Prisma.komponen_setoranCountArgs<ExtArgs>
+            result: $Utils.Optional<Komponen_setoranCountAggregateOutputType> | number
           }
         }
       }
@@ -1169,7 +1183,7 @@ export namespace Prisma {
     dosen?: dosenOmit
     mahasiswa?: mahasiswaOmit
     setoran?: setoranOmit
-    surah?: surahOmit
+    komponen_setoran?: komponen_setoranOmit
     log_setoran_hafalan?: log_setoran_hafalanOmit
   }
 
@@ -1350,32 +1364,32 @@ export namespace Prisma {
 
 
   /**
-   * Count Type SurahCountOutputType
+   * Count Type Komponen_setoranCountOutputType
    */
 
-  export type SurahCountOutputType = {
+  export type Komponen_setoranCountOutputType = {
     setoran: number
   }
 
-  export type SurahCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    setoran?: boolean | SurahCountOutputTypeCountSetoranArgs
+  export type Komponen_setoranCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setoran?: boolean | Komponen_setoranCountOutputTypeCountSetoranArgs
   }
 
   // Custom InputTypes
   /**
-   * SurahCountOutputType without action
+   * Komponen_setoranCountOutputType without action
    */
-  export type SurahCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Komponen_setoranCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the SurahCountOutputType
+     * Select specific fields to fetch from the Komponen_setoranCountOutputType
      */
-    select?: SurahCountOutputTypeSelect<ExtArgs> | null
+    select?: Komponen_setoranCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * SurahCountOutputType without action
+   * Komponen_setoranCountOutputType without action
    */
-  export type SurahCountOutputTypeCountSetoranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Komponen_setoranCountOutputTypeCountSetoranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: setoranWhereInput
   }
 
@@ -3593,18 +3607,8 @@ export namespace Prisma {
 
   export type AggregateSetoran = {
     _count: SetoranCountAggregateOutputType | null
-    _avg: SetoranAvgAggregateOutputType | null
-    _sum: SetoranSumAggregateOutputType | null
     _min: SetoranMinAggregateOutputType | null
     _max: SetoranMaxAggregateOutputType | null
-  }
-
-  export type SetoranAvgAggregateOutputType = {
-    nomor_surah: number | null
-  }
-
-  export type SetoranSumAggregateOutputType = {
-    nomor_surah: number | null
   }
 
   export type SetoranMinAggregateOutputType = {
@@ -3613,7 +3617,7 @@ export namespace Prisma {
     tgl_validasi: Date | null
     nim: string | null
     nip: string | null
-    nomor_surah: number | null
+    id_komponen_setoran: string | null
   }
 
   export type SetoranMaxAggregateOutputType = {
@@ -3622,7 +3626,7 @@ export namespace Prisma {
     tgl_validasi: Date | null
     nim: string | null
     nip: string | null
-    nomor_surah: number | null
+    id_komponen_setoran: string | null
   }
 
   export type SetoranCountAggregateOutputType = {
@@ -3631,18 +3635,10 @@ export namespace Prisma {
     tgl_validasi: number
     nim: number
     nip: number
-    nomor_surah: number
+    id_komponen_setoran: number
     _all: number
   }
 
-
-  export type SetoranAvgAggregateInputType = {
-    nomor_surah?: true
-  }
-
-  export type SetoranSumAggregateInputType = {
-    nomor_surah?: true
-  }
 
   export type SetoranMinAggregateInputType = {
     id?: true
@@ -3650,7 +3646,7 @@ export namespace Prisma {
     tgl_validasi?: true
     nim?: true
     nip?: true
-    nomor_surah?: true
+    id_komponen_setoran?: true
   }
 
   export type SetoranMaxAggregateInputType = {
@@ -3659,7 +3655,7 @@ export namespace Prisma {
     tgl_validasi?: true
     nim?: true
     nip?: true
-    nomor_surah?: true
+    id_komponen_setoran?: true
   }
 
   export type SetoranCountAggregateInputType = {
@@ -3668,7 +3664,7 @@ export namespace Prisma {
     tgl_validasi?: true
     nim?: true
     nip?: true
-    nomor_surah?: true
+    id_komponen_setoran?: true
     _all?: true
   }
 
@@ -3710,18 +3706,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: SetoranAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SetoranSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: SetoranMinAggregateInputType
@@ -3752,8 +3736,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: SetoranCountAggregateInputType | true
-    _avg?: SetoranAvgAggregateInputType
-    _sum?: SetoranSumAggregateInputType
     _min?: SetoranMinAggregateInputType
     _max?: SetoranMaxAggregateInputType
   }
@@ -3764,10 +3746,8 @@ export namespace Prisma {
     tgl_validasi: Date | null
     nim: string
     nip: string
-    nomor_surah: number
+    id_komponen_setoran: string
     _count: SetoranCountAggregateOutputType | null
-    _avg: SetoranAvgAggregateOutputType | null
-    _sum: SetoranSumAggregateOutputType | null
     _min: SetoranMinAggregateOutputType | null
     _max: SetoranMaxAggregateOutputType | null
   }
@@ -3792,10 +3772,10 @@ export namespace Prisma {
     tgl_validasi?: boolean
     nim?: boolean
     nip?: boolean
-    nomor_surah?: boolean
+    id_komponen_setoran?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3804,10 +3784,10 @@ export namespace Prisma {
     tgl_validasi?: boolean
     nim?: boolean
     nip?: boolean
-    nomor_surah?: boolean
+    id_komponen_setoran?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3816,10 +3796,10 @@ export namespace Prisma {
     tgl_validasi?: boolean
     nim?: boolean
     nip?: boolean
-    nomor_surah?: boolean
+    id_komponen_setoran?: boolean
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["setoran"]>
 
   export type setoranSelectScalar = {
@@ -3828,24 +3808,24 @@ export namespace Prisma {
     tgl_validasi?: boolean
     nim?: boolean
     nip?: boolean
-    nomor_surah?: boolean
+    id_komponen_setoran?: boolean
   }
 
-  export type setoranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tgl_setoran" | "tgl_validasi" | "nim" | "nip" | "nomor_surah", ExtArgs["result"]["setoran"]>
+  export type setoranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tgl_setoran" | "tgl_validasi" | "nim" | "nip" | "id_komponen_setoran", ExtArgs["result"]["setoran"]>
   export type setoranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }
   export type setoranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }
   export type setoranIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     mahasiswa?: boolean | mahasiswaDefaultArgs<ExtArgs>
     dosen?: boolean | dosenDefaultArgs<ExtArgs>
-    surah?: boolean | surahDefaultArgs<ExtArgs>
+    komponen_setoran?: boolean | komponen_setoranDefaultArgs<ExtArgs>
   }
 
   export type $setoranPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3853,7 +3833,7 @@ export namespace Prisma {
     objects: {
       mahasiswa: Prisma.$mahasiswaPayload<ExtArgs>
       dosen: Prisma.$dosenPayload<ExtArgs>
-      surah: Prisma.$surahPayload<ExtArgs>
+      komponen_setoran: Prisma.$komponen_setoranPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3861,7 +3841,7 @@ export namespace Prisma {
       tgl_validasi: Date | null
       nim: string
       nip: string
-      nomor_surah: number
+      id_komponen_setoran: string
     }, ExtArgs["result"]["setoran"]>
     composites: {}
   }
@@ -4258,7 +4238,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     mahasiswa<T extends mahasiswaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, mahasiswaDefaultArgs<ExtArgs>>): Prisma__mahasiswaClient<$Result.GetResult<Prisma.$mahasiswaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     dosen<T extends dosenDefaultArgs<ExtArgs> = {}>(args?: Subset<T, dosenDefaultArgs<ExtArgs>>): Prisma__dosenClient<$Result.GetResult<Prisma.$dosenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    surah<T extends surahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, surahDefaultArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    komponen_setoran<T extends komponen_setoranDefaultArgs<ExtArgs> = {}>(args?: Subset<T, komponen_setoranDefaultArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4293,7 +4273,7 @@ export namespace Prisma {
     readonly tgl_validasi: FieldRef<"setoran", 'DateTime'>
     readonly nim: FieldRef<"setoran", 'String'>
     readonly nip: FieldRef<"setoran", 'String'>
-    readonly nomor_surah: FieldRef<"setoran", 'Int'>
+    readonly id_komponen_setoran: FieldRef<"setoran", 'String'>
   }
     
 
@@ -4709,357 +4689,347 @@ export namespace Prisma {
 
 
   /**
-   * Model surah
+   * Model komponen_setoran
    */
 
-  export type AggregateSurah = {
-    _count: SurahCountAggregateOutputType | null
-    _avg: SurahAvgAggregateOutputType | null
-    _sum: SurahSumAggregateOutputType | null
-    _min: SurahMinAggregateOutputType | null
-    _max: SurahMaxAggregateOutputType | null
+  export type AggregateKomponen_setoran = {
+    _count: Komponen_setoranCountAggregateOutputType | null
+    _min: Komponen_setoranMinAggregateOutputType | null
+    _max: Komponen_setoranMaxAggregateOutputType | null
   }
 
-  export type SurahAvgAggregateOutputType = {
-    nomor: number | null
-  }
-
-  export type SurahSumAggregateOutputType = {
-    nomor: number | null
-  }
-
-  export type SurahMinAggregateOutputType = {
-    nomor: number | null
+  export type Komponen_setoranMinAggregateOutputType = {
+    id: string | null
     nama: string | null
-    label: $Enums.type_label_surah | null
+    external_id: string | null
+    jenis: $Enums.type_jenis_komponen_setoran | null
+    label: $Enums.type_label_komponen_setoran | null
   }
 
-  export type SurahMaxAggregateOutputType = {
-    nomor: number | null
+  export type Komponen_setoranMaxAggregateOutputType = {
+    id: string | null
     nama: string | null
-    label: $Enums.type_label_surah | null
+    external_id: string | null
+    jenis: $Enums.type_jenis_komponen_setoran | null
+    label: $Enums.type_label_komponen_setoran | null
   }
 
-  export type SurahCountAggregateOutputType = {
-    nomor: number
+  export type Komponen_setoranCountAggregateOutputType = {
+    id: number
     nama: number
+    external_id: number
+    jenis: number
     label: number
     _all: number
   }
 
 
-  export type SurahAvgAggregateInputType = {
-    nomor?: true
-  }
-
-  export type SurahSumAggregateInputType = {
-    nomor?: true
-  }
-
-  export type SurahMinAggregateInputType = {
-    nomor?: true
+  export type Komponen_setoranMinAggregateInputType = {
+    id?: true
     nama?: true
+    external_id?: true
+    jenis?: true
     label?: true
   }
 
-  export type SurahMaxAggregateInputType = {
-    nomor?: true
+  export type Komponen_setoranMaxAggregateInputType = {
+    id?: true
     nama?: true
+    external_id?: true
+    jenis?: true
     label?: true
   }
 
-  export type SurahCountAggregateInputType = {
-    nomor?: true
+  export type Komponen_setoranCountAggregateInputType = {
+    id?: true
     nama?: true
+    external_id?: true
+    jenis?: true
     label?: true
     _all?: true
   }
 
-  export type SurahAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Komponen_setoranAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which surah to aggregate.
+     * Filter which komponen_setoran to aggregate.
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of surahs to fetch.
+     * Determine the order of komponen_setorans to fetch.
      */
-    orderBy?: surahOrderByWithRelationInput | surahOrderByWithRelationInput[]
+    orderBy?: komponen_setoranOrderByWithRelationInput | komponen_setoranOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: surahWhereUniqueInput
+    cursor?: komponen_setoranWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` surahs from the position of the cursor.
+     * Take `±n` komponen_setorans from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` surahs.
+     * Skip the first `n` komponen_setorans.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned surahs
+     * Count returned komponen_setorans
     **/
-    _count?: true | SurahCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SurahAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SurahSumAggregateInputType
+    _count?: true | Komponen_setoranCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SurahMinAggregateInputType
+    _min?: Komponen_setoranMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SurahMaxAggregateInputType
+    _max?: Komponen_setoranMaxAggregateInputType
   }
 
-  export type GetSurahAggregateType<T extends SurahAggregateArgs> = {
-        [P in keyof T & keyof AggregateSurah]: P extends '_count' | 'count'
+  export type GetKomponen_setoranAggregateType<T extends Komponen_setoranAggregateArgs> = {
+        [P in keyof T & keyof AggregateKomponen_setoran]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSurah[P]>
-      : GetScalarType<T[P], AggregateSurah[P]>
+        : GetScalarType<T[P], AggregateKomponen_setoran[P]>
+      : GetScalarType<T[P], AggregateKomponen_setoran[P]>
   }
 
 
 
 
-  export type surahGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: surahWhereInput
-    orderBy?: surahOrderByWithAggregationInput | surahOrderByWithAggregationInput[]
-    by: SurahScalarFieldEnum[] | SurahScalarFieldEnum
-    having?: surahScalarWhereWithAggregatesInput
+  export type komponen_setoranGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: komponen_setoranWhereInput
+    orderBy?: komponen_setoranOrderByWithAggregationInput | komponen_setoranOrderByWithAggregationInput[]
+    by: Komponen_setoranScalarFieldEnum[] | Komponen_setoranScalarFieldEnum
+    having?: komponen_setoranScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SurahCountAggregateInputType | true
-    _avg?: SurahAvgAggregateInputType
-    _sum?: SurahSumAggregateInputType
-    _min?: SurahMinAggregateInputType
-    _max?: SurahMaxAggregateInputType
+    _count?: Komponen_setoranCountAggregateInputType | true
+    _min?: Komponen_setoranMinAggregateInputType
+    _max?: Komponen_setoranMaxAggregateInputType
   }
 
-  export type SurahGroupByOutputType = {
-    nomor: number
+  export type Komponen_setoranGroupByOutputType = {
+    id: string
     nama: string
-    label: $Enums.type_label_surah | null
-    _count: SurahCountAggregateOutputType | null
-    _avg: SurahAvgAggregateOutputType | null
-    _sum: SurahSumAggregateOutputType | null
-    _min: SurahMinAggregateOutputType | null
-    _max: SurahMaxAggregateOutputType | null
+    external_id: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label: $Enums.type_label_komponen_setoran | null
+    _count: Komponen_setoranCountAggregateOutputType | null
+    _min: Komponen_setoranMinAggregateOutputType | null
+    _max: Komponen_setoranMaxAggregateOutputType | null
   }
 
-  type GetSurahGroupByPayload<T extends surahGroupByArgs> = Prisma.PrismaPromise<
+  type GetKomponen_setoranGroupByPayload<T extends komponen_setoranGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SurahGroupByOutputType, T['by']> &
+      PickEnumerable<Komponen_setoranGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SurahGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Komponen_setoranGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SurahGroupByOutputType[P]>
-            : GetScalarType<T[P], SurahGroupByOutputType[P]>
+              : GetScalarType<T[P], Komponen_setoranGroupByOutputType[P]>
+            : GetScalarType<T[P], Komponen_setoranGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type surahSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nomor?: boolean
+  export type komponen_setoranSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     nama?: boolean
+    external_id?: boolean
+    jenis?: boolean
     label?: boolean
-    setoran?: boolean | surah$setoranArgs<ExtArgs>
-    _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["surah"]>
+    setoran?: boolean | komponen_setoran$setoranArgs<ExtArgs>
+    _count?: boolean | Komponen_setoranCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["komponen_setoran"]>
 
-  export type surahSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nomor?: boolean
+  export type komponen_setoranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     nama?: boolean
+    external_id?: boolean
+    jenis?: boolean
     label?: boolean
-  }, ExtArgs["result"]["surah"]>
+  }, ExtArgs["result"]["komponen_setoran"]>
 
-  export type surahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    nomor?: boolean
+  export type komponen_setoranSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     nama?: boolean
+    external_id?: boolean
+    jenis?: boolean
     label?: boolean
-  }, ExtArgs["result"]["surah"]>
+  }, ExtArgs["result"]["komponen_setoran"]>
 
-  export type surahSelectScalar = {
-    nomor?: boolean
+  export type komponen_setoranSelectScalar = {
+    id?: boolean
     nama?: boolean
+    external_id?: boolean
+    jenis?: boolean
     label?: boolean
   }
 
-  export type surahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"nomor" | "nama" | "label", ExtArgs["result"]["surah"]>
-  export type surahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    setoran?: boolean | surah$setoranArgs<ExtArgs>
-    _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
+  export type komponen_setoranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "external_id" | "jenis" | "label", ExtArgs["result"]["komponen_setoran"]>
+  export type komponen_setoranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    setoran?: boolean | komponen_setoran$setoranArgs<ExtArgs>
+    _count?: boolean | Komponen_setoranCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type surahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type surahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type komponen_setoranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type komponen_setoranIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $surahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "surah"
+  export type $komponen_setoranPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "komponen_setoran"
     objects: {
       setoran: Prisma.$setoranPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      nomor: number
+      id: string
       nama: string
-      label: $Enums.type_label_surah | null
-    }, ExtArgs["result"]["surah"]>
+      external_id: string | null
+      jenis: $Enums.type_jenis_komponen_setoran
+      label: $Enums.type_label_komponen_setoran | null
+    }, ExtArgs["result"]["komponen_setoran"]>
     composites: {}
   }
 
-  type surahGetPayload<S extends boolean | null | undefined | surahDefaultArgs> = $Result.GetResult<Prisma.$surahPayload, S>
+  type komponen_setoranGetPayload<S extends boolean | null | undefined | komponen_setoranDefaultArgs> = $Result.GetResult<Prisma.$komponen_setoranPayload, S>
 
-  type surahCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<surahFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SurahCountAggregateInputType | true
+  type komponen_setoranCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<komponen_setoranFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Komponen_setoranCountAggregateInputType | true
     }
 
-  export interface surahDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['surah'], meta: { name: 'surah' } }
+  export interface komponen_setoranDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['komponen_setoran'], meta: { name: 'komponen_setoran' } }
     /**
-     * Find zero or one Surah that matches the filter.
-     * @param {surahFindUniqueArgs} args - Arguments to find a Surah
+     * Find zero or one Komponen_setoran that matches the filter.
+     * @param {komponen_setoranFindUniqueArgs} args - Arguments to find a Komponen_setoran
      * @example
-     * // Get one Surah
-     * const surah = await prisma.surah.findUnique({
+     * // Get one Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends surahFindUniqueArgs>(args: SelectSubset<T, surahFindUniqueArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends komponen_setoranFindUniqueArgs>(args: SelectSubset<T, komponen_setoranFindUniqueArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Surah that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Komponen_setoran that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {surahFindUniqueOrThrowArgs} args - Arguments to find a Surah
+     * @param {komponen_setoranFindUniqueOrThrowArgs} args - Arguments to find a Komponen_setoran
      * @example
-     * // Get one Surah
-     * const surah = await prisma.surah.findUniqueOrThrow({
+     * // Get one Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends surahFindUniqueOrThrowArgs>(args: SelectSubset<T, surahFindUniqueOrThrowArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends komponen_setoranFindUniqueOrThrowArgs>(args: SelectSubset<T, komponen_setoranFindUniqueOrThrowArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Surah that matches the filter.
+     * Find the first Komponen_setoran that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahFindFirstArgs} args - Arguments to find a Surah
+     * @param {komponen_setoranFindFirstArgs} args - Arguments to find a Komponen_setoran
      * @example
-     * // Get one Surah
-     * const surah = await prisma.surah.findFirst({
+     * // Get one Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends surahFindFirstArgs>(args?: SelectSubset<T, surahFindFirstArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends komponen_setoranFindFirstArgs>(args?: SelectSubset<T, komponen_setoranFindFirstArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Surah that matches the filter or
+     * Find the first Komponen_setoran that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahFindFirstOrThrowArgs} args - Arguments to find a Surah
+     * @param {komponen_setoranFindFirstOrThrowArgs} args - Arguments to find a Komponen_setoran
      * @example
-     * // Get one Surah
-     * const surah = await prisma.surah.findFirstOrThrow({
+     * // Get one Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends surahFindFirstOrThrowArgs>(args?: SelectSubset<T, surahFindFirstOrThrowArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends komponen_setoranFindFirstOrThrowArgs>(args?: SelectSubset<T, komponen_setoranFindFirstOrThrowArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Surahs that matches the filter.
+     * Find zero or more Komponen_setorans that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {komponen_setoranFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Surahs
-     * const surahs = await prisma.surah.findMany()
+     * // Get all Komponen_setorans
+     * const komponen_setorans = await prisma.komponen_setoran.findMany()
      * 
-     * // Get first 10 Surahs
-     * const surahs = await prisma.surah.findMany({ take: 10 })
+     * // Get first 10 Komponen_setorans
+     * const komponen_setorans = await prisma.komponen_setoran.findMany({ take: 10 })
      * 
-     * // Only select the `nomor`
-     * const surahWithNomorOnly = await prisma.surah.findMany({ select: { nomor: true } })
+     * // Only select the `id`
+     * const komponen_setoranWithIdOnly = await prisma.komponen_setoran.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends surahFindManyArgs>(args?: SelectSubset<T, surahFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends komponen_setoranFindManyArgs>(args?: SelectSubset<T, komponen_setoranFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Surah.
-     * @param {surahCreateArgs} args - Arguments to create a Surah.
+     * Create a Komponen_setoran.
+     * @param {komponen_setoranCreateArgs} args - Arguments to create a Komponen_setoran.
      * @example
-     * // Create one Surah
-     * const Surah = await prisma.surah.create({
+     * // Create one Komponen_setoran
+     * const Komponen_setoran = await prisma.komponen_setoran.create({
      *   data: {
-     *     // ... data to create a Surah
+     *     // ... data to create a Komponen_setoran
      *   }
      * })
      * 
      */
-    create<T extends surahCreateArgs>(args: SelectSubset<T, surahCreateArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends komponen_setoranCreateArgs>(args: SelectSubset<T, komponen_setoranCreateArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Surahs.
-     * @param {surahCreateManyArgs} args - Arguments to create many Surahs.
+     * Create many Komponen_setorans.
+     * @param {komponen_setoranCreateManyArgs} args - Arguments to create many Komponen_setorans.
      * @example
-     * // Create many Surahs
-     * const surah = await prisma.surah.createMany({
+     * // Create many Komponen_setorans
+     * const komponen_setoran = await prisma.komponen_setoran.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends surahCreateManyArgs>(args?: SelectSubset<T, surahCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends komponen_setoranCreateManyArgs>(args?: SelectSubset<T, komponen_setoranCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Surahs and returns the data saved in the database.
-     * @param {surahCreateManyAndReturnArgs} args - Arguments to create many Surahs.
+     * Create many Komponen_setorans and returns the data saved in the database.
+     * @param {komponen_setoranCreateManyAndReturnArgs} args - Arguments to create many Komponen_setorans.
      * @example
-     * // Create many Surahs
-     * const surah = await prisma.surah.createManyAndReturn({
+     * // Create many Komponen_setorans
+     * const komponen_setoran = await prisma.komponen_setoran.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Surahs and only return the `nomor`
-     * const surahWithNomorOnly = await prisma.surah.createManyAndReturn({
-     *   select: { nomor: true },
+     * // Create many Komponen_setorans and only return the `id`
+     * const komponen_setoranWithIdOnly = await prisma.komponen_setoran.createManyAndReturn({
+     *   select: { id: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -5068,28 +5038,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends surahCreateManyAndReturnArgs>(args?: SelectSubset<T, surahCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends komponen_setoranCreateManyAndReturnArgs>(args?: SelectSubset<T, komponen_setoranCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Surah.
-     * @param {surahDeleteArgs} args - Arguments to delete one Surah.
+     * Delete a Komponen_setoran.
+     * @param {komponen_setoranDeleteArgs} args - Arguments to delete one Komponen_setoran.
      * @example
-     * // Delete one Surah
-     * const Surah = await prisma.surah.delete({
+     * // Delete one Komponen_setoran
+     * const Komponen_setoran = await prisma.komponen_setoran.delete({
      *   where: {
-     *     // ... filter to delete one Surah
+     *     // ... filter to delete one Komponen_setoran
      *   }
      * })
      * 
      */
-    delete<T extends surahDeleteArgs>(args: SelectSubset<T, surahDeleteArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends komponen_setoranDeleteArgs>(args: SelectSubset<T, komponen_setoranDeleteArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Surah.
-     * @param {surahUpdateArgs} args - Arguments to update one Surah.
+     * Update one Komponen_setoran.
+     * @param {komponen_setoranUpdateArgs} args - Arguments to update one Komponen_setoran.
      * @example
-     * // Update one Surah
-     * const surah = await prisma.surah.update({
+     * // Update one Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5099,30 +5069,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends surahUpdateArgs>(args: SelectSubset<T, surahUpdateArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends komponen_setoranUpdateArgs>(args: SelectSubset<T, komponen_setoranUpdateArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Surahs.
-     * @param {surahDeleteManyArgs} args - Arguments to filter Surahs to delete.
+     * Delete zero or more Komponen_setorans.
+     * @param {komponen_setoranDeleteManyArgs} args - Arguments to filter Komponen_setorans to delete.
      * @example
-     * // Delete a few Surahs
-     * const { count } = await prisma.surah.deleteMany({
+     * // Delete a few Komponen_setorans
+     * const { count } = await prisma.komponen_setoran.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends surahDeleteManyArgs>(args?: SelectSubset<T, surahDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends komponen_setoranDeleteManyArgs>(args?: SelectSubset<T, komponen_setoranDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Surahs.
+     * Update zero or more Komponen_setorans.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {komponen_setoranUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Surahs
-     * const surah = await prisma.surah.updateMany({
+     * // Update many Komponen_setorans
+     * const komponen_setoran = await prisma.komponen_setoran.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5132,14 +5102,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends surahUpdateManyArgs>(args: SelectSubset<T, surahUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends komponen_setoranUpdateManyArgs>(args: SelectSubset<T, komponen_setoranUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Surahs and returns the data updated in the database.
-     * @param {surahUpdateManyAndReturnArgs} args - Arguments to update many Surahs.
+     * Update zero or more Komponen_setorans and returns the data updated in the database.
+     * @param {komponen_setoranUpdateManyAndReturnArgs} args - Arguments to update many Komponen_setorans.
      * @example
-     * // Update many Surahs
-     * const surah = await prisma.surah.updateManyAndReturn({
+     * // Update many Komponen_setorans
+     * const komponen_setoran = await prisma.komponen_setoran.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5148,9 +5118,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Surahs and only return the `nomor`
-     * const surahWithNomorOnly = await prisma.surah.updateManyAndReturn({
-     *   select: { nomor: true },
+     * // Update zero or more Komponen_setorans and only return the `id`
+     * const komponen_setoranWithIdOnly = await prisma.komponen_setoran.updateManyAndReturn({
+     *   select: { id: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5162,56 +5132,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends surahUpdateManyAndReturnArgs>(args: SelectSubset<T, surahUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends komponen_setoranUpdateManyAndReturnArgs>(args: SelectSubset<T, komponen_setoranUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Surah.
-     * @param {surahUpsertArgs} args - Arguments to update or create a Surah.
+     * Create or update one Komponen_setoran.
+     * @param {komponen_setoranUpsertArgs} args - Arguments to update or create a Komponen_setoran.
      * @example
-     * // Update or create a Surah
-     * const surah = await prisma.surah.upsert({
+     * // Update or create a Komponen_setoran
+     * const komponen_setoran = await prisma.komponen_setoran.upsert({
      *   create: {
-     *     // ... data to create a Surah
+     *     // ... data to create a Komponen_setoran
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Surah we want to update
+     *     // ... the filter for the Komponen_setoran we want to update
      *   }
      * })
      */
-    upsert<T extends surahUpsertArgs>(args: SelectSubset<T, surahUpsertArgs<ExtArgs>>): Prisma__surahClient<$Result.GetResult<Prisma.$surahPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends komponen_setoranUpsertArgs>(args: SelectSubset<T, komponen_setoranUpsertArgs<ExtArgs>>): Prisma__komponen_setoranClient<$Result.GetResult<Prisma.$komponen_setoranPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Surahs.
+     * Count the number of Komponen_setorans.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahCountArgs} args - Arguments to filter Surahs to count.
+     * @param {komponen_setoranCountArgs} args - Arguments to filter Komponen_setorans to count.
      * @example
-     * // Count the number of Surahs
-     * const count = await prisma.surah.count({
+     * // Count the number of Komponen_setorans
+     * const count = await prisma.komponen_setoran.count({
      *   where: {
-     *     // ... the filter for the Surahs we want to count
+     *     // ... the filter for the Komponen_setorans we want to count
      *   }
      * })
     **/
-    count<T extends surahCountArgs>(
-      args?: Subset<T, surahCountArgs>,
+    count<T extends komponen_setoranCountArgs>(
+      args?: Subset<T, komponen_setoranCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SurahCountAggregateOutputType>
+          : GetScalarType<T['select'], Komponen_setoranCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Surah.
+     * Allows you to perform aggregations operations on a Komponen_setoran.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SurahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Komponen_setoranAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -5231,13 +5201,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SurahAggregateArgs>(args: Subset<T, SurahAggregateArgs>): Prisma.PrismaPromise<GetSurahAggregateType<T>>
+    aggregate<T extends Komponen_setoranAggregateArgs>(args: Subset<T, Komponen_setoranAggregateArgs>): Prisma.PrismaPromise<GetKomponen_setoranAggregateType<T>>
 
     /**
-     * Group by Surah.
+     * Group by Komponen_setoran.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {surahGroupByArgs} args - Group by arguments.
+     * @param {komponen_setoranGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -5252,14 +5222,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends surahGroupByArgs,
+      T extends komponen_setoranGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: surahGroupByArgs['orderBy'] }
-        : { orderBy?: surahGroupByArgs['orderBy'] },
+        ? { orderBy: komponen_setoranGroupByArgs['orderBy'] }
+        : { orderBy?: komponen_setoranGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -5308,22 +5278,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, surahGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSurahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, komponen_setoranGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKomponen_setoranGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the surah model
+   * Fields of the komponen_setoran model
    */
-  readonly fields: surahFieldRefs;
+  readonly fields: komponen_setoranFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for surah.
+   * The delegate class that acts as a "Promise-like" for komponen_setoran.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__surahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__komponen_setoranClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    setoran<T extends surah$setoranArgs<ExtArgs> = {}>(args?: Subset<T, surah$setoranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$setoranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    setoran<T extends komponen_setoran$setoranArgs<ExtArgs> = {}>(args?: Subset<T, komponen_setoran$setoranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$setoranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5350,403 +5320,405 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the surah model
+   * Fields of the komponen_setoran model
    */
-  interface surahFieldRefs {
-    readonly nomor: FieldRef<"surah", 'Int'>
-    readonly nama: FieldRef<"surah", 'String'>
-    readonly label: FieldRef<"surah", 'type_label_surah'>
+  interface komponen_setoranFieldRefs {
+    readonly id: FieldRef<"komponen_setoran", 'String'>
+    readonly nama: FieldRef<"komponen_setoran", 'String'>
+    readonly external_id: FieldRef<"komponen_setoran", 'String'>
+    readonly jenis: FieldRef<"komponen_setoran", 'type_jenis_komponen_setoran'>
+    readonly label: FieldRef<"komponen_setoran", 'type_label_komponen_setoran'>
   }
     
 
   // Custom InputTypes
   /**
-   * surah findUnique
+   * komponen_setoran findUnique
    */
-  export type surahFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter, which surah to fetch.
+     * Filter, which komponen_setoran to fetch.
      */
-    where: surahWhereUniqueInput
+    where: komponen_setoranWhereUniqueInput
   }
 
   /**
-   * surah findUniqueOrThrow
+   * komponen_setoran findUniqueOrThrow
    */
-  export type surahFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter, which surah to fetch.
+     * Filter, which komponen_setoran to fetch.
      */
-    where: surahWhereUniqueInput
+    where: komponen_setoranWhereUniqueInput
   }
 
   /**
-   * surah findFirst
+   * komponen_setoran findFirst
    */
-  export type surahFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter, which surah to fetch.
+     * Filter, which komponen_setoran to fetch.
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of surahs to fetch.
+     * Determine the order of komponen_setorans to fetch.
      */
-    orderBy?: surahOrderByWithRelationInput | surahOrderByWithRelationInput[]
+    orderBy?: komponen_setoranOrderByWithRelationInput | komponen_setoranOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for surahs.
+     * Sets the position for searching for komponen_setorans.
      */
-    cursor?: surahWhereUniqueInput
+    cursor?: komponen_setoranWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` surahs from the position of the cursor.
+     * Take `±n` komponen_setorans from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` surahs.
+     * Skip the first `n` komponen_setorans.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of surahs.
+     * Filter by unique combinations of komponen_setorans.
      */
-    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+    distinct?: Komponen_setoranScalarFieldEnum | Komponen_setoranScalarFieldEnum[]
   }
 
   /**
-   * surah findFirstOrThrow
+   * komponen_setoran findFirstOrThrow
    */
-  export type surahFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter, which surah to fetch.
+     * Filter, which komponen_setoran to fetch.
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of surahs to fetch.
+     * Determine the order of komponen_setorans to fetch.
      */
-    orderBy?: surahOrderByWithRelationInput | surahOrderByWithRelationInput[]
+    orderBy?: komponen_setoranOrderByWithRelationInput | komponen_setoranOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for surahs.
+     * Sets the position for searching for komponen_setorans.
      */
-    cursor?: surahWhereUniqueInput
+    cursor?: komponen_setoranWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` surahs from the position of the cursor.
+     * Take `±n` komponen_setorans from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` surahs.
+     * Skip the first `n` komponen_setorans.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of surahs.
+     * Filter by unique combinations of komponen_setorans.
      */
-    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+    distinct?: Komponen_setoranScalarFieldEnum | Komponen_setoranScalarFieldEnum[]
   }
 
   /**
-   * surah findMany
+   * komponen_setoran findMany
    */
-  export type surahFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter, which surahs to fetch.
+     * Filter, which komponen_setorans to fetch.
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of surahs to fetch.
+     * Determine the order of komponen_setorans to fetch.
      */
-    orderBy?: surahOrderByWithRelationInput | surahOrderByWithRelationInput[]
+    orderBy?: komponen_setoranOrderByWithRelationInput | komponen_setoranOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing surahs.
+     * Sets the position for listing komponen_setorans.
      */
-    cursor?: surahWhereUniqueInput
+    cursor?: komponen_setoranWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` surahs from the position of the cursor.
+     * Take `±n` komponen_setorans from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` surahs.
+     * Skip the first `n` komponen_setorans.
      */
     skip?: number
-    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+    distinct?: Komponen_setoranScalarFieldEnum | Komponen_setoranScalarFieldEnum[]
   }
 
   /**
-   * surah create
+   * komponen_setoran create
    */
-  export type surahCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * The data needed to create a surah.
+     * The data needed to create a komponen_setoran.
      */
-    data: XOR<surahCreateInput, surahUncheckedCreateInput>
+    data: XOR<komponen_setoranCreateInput, komponen_setoranUncheckedCreateInput>
   }
 
   /**
-   * surah createMany
+   * komponen_setoran createMany
    */
-  export type surahCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many surahs.
+     * The data used to create many komponen_setorans.
      */
-    data: surahCreateManyInput | surahCreateManyInput[]
+    data: komponen_setoranCreateManyInput | komponen_setoranCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * surah createManyAndReturn
+   * komponen_setoran createManyAndReturn
    */
-  export type surahCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelectCreateManyAndReturn<ExtArgs> | null
+    select?: komponen_setoranSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
-     * The data used to create many surahs.
+     * The data used to create many komponen_setorans.
      */
-    data: surahCreateManyInput | surahCreateManyInput[]
+    data: komponen_setoranCreateManyInput | komponen_setoranCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * surah update
+   * komponen_setoran update
    */
-  export type surahUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * The data needed to update a surah.
+     * The data needed to update a komponen_setoran.
      */
-    data: XOR<surahUpdateInput, surahUncheckedUpdateInput>
+    data: XOR<komponen_setoranUpdateInput, komponen_setoranUncheckedUpdateInput>
     /**
-     * Choose, which surah to update.
+     * Choose, which komponen_setoran to update.
      */
-    where: surahWhereUniqueInput
+    where: komponen_setoranWhereUniqueInput
   }
 
   /**
-   * surah updateMany
+   * komponen_setoran updateMany
    */
-  export type surahUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update surahs.
+     * The data used to update komponen_setorans.
      */
-    data: XOR<surahUpdateManyMutationInput, surahUncheckedUpdateManyInput>
+    data: XOR<komponen_setoranUpdateManyMutationInput, komponen_setoranUncheckedUpdateManyInput>
     /**
-     * Filter which surahs to update
+     * Filter which komponen_setorans to update
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
-     * Limit how many surahs to update.
+     * Limit how many komponen_setorans to update.
      */
     limit?: number
   }
 
   /**
-   * surah updateManyAndReturn
+   * komponen_setoran updateManyAndReturn
    */
-  export type surahUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: komponen_setoranSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
-     * The data used to update surahs.
+     * The data used to update komponen_setorans.
      */
-    data: XOR<surahUpdateManyMutationInput, surahUncheckedUpdateManyInput>
+    data: XOR<komponen_setoranUpdateManyMutationInput, komponen_setoranUncheckedUpdateManyInput>
     /**
-     * Filter which surahs to update
+     * Filter which komponen_setorans to update
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
-     * Limit how many surahs to update.
+     * Limit how many komponen_setorans to update.
      */
     limit?: number
   }
 
   /**
-   * surah upsert
+   * komponen_setoran upsert
    */
-  export type surahUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * The filter to search for the surah to update in case it exists.
+     * The filter to search for the komponen_setoran to update in case it exists.
      */
-    where: surahWhereUniqueInput
+    where: komponen_setoranWhereUniqueInput
     /**
-     * In case the surah found by the `where` argument doesn't exist, create a new surah with this data.
+     * In case the komponen_setoran found by the `where` argument doesn't exist, create a new komponen_setoran with this data.
      */
-    create: XOR<surahCreateInput, surahUncheckedCreateInput>
+    create: XOR<komponen_setoranCreateInput, komponen_setoranUncheckedCreateInput>
     /**
-     * In case the surah was found with the provided `where` argument, update it with this data.
+     * In case the komponen_setoran was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<surahUpdateInput, surahUncheckedUpdateInput>
+    update: XOR<komponen_setoranUpdateInput, komponen_setoranUncheckedUpdateInput>
   }
 
   /**
-   * surah delete
+   * komponen_setoran delete
    */
-  export type surahDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
     /**
-     * Filter which surah to delete.
+     * Filter which komponen_setoran to delete.
      */
-    where: surahWhereUniqueInput
+    where: komponen_setoranWhereUniqueInput
   }
 
   /**
-   * surah deleteMany
+   * komponen_setoran deleteMany
    */
-  export type surahDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which surahs to delete
+     * Filter which komponen_setorans to delete
      */
-    where?: surahWhereInput
+    where?: komponen_setoranWhereInput
     /**
-     * Limit how many surahs to delete.
+     * Limit how many komponen_setorans to delete.
      */
     limit?: number
   }
 
   /**
-   * surah.setoran
+   * komponen_setoran.setoran
    */
-  export type surah$setoranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoran$setoranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the setoran
      */
@@ -5768,21 +5740,21 @@ export namespace Prisma {
   }
 
   /**
-   * surah without action
+   * komponen_setoran without action
    */
-  export type surahDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type komponen_setoranDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the surah
+     * Select specific fields to fetch from the komponen_setoran
      */
-    select?: surahSelect<ExtArgs> | null
+    select?: komponen_setoranSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the surah
+     * Omit specific fields from the komponen_setoran
      */
-    omit?: surahOmit<ExtArgs> | null
+    omit?: komponen_setoranOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: surahInclude<ExtArgs> | null
+    include?: komponen_setoranInclude<ExtArgs> | null
   }
 
 
@@ -5809,7 +5781,7 @@ export namespace Prisma {
   export type Log_setoran_hafalanMinAggregateOutputType = {
     id: number | null
     keterangan: string | null
-    aksi: $Enums.Aksi | null
+    aksi: $Enums.type_aksi_log_setoran_hafalan | null
     ip: string | null
     user_agent: string | null
     timestamp: Date | null
@@ -5820,7 +5792,7 @@ export namespace Prisma {
   export type Log_setoran_hafalanMaxAggregateOutputType = {
     id: number | null
     keterangan: string | null
-    aksi: $Enums.Aksi | null
+    aksi: $Enums.type_aksi_log_setoran_hafalan | null
     ip: string | null
     user_agent: string | null
     timestamp: Date | null
@@ -5972,7 +5944,7 @@ export namespace Prisma {
   export type Log_setoran_hafalanGroupByOutputType = {
     id: number
     keterangan: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip: string | null
     user_agent: string | null
     timestamp: Date
@@ -6072,7 +6044,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       keterangan: string | null
-      aksi: $Enums.Aksi
+      aksi: $Enums.type_aksi_log_setoran_hafalan
       ip: string | null
       user_agent: string | null
       timestamp: Date
@@ -6505,7 +6477,7 @@ export namespace Prisma {
   interface log_setoran_hafalanFieldRefs {
     readonly id: FieldRef<"log_setoran_hafalan", 'Int'>
     readonly keterangan: FieldRef<"log_setoran_hafalan", 'String'>
-    readonly aksi: FieldRef<"log_setoran_hafalan", 'Aksi'>
+    readonly aksi: FieldRef<"log_setoran_hafalan", 'type_aksi_log_setoran_hafalan'>
     readonly ip: FieldRef<"log_setoran_hafalan", 'String'>
     readonly user_agent: FieldRef<"log_setoran_hafalan", 'String'>
     readonly timestamp: FieldRef<"log_setoran_hafalan", 'DateTime'>
@@ -6964,19 +6936,21 @@ export namespace Prisma {
     tgl_validasi: 'tgl_validasi',
     nim: 'nim',
     nip: 'nip',
-    nomor_surah: 'nomor_surah'
+    id_komponen_setoran: 'id_komponen_setoran'
   };
 
   export type SetoranScalarFieldEnum = (typeof SetoranScalarFieldEnum)[keyof typeof SetoranScalarFieldEnum]
 
 
-  export const SurahScalarFieldEnum: {
-    nomor: 'nomor',
+  export const Komponen_setoranScalarFieldEnum: {
+    id: 'id',
     nama: 'nama',
+    external_id: 'external_id',
+    jenis: 'jenis',
     label: 'label'
   };
 
-  export type SurahScalarFieldEnum = (typeof SurahScalarFieldEnum)[keyof typeof SurahScalarFieldEnum]
+  export type Komponen_setoranScalarFieldEnum = (typeof Komponen_setoranScalarFieldEnum)[keyof typeof Komponen_setoranScalarFieldEnum]
 
 
   export const Log_setoran_hafalanScalarFieldEnum: {
@@ -7051,6 +7025,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'type_jenis_komponen_setoran'
+   */
+  export type Enumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_jenis_komponen_setoran'>
+    
+
+
+  /**
+   * Reference to a field of type 'type_jenis_komponen_setoran[]'
+   */
+  export type ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_jenis_komponen_setoran[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'type_label_komponen_setoran'
+   */
+  export type Enumtype_label_komponen_setoranFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_label_komponen_setoran'>
+    
+
+
+  /**
+   * Reference to a field of type 'type_label_komponen_setoran[]'
+   */
+  export type ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_label_komponen_setoran[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -7065,30 +7067,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'type_label_surah'
+   * Reference to a field of type 'type_aksi_log_setoran_hafalan'
    */
-  export type Enumtype_label_surahFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_label_surah'>
+  export type Enumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_aksi_log_setoran_hafalan'>
     
 
 
   /**
-   * Reference to a field of type 'type_label_surah[]'
+   * Reference to a field of type 'type_aksi_log_setoran_hafalan[]'
    */
-  export type ListEnumtype_label_surahFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_label_surah[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Aksi'
-   */
-  export type EnumAksiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Aksi'>
-    
-
-
-  /**
-   * Reference to a field of type 'Aksi[]'
-   */
-  export type ListEnumAksiFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Aksi[]'>
+  export type ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'type_aksi_log_setoran_hafalan[]'>
     
 
 
@@ -7225,10 +7213,10 @@ export namespace Prisma {
     tgl_validasi?: DateTimeNullableFilter<"setoran"> | Date | string | null
     nim?: StringFilter<"setoran"> | string
     nip?: StringFilter<"setoran"> | string
-    nomor_surah?: IntFilter<"setoran"> | number
+    id_komponen_setoran?: UuidFilter<"setoran"> | string
     mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
-    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
+    komponen_setoran?: XOR<Komponen_setoranScalarRelationFilter, komponen_setoranWhereInput>
   }
 
   export type setoranOrderByWithRelationInput = {
@@ -7237,15 +7225,15 @@ export namespace Prisma {
     tgl_validasi?: SortOrderInput | SortOrder
     nim?: SortOrder
     nip?: SortOrder
-    nomor_surah?: SortOrder
+    id_komponen_setoran?: SortOrder
     mahasiswa?: mahasiswaOrderByWithRelationInput
     dosen?: dosenOrderByWithRelationInput
-    surah?: surahOrderByWithRelationInput
+    komponen_setoran?: komponen_setoranOrderByWithRelationInput
   }
 
   export type setoranWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    nim_nomor_surah?: setoranNimNomor_surahCompoundUniqueInput
+    nim_id_komponen_setoran?: setoranNimId_komponen_setoranCompoundUniqueInput
     AND?: setoranWhereInput | setoranWhereInput[]
     OR?: setoranWhereInput[]
     NOT?: setoranWhereInput | setoranWhereInput[]
@@ -7253,11 +7241,11 @@ export namespace Prisma {
     tgl_validasi?: DateTimeNullableFilter<"setoran"> | Date | string | null
     nim?: StringFilter<"setoran"> | string
     nip?: StringFilter<"setoran"> | string
-    nomor_surah?: IntFilter<"setoran"> | number
+    id_komponen_setoran?: UuidFilter<"setoran"> | string
     mahasiswa?: XOR<MahasiswaScalarRelationFilter, mahasiswaWhereInput>
     dosen?: XOR<DosenScalarRelationFilter, dosenWhereInput>
-    surah?: XOR<SurahScalarRelationFilter, surahWhereInput>
-  }, "id" | "nim_nomor_surah">
+    komponen_setoran?: XOR<Komponen_setoranScalarRelationFilter, komponen_setoranWhereInput>
+  }, "id" | "nim_id_komponen_setoran">
 
   export type setoranOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7265,12 +7253,10 @@ export namespace Prisma {
     tgl_validasi?: SortOrderInput | SortOrder
     nim?: SortOrder
     nip?: SortOrder
-    nomor_surah?: SortOrder
+    id_komponen_setoran?: SortOrder
     _count?: setoranCountOrderByAggregateInput
-    _avg?: setoranAvgOrderByAggregateInput
     _max?: setoranMaxOrderByAggregateInput
     _min?: setoranMinOrderByAggregateInput
-    _sum?: setoranSumOrderByAggregateInput
   }
 
   export type setoranScalarWhereWithAggregatesInput = {
@@ -7282,54 +7268,62 @@ export namespace Prisma {
     tgl_validasi?: DateTimeNullableWithAggregatesFilter<"setoran"> | Date | string | null
     nim?: StringWithAggregatesFilter<"setoran"> | string
     nip?: StringWithAggregatesFilter<"setoran"> | string
-    nomor_surah?: IntWithAggregatesFilter<"setoran"> | number
+    id_komponen_setoran?: UuidWithAggregatesFilter<"setoran"> | string
   }
 
-  export type surahWhereInput = {
-    AND?: surahWhereInput | surahWhereInput[]
-    OR?: surahWhereInput[]
-    NOT?: surahWhereInput | surahWhereInput[]
-    nomor?: IntFilter<"surah"> | number
-    nama?: StringFilter<"surah"> | string
-    label?: Enumtype_label_surahNullableFilter<"surah"> | $Enums.type_label_surah | null
+  export type komponen_setoranWhereInput = {
+    AND?: komponen_setoranWhereInput | komponen_setoranWhereInput[]
+    OR?: komponen_setoranWhereInput[]
+    NOT?: komponen_setoranWhereInput | komponen_setoranWhereInput[]
+    id?: UuidFilter<"komponen_setoran"> | string
+    nama?: StringFilter<"komponen_setoran"> | string
+    external_id?: StringNullableFilter<"komponen_setoran"> | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFilter<"komponen_setoran"> | $Enums.type_jenis_komponen_setoran
+    label?: Enumtype_label_komponen_setoranNullableFilter<"komponen_setoran"> | $Enums.type_label_komponen_setoran | null
     setoran?: SetoranListRelationFilter
   }
 
-  export type surahOrderByWithRelationInput = {
-    nomor?: SortOrder
+  export type komponen_setoranOrderByWithRelationInput = {
+    id?: SortOrder
     nama?: SortOrder
+    external_id?: SortOrderInput | SortOrder
+    jenis?: SortOrder
     label?: SortOrderInput | SortOrder
     setoran?: setoranOrderByRelationAggregateInput
   }
 
-  export type surahWhereUniqueInput = Prisma.AtLeast<{
-    nomor?: number
-    AND?: surahWhereInput | surahWhereInput[]
-    OR?: surahWhereInput[]
-    NOT?: surahWhereInput | surahWhereInput[]
-    nama?: StringFilter<"surah"> | string
-    label?: Enumtype_label_surahNullableFilter<"surah"> | $Enums.type_label_surah | null
+  export type komponen_setoranWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: komponen_setoranWhereInput | komponen_setoranWhereInput[]
+    OR?: komponen_setoranWhereInput[]
+    NOT?: komponen_setoranWhereInput | komponen_setoranWhereInput[]
+    nama?: StringFilter<"komponen_setoran"> | string
+    external_id?: StringNullableFilter<"komponen_setoran"> | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFilter<"komponen_setoran"> | $Enums.type_jenis_komponen_setoran
+    label?: Enumtype_label_komponen_setoranNullableFilter<"komponen_setoran"> | $Enums.type_label_komponen_setoran | null
     setoran?: SetoranListRelationFilter
-  }, "nomor">
+  }, "id">
 
-  export type surahOrderByWithAggregationInput = {
-    nomor?: SortOrder
+  export type komponen_setoranOrderByWithAggregationInput = {
+    id?: SortOrder
     nama?: SortOrder
+    external_id?: SortOrderInput | SortOrder
+    jenis?: SortOrder
     label?: SortOrderInput | SortOrder
-    _count?: surahCountOrderByAggregateInput
-    _avg?: surahAvgOrderByAggregateInput
-    _max?: surahMaxOrderByAggregateInput
-    _min?: surahMinOrderByAggregateInput
-    _sum?: surahSumOrderByAggregateInput
+    _count?: komponen_setoranCountOrderByAggregateInput
+    _max?: komponen_setoranMaxOrderByAggregateInput
+    _min?: komponen_setoranMinOrderByAggregateInput
   }
 
-  export type surahScalarWhereWithAggregatesInput = {
-    AND?: surahScalarWhereWithAggregatesInput | surahScalarWhereWithAggregatesInput[]
-    OR?: surahScalarWhereWithAggregatesInput[]
-    NOT?: surahScalarWhereWithAggregatesInput | surahScalarWhereWithAggregatesInput[]
-    nomor?: IntWithAggregatesFilter<"surah"> | number
-    nama?: StringWithAggregatesFilter<"surah"> | string
-    label?: Enumtype_label_surahNullableWithAggregatesFilter<"surah"> | $Enums.type_label_surah | null
+  export type komponen_setoranScalarWhereWithAggregatesInput = {
+    AND?: komponen_setoranScalarWhereWithAggregatesInput | komponen_setoranScalarWhereWithAggregatesInput[]
+    OR?: komponen_setoranScalarWhereWithAggregatesInput[]
+    NOT?: komponen_setoranScalarWhereWithAggregatesInput | komponen_setoranScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"komponen_setoran"> | string
+    nama?: StringWithAggregatesFilter<"komponen_setoran"> | string
+    external_id?: StringNullableWithAggregatesFilter<"komponen_setoran"> | string | null
+    jenis?: Enumtype_jenis_komponen_setoranWithAggregatesFilter<"komponen_setoran"> | $Enums.type_jenis_komponen_setoran
+    label?: Enumtype_label_komponen_setoranNullableWithAggregatesFilter<"komponen_setoran"> | $Enums.type_label_komponen_setoran | null
   }
 
   export type log_setoran_hafalanWhereInput = {
@@ -7338,7 +7332,7 @@ export namespace Prisma {
     NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
     id?: IntFilter<"log_setoran_hafalan"> | number
     keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
-    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFilter<"log_setoran_hafalan"> | $Enums.type_aksi_log_setoran_hafalan
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
@@ -7367,7 +7361,7 @@ export namespace Prisma {
     OR?: log_setoran_hafalanWhereInput[]
     NOT?: log_setoran_hafalanWhereInput | log_setoran_hafalanWhereInput[]
     keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
-    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFilter<"log_setoran_hafalan"> | $Enums.type_aksi_log_setoran_hafalan
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
@@ -7399,7 +7393,7 @@ export namespace Prisma {
     NOT?: log_setoran_hafalanScalarWhereWithAggregatesInput | log_setoran_hafalanScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"log_setoran_hafalan"> | number
     keterangan?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
-    aksi?: EnumAksiWithAggregatesFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanWithAggregatesFilter<"log_setoran_hafalan"> | $Enums.type_aksi_log_setoran_hafalan
     ip?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableWithAggregatesFilter<"log_setoran_hafalan"> | string | null
     timestamp?: DateTimeWithAggregatesFilter<"log_setoran_hafalan"> | Date | string
@@ -7523,7 +7517,7 @@ export namespace Prisma {
     tgl_validasi?: Date | string | null
     mahasiswa: mahasiswaCreateNestedOneWithoutSetoranInput
     dosen: dosenCreateNestedOneWithoutSetoranInput
-    surah: surahCreateNestedOneWithoutSetoranInput
+    komponen_setoran: komponen_setoranCreateNestedOneWithoutSetoranInput
   }
 
   export type setoranUncheckedCreateInput = {
@@ -7532,7 +7526,7 @@ export namespace Prisma {
     tgl_validasi?: Date | string | null
     nim: string
     nip: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type setoranUpdateInput = {
@@ -7541,7 +7535,7 @@ export namespace Prisma {
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mahasiswa?: mahasiswaUpdateOneRequiredWithoutSetoranNestedInput
     dosen?: dosenUpdateOneRequiredWithoutSetoranNestedInput
-    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
+    komponen_setoran?: komponen_setoranUpdateOneRequiredWithoutSetoranNestedInput
   }
 
   export type setoranUncheckedUpdateInput = {
@@ -7550,7 +7544,7 @@ export namespace Prisma {
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nim?: StringFieldUpdateOperationsInput | string
     nip?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
   export type setoranCreateManyInput = {
@@ -7559,7 +7553,7 @@ export namespace Prisma {
     tgl_validasi?: Date | string | null
     nim: string
     nip: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type setoranUpdateManyMutationInput = {
@@ -7574,58 +7568,72 @@ export namespace Prisma {
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nim?: StringFieldUpdateOperationsInput | string
     nip?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
-  export type surahCreateInput = {
-    nomor: number
+  export type komponen_setoranCreateInput = {
+    id?: string
     nama: string
-    label?: $Enums.type_label_surah | null
-    setoran?: setoranCreateNestedManyWithoutSurahInput
+    external_id?: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label?: $Enums.type_label_komponen_setoran | null
+    setoran?: setoranCreateNestedManyWithoutKomponen_setoranInput
   }
 
-  export type surahUncheckedCreateInput = {
-    nomor: number
+  export type komponen_setoranUncheckedCreateInput = {
+    id?: string
     nama: string
-    label?: $Enums.type_label_surah | null
-    setoran?: setoranUncheckedCreateNestedManyWithoutSurahInput
+    external_id?: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label?: $Enums.type_label_komponen_setoran | null
+    setoran?: setoranUncheckedCreateNestedManyWithoutKomponen_setoranInput
   }
 
-  export type surahUpdateInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
-    setoran?: setoranUpdateManyWithoutSurahNestedInput
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
+    setoran?: setoranUpdateManyWithoutKomponen_setoranNestedInput
   }
 
-  export type surahUncheckedUpdateInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
-    setoran?: setoranUncheckedUpdateManyWithoutSurahNestedInput
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
+    setoran?: setoranUncheckedUpdateManyWithoutKomponen_setoranNestedInput
   }
 
-  export type surahCreateManyInput = {
-    nomor: number
+  export type komponen_setoranCreateManyInput = {
+    id?: string
     nama: string
-    label?: $Enums.type_label_surah | null
+    external_id?: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label?: $Enums.type_label_komponen_setoran | null
   }
 
-  export type surahUpdateManyMutationInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
   }
 
-  export type surahUncheckedUpdateManyInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
   }
 
   export type log_setoran_hafalanCreateInput = {
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -7636,7 +7644,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedCreateInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -7646,7 +7654,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUpdateInput = {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7657,7 +7665,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7668,7 +7676,7 @@ export namespace Prisma {
   export type log_setoran_hafalanCreateManyInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -7678,7 +7686,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanUpdateManyMutationInput = {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7687,7 +7695,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7825,25 +7833,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type MahasiswaScalarRelationFilter = {
     is?: mahasiswaWhereInput
     isNot?: mahasiswaWhereInput
   }
 
-  export type SurahScalarRelationFilter = {
-    is?: surahWhereInput
-    isNot?: surahWhereInput
+  export type Komponen_setoranScalarRelationFilter = {
+    is?: komponen_setoranWhereInput
+    isNot?: komponen_setoranWhereInput
   }
 
   export type SortOrderInput = {
@@ -7851,9 +7848,9 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type setoranNimNomor_surahCompoundUniqueInput = {
+  export type setoranNimId_komponen_setoranCompoundUniqueInput = {
     nim: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type setoranCountOrderByAggregateInput = {
@@ -7862,11 +7859,7 @@ export namespace Prisma {
     tgl_validasi?: SortOrder
     nim?: SortOrder
     nip?: SortOrder
-    nomor_surah?: SortOrder
-  }
-
-  export type setoranAvgOrderByAggregateInput = {
-    nomor_surah?: SortOrder
+    id_komponen_setoran?: SortOrder
   }
 
   export type setoranMaxOrderByAggregateInput = {
@@ -7875,7 +7868,7 @@ export namespace Prisma {
     tgl_validasi?: SortOrder
     nim?: SortOrder
     nip?: SortOrder
-    nomor_surah?: SortOrder
+    id_komponen_setoran?: SortOrder
   }
 
   export type setoranMinOrderByAggregateInput = {
@@ -7884,11 +7877,7 @@ export namespace Prisma {
     tgl_validasi?: SortOrder
     nim?: SortOrder
     nip?: SortOrder
-    nomor_surah?: SortOrder
-  }
-
-  export type setoranSumOrderByAggregateInput = {
-    nomor_surah?: SortOrder
+    id_komponen_setoran?: SortOrder
   }
 
   export type UuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -7920,65 +7909,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type Enumtype_label_surahNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.type_label_surah | Enumtype_label_surahFieldRefInput<$PrismaModel> | null
-    in?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumtype_label_surahNullableFilter<$PrismaModel> | $Enums.type_label_surah | null
-  }
-
-  export type surahCountOrderByAggregateInput = {
-    nomor?: SortOrder
-    nama?: SortOrder
-    label?: SortOrder
-  }
-
-  export type surahAvgOrderByAggregateInput = {
-    nomor?: SortOrder
-  }
-
-  export type surahMaxOrderByAggregateInput = {
-    nomor?: SortOrder
-    nama?: SortOrder
-    label?: SortOrder
-  }
-
-  export type surahMinOrderByAggregateInput = {
-    nomor?: SortOrder
-    nama?: SortOrder
-    label?: SortOrder
-  }
-
-  export type surahSumOrderByAggregateInput = {
-    nomor?: SortOrder
-  }
-
-  export type Enumtype_label_surahNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.type_label_surah | Enumtype_label_surahFieldRefInput<$PrismaModel> | null
-    in?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumtype_label_surahNullableWithAggregatesFilter<$PrismaModel> | $Enums.type_label_surah | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
-    _max?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -7994,11 +7924,98 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type EnumAksiFilter<$PrismaModel = never> = {
-    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
-    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    not?: NestedEnumAksiFilter<$PrismaModel> | $Enums.Aksi
+  export type Enumtype_jenis_komponen_setoranFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_jenis_komponen_setoran | Enumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    in?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel> | $Enums.type_jenis_komponen_setoran
+  }
+
+  export type Enumtype_label_komponen_setoranNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_label_komponen_setoran | Enumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    in?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel> | $Enums.type_label_komponen_setoran | null
+  }
+
+  export type komponen_setoranCountOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    external_id?: SortOrder
+    jenis?: SortOrder
+    label?: SortOrder
+  }
+
+  export type komponen_setoranMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    external_id?: SortOrder
+    jenis?: SortOrder
+    label?: SortOrder
+  }
+
+  export type komponen_setoranMinOrderByAggregateInput = {
+    id?: SortOrder
+    nama?: SortOrder
+    external_id?: SortOrder
+    jenis?: SortOrder
+    label?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type Enumtype_jenis_komponen_setoranWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_jenis_komponen_setoran | Enumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    in?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_jenis_komponen_setoranWithAggregatesFilter<$PrismaModel> | $Enums.type_jenis_komponen_setoran
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel>
+    _max?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel>
+  }
+
+  export type Enumtype_label_komponen_setoranNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_label_komponen_setoran | Enumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    in?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumtype_label_komponen_setoranNullableWithAggregatesFilter<$PrismaModel> | $Enums.type_label_komponen_setoran | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel>
+    _max?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel>
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type Enumtype_aksi_log_setoran_hafalanFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_aksi_log_setoran_hafalan | Enumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    in?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel> | $Enums.type_aksi_log_setoran_hafalan
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -8053,32 +8070,30 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type EnumAksiWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
-    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    not?: NestedEnumAksiWithAggregatesFilter<$PrismaModel> | $Enums.Aksi
+  export type Enumtype_aksi_log_setoran_hafalanWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_aksi_log_setoran_hafalan | Enumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    in?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_aksi_log_setoran_hafalanWithAggregatesFilter<$PrismaModel> | $Enums.type_aksi_log_setoran_hafalan
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAksiFilter<$PrismaModel>
-    _max?: NestedEnumAksiFilter<$PrismaModel>
+    _min?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel>
+    _max?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8335,10 +8350,10 @@ export namespace Prisma {
     connect?: dosenWhereUniqueInput
   }
 
-  export type surahCreateNestedOneWithoutSetoranInput = {
-    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
-    connect?: surahWhereUniqueInput
+  export type komponen_setoranCreateNestedOneWithoutSetoranInput = {
+    create?: XOR<komponen_setoranCreateWithoutSetoranInput, komponen_setoranUncheckedCreateWithoutSetoranInput>
+    connectOrCreate?: komponen_setoranCreateOrConnectWithoutSetoranInput
+    connect?: komponen_setoranWhereUniqueInput
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -8361,65 +8376,65 @@ export namespace Prisma {
     update?: XOR<XOR<dosenUpdateToOneWithWhereWithoutSetoranInput, dosenUpdateWithoutSetoranInput>, dosenUncheckedUpdateWithoutSetoranInput>
   }
 
-  export type surahUpdateOneRequiredWithoutSetoranNestedInput = {
-    create?: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    connectOrCreate?: surahCreateOrConnectWithoutSetoranInput
-    upsert?: surahUpsertWithoutSetoranInput
-    connect?: surahWhereUniqueInput
-    update?: XOR<XOR<surahUpdateToOneWithWhereWithoutSetoranInput, surahUpdateWithoutSetoranInput>, surahUncheckedUpdateWithoutSetoranInput>
+  export type komponen_setoranUpdateOneRequiredWithoutSetoranNestedInput = {
+    create?: XOR<komponen_setoranCreateWithoutSetoranInput, komponen_setoranUncheckedCreateWithoutSetoranInput>
+    connectOrCreate?: komponen_setoranCreateOrConnectWithoutSetoranInput
+    upsert?: komponen_setoranUpsertWithoutSetoranInput
+    connect?: komponen_setoranWhereUniqueInput
+    update?: XOR<XOR<komponen_setoranUpdateToOneWithWhereWithoutSetoranInput, komponen_setoranUpdateWithoutSetoranInput>, komponen_setoranUncheckedUpdateWithoutSetoranInput>
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type setoranCreateNestedManyWithoutSurahInput = {
-    create?: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput> | setoranCreateWithoutSurahInput[] | setoranUncheckedCreateWithoutSurahInput[]
-    connectOrCreate?: setoranCreateOrConnectWithoutSurahInput | setoranCreateOrConnectWithoutSurahInput[]
-    createMany?: setoranCreateManySurahInputEnvelope
+  export type setoranCreateNestedManyWithoutKomponen_setoranInput = {
+    create?: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput> | setoranCreateWithoutKomponen_setoranInput[] | setoranUncheckedCreateWithoutKomponen_setoranInput[]
+    connectOrCreate?: setoranCreateOrConnectWithoutKomponen_setoranInput | setoranCreateOrConnectWithoutKomponen_setoranInput[]
+    createMany?: setoranCreateManyKomponen_setoranInputEnvelope
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
   }
 
-  export type setoranUncheckedCreateNestedManyWithoutSurahInput = {
-    create?: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput> | setoranCreateWithoutSurahInput[] | setoranUncheckedCreateWithoutSurahInput[]
-    connectOrCreate?: setoranCreateOrConnectWithoutSurahInput | setoranCreateOrConnectWithoutSurahInput[]
-    createMany?: setoranCreateManySurahInputEnvelope
+  export type setoranUncheckedCreateNestedManyWithoutKomponen_setoranInput = {
+    create?: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput> | setoranCreateWithoutKomponen_setoranInput[] | setoranUncheckedCreateWithoutKomponen_setoranInput[]
+    connectOrCreate?: setoranCreateOrConnectWithoutKomponen_setoranInput | setoranCreateOrConnectWithoutKomponen_setoranInput[]
+    createMany?: setoranCreateManyKomponen_setoranInputEnvelope
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
   }
 
-  export type NullableEnumtype_label_surahFieldUpdateOperationsInput = {
-    set?: $Enums.type_label_surah | null
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
-  export type setoranUpdateManyWithoutSurahNestedInput = {
-    create?: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput> | setoranCreateWithoutSurahInput[] | setoranUncheckedCreateWithoutSurahInput[]
-    connectOrCreate?: setoranCreateOrConnectWithoutSurahInput | setoranCreateOrConnectWithoutSurahInput[]
-    upsert?: setoranUpsertWithWhereUniqueWithoutSurahInput | setoranUpsertWithWhereUniqueWithoutSurahInput[]
-    createMany?: setoranCreateManySurahInputEnvelope
+  export type Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput = {
+    set?: $Enums.type_jenis_komponen_setoran
+  }
+
+  export type NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput = {
+    set?: $Enums.type_label_komponen_setoran | null
+  }
+
+  export type setoranUpdateManyWithoutKomponen_setoranNestedInput = {
+    create?: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput> | setoranCreateWithoutKomponen_setoranInput[] | setoranUncheckedCreateWithoutKomponen_setoranInput[]
+    connectOrCreate?: setoranCreateOrConnectWithoutKomponen_setoranInput | setoranCreateOrConnectWithoutKomponen_setoranInput[]
+    upsert?: setoranUpsertWithWhereUniqueWithoutKomponen_setoranInput | setoranUpsertWithWhereUniqueWithoutKomponen_setoranInput[]
+    createMany?: setoranCreateManyKomponen_setoranInputEnvelope
     set?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     disconnect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     delete?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
-    update?: setoranUpdateWithWhereUniqueWithoutSurahInput | setoranUpdateWithWhereUniqueWithoutSurahInput[]
-    updateMany?: setoranUpdateManyWithWhereWithoutSurahInput | setoranUpdateManyWithWhereWithoutSurahInput[]
+    update?: setoranUpdateWithWhereUniqueWithoutKomponen_setoranInput | setoranUpdateWithWhereUniqueWithoutKomponen_setoranInput[]
+    updateMany?: setoranUpdateManyWithWhereWithoutKomponen_setoranInput | setoranUpdateManyWithWhereWithoutKomponen_setoranInput[]
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
   }
 
-  export type setoranUncheckedUpdateManyWithoutSurahNestedInput = {
-    create?: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput> | setoranCreateWithoutSurahInput[] | setoranUncheckedCreateWithoutSurahInput[]
-    connectOrCreate?: setoranCreateOrConnectWithoutSurahInput | setoranCreateOrConnectWithoutSurahInput[]
-    upsert?: setoranUpsertWithWhereUniqueWithoutSurahInput | setoranUpsertWithWhereUniqueWithoutSurahInput[]
-    createMany?: setoranCreateManySurahInputEnvelope
+  export type setoranUncheckedUpdateManyWithoutKomponen_setoranNestedInput = {
+    create?: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput> | setoranCreateWithoutKomponen_setoranInput[] | setoranUncheckedCreateWithoutKomponen_setoranInput[]
+    connectOrCreate?: setoranCreateOrConnectWithoutKomponen_setoranInput | setoranCreateOrConnectWithoutKomponen_setoranInput[]
+    upsert?: setoranUpsertWithWhereUniqueWithoutKomponen_setoranInput | setoranUpsertWithWhereUniqueWithoutKomponen_setoranInput[]
+    createMany?: setoranCreateManyKomponen_setoranInputEnvelope
     set?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     disconnect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     delete?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
     connect?: setoranWhereUniqueInput | setoranWhereUniqueInput[]
-    update?: setoranUpdateWithWhereUniqueWithoutSurahInput | setoranUpdateWithWhereUniqueWithoutSurahInput[]
-    updateMany?: setoranUpdateManyWithWhereWithoutSurahInput | setoranUpdateManyWithWhereWithoutSurahInput[]
+    update?: setoranUpdateWithWhereUniqueWithoutKomponen_setoranInput | setoranUpdateWithWhereUniqueWithoutKomponen_setoranInput[]
+    updateMany?: setoranUpdateManyWithWhereWithoutKomponen_setoranInput | setoranUpdateManyWithWhereWithoutKomponen_setoranInput[]
     deleteMany?: setoranScalarWhereInput | setoranScalarWhereInput[]
   }
 
@@ -8435,12 +8450,8 @@ export namespace Prisma {
     connect?: dosenWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type EnumAksiFieldUpdateOperationsInput = {
-    set?: $Enums.Aksi
+  export type Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput = {
+    set?: $Enums.type_aksi_log_setoran_hafalan
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -8461,6 +8472,14 @@ export namespace Prisma {
     upsert?: dosenUpsertWithoutLog_setoran_hafalanInput
     connect?: dosenWhereUniqueInput
     update?: XOR<XOR<dosenUpdateToOneWithWhereWithoutLog_setoran_hafalanInput, dosenUpdateWithoutLog_setoran_hafalanInput>, dosenUncheckedUpdateWithoutLog_setoran_hafalanInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8566,6 +8585,89 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_jenis_komponen_setoran | Enumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    in?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel> | $Enums.type_jenis_komponen_setoran
+  }
+
+  export type NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_label_komponen_setoran | Enumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    in?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel> | $Enums.type_label_komponen_setoran | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumtype_jenis_komponen_setoranWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_jenis_komponen_setoran | Enumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    in?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_jenis_komponen_setoran[] | ListEnumtype_jenis_komponen_setoranFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_jenis_komponen_setoranWithAggregatesFilter<$PrismaModel> | $Enums.type_jenis_komponen_setoran
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel>
+    _max?: NestedEnumtype_jenis_komponen_setoranFilter<$PrismaModel>
+  }
+
+  export type NestedEnumtype_label_komponen_setoranNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_label_komponen_setoran | Enumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    in?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.type_label_komponen_setoran[] | ListEnumtype_label_komponen_setoranFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumtype_label_komponen_setoranNullableWithAggregatesFilter<$PrismaModel> | $Enums.type_label_komponen_setoran | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel>
+    _max?: NestedEnumtype_label_komponen_setoranNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_aksi_log_setoran_hafalan | Enumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    in?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel> | $Enums.type_aksi_log_setoran_hafalan
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -8593,80 +8695,14 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedEnumtype_label_surahNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.type_label_surah | Enumtype_label_surahFieldRefInput<$PrismaModel> | null
-    in?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumtype_label_surahNullableFilter<$PrismaModel> | $Enums.type_label_surah | null
-  }
-
-  export type NestedEnumtype_label_surahNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.type_label_surah | Enumtype_label_surahFieldRefInput<$PrismaModel> | null
-    in?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.type_label_surah[] | ListEnumtype_label_surahFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumtype_label_surahNullableWithAggregatesFilter<$PrismaModel> | $Enums.type_label_surah | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
-    _max?: NestedEnumtype_label_surahNullableFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedEnumAksiFilter<$PrismaModel = never> = {
-    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
-    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    not?: NestedEnumAksiFilter<$PrismaModel> | $Enums.Aksi
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedEnumAksiWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Aksi | EnumAksiFieldRefInput<$PrismaModel>
-    in?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Aksi[] | ListEnumAksiFieldRefInput<$PrismaModel>
-    not?: NestedEnumAksiWithAggregatesFilter<$PrismaModel> | $Enums.Aksi
+  export type NestedEnumtype_aksi_log_setoran_hafalanWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.type_aksi_log_setoran_hafalan | Enumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    in?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    notIn?: $Enums.type_aksi_log_setoran_hafalan[] | ListEnumtype_aksi_log_setoran_hafalanFieldRefInput<$PrismaModel>
+    not?: NestedEnumtype_aksi_log_setoran_hafalanWithAggregatesFilter<$PrismaModel> | $Enums.type_aksi_log_setoran_hafalan
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumAksiFilter<$PrismaModel>
-    _max?: NestedEnumAksiFilter<$PrismaModel>
+    _min?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel>
+    _max?: NestedEnumtype_aksi_log_setoran_hafalanFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -8714,7 +8750,7 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     mahasiswa: mahasiswaCreateNestedOneWithoutSetoranInput
-    surah: surahCreateNestedOneWithoutSetoranInput
+    komponen_setoran: komponen_setoranCreateNestedOneWithoutSetoranInput
   }
 
   export type setoranUncheckedCreateWithoutDosenInput = {
@@ -8722,7 +8758,7 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     nim: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type setoranCreateOrConnectWithoutDosenInput = {
@@ -8737,7 +8773,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCreateWithoutDosenInput = {
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -8747,7 +8783,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedCreateWithoutDosenInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -8815,7 +8851,7 @@ export namespace Prisma {
     tgl_validasi?: DateTimeNullableFilter<"setoran"> | Date | string | null
     nim?: StringFilter<"setoran"> | string
     nip?: StringFilter<"setoran"> | string
-    nomor_surah?: IntFilter<"setoran"> | number
+    id_komponen_setoran?: UuidFilter<"setoran"> | string
   }
 
   export type log_setoran_hafalanUpsertWithWhereUniqueWithoutDosenInput = {
@@ -8840,7 +8876,7 @@ export namespace Prisma {
     NOT?: log_setoran_hafalanScalarWhereInput | log_setoran_hafalanScalarWhereInput[]
     id?: IntFilter<"log_setoran_hafalan"> | number
     keterangan?: StringNullableFilter<"log_setoran_hafalan"> | string | null
-    aksi?: EnumAksiFilter<"log_setoran_hafalan"> | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFilter<"log_setoran_hafalan"> | $Enums.type_aksi_log_setoran_hafalan
     ip?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     user_agent?: StringNullableFilter<"log_setoran_hafalan"> | string | null
     timestamp?: DateTimeFilter<"log_setoran_hafalan"> | Date | string
@@ -8874,7 +8910,7 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     dosen: dosenCreateNestedOneWithoutSetoranInput
-    surah: surahCreateNestedOneWithoutSetoranInput
+    komponen_setoran: komponen_setoranCreateNestedOneWithoutSetoranInput
   }
 
   export type setoranUncheckedCreateWithoutMahasiswaInput = {
@@ -8882,7 +8918,7 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     nip: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type setoranCreateOrConnectWithoutMahasiswaInput = {
@@ -8897,7 +8933,7 @@ export namespace Prisma {
 
   export type log_setoran_hafalanCreateWithoutMahasiswaInput = {
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -8907,7 +8943,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedCreateWithoutMahasiswaInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -9025,21 +9061,25 @@ export namespace Prisma {
     create: XOR<dosenCreateWithoutSetoranInput, dosenUncheckedCreateWithoutSetoranInput>
   }
 
-  export type surahCreateWithoutSetoranInput = {
-    nomor: number
+  export type komponen_setoranCreateWithoutSetoranInput = {
+    id?: string
     nama: string
-    label?: $Enums.type_label_surah | null
+    external_id?: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label?: $Enums.type_label_komponen_setoran | null
   }
 
-  export type surahUncheckedCreateWithoutSetoranInput = {
-    nomor: number
+  export type komponen_setoranUncheckedCreateWithoutSetoranInput = {
+    id?: string
     nama: string
-    label?: $Enums.type_label_surah | null
+    external_id?: string | null
+    jenis: $Enums.type_jenis_komponen_setoran
+    label?: $Enums.type_label_komponen_setoran | null
   }
 
-  export type surahCreateOrConnectWithoutSetoranInput = {
-    where: surahWhereUniqueInput
-    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
+  export type komponen_setoranCreateOrConnectWithoutSetoranInput = {
+    where: komponen_setoranWhereUniqueInput
+    create: XOR<komponen_setoranCreateWithoutSetoranInput, komponen_setoranUncheckedCreateWithoutSetoranInput>
   }
 
   export type mahasiswaUpsertWithoutSetoranInput = {
@@ -9096,30 +9136,34 @@ export namespace Prisma {
     log_setoran_hafalan?: log_setoran_hafalanUncheckedUpdateManyWithoutDosenNestedInput
   }
 
-  export type surahUpsertWithoutSetoranInput = {
-    update: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
-    create: XOR<surahCreateWithoutSetoranInput, surahUncheckedCreateWithoutSetoranInput>
-    where?: surahWhereInput
+  export type komponen_setoranUpsertWithoutSetoranInput = {
+    update: XOR<komponen_setoranUpdateWithoutSetoranInput, komponen_setoranUncheckedUpdateWithoutSetoranInput>
+    create: XOR<komponen_setoranCreateWithoutSetoranInput, komponen_setoranUncheckedCreateWithoutSetoranInput>
+    where?: komponen_setoranWhereInput
   }
 
-  export type surahUpdateToOneWithWhereWithoutSetoranInput = {
-    where?: surahWhereInput
-    data: XOR<surahUpdateWithoutSetoranInput, surahUncheckedUpdateWithoutSetoranInput>
+  export type komponen_setoranUpdateToOneWithWhereWithoutSetoranInput = {
+    where?: komponen_setoranWhereInput
+    data: XOR<komponen_setoranUpdateWithoutSetoranInput, komponen_setoranUncheckedUpdateWithoutSetoranInput>
   }
 
-  export type surahUpdateWithoutSetoranInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUpdateWithoutSetoranInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
   }
 
-  export type surahUncheckedUpdateWithoutSetoranInput = {
-    nomor?: IntFieldUpdateOperationsInput | number
+  export type komponen_setoranUncheckedUpdateWithoutSetoranInput = {
+    id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    label?: NullableEnumtype_label_surahFieldUpdateOperationsInput | $Enums.type_label_surah | null
+    external_id?: NullableStringFieldUpdateOperationsInput | string | null
+    jenis?: Enumtype_jenis_komponen_setoranFieldUpdateOperationsInput | $Enums.type_jenis_komponen_setoran
+    label?: NullableEnumtype_label_komponen_setoranFieldUpdateOperationsInput | $Enums.type_label_komponen_setoran | null
   }
 
-  export type setoranCreateWithoutSurahInput = {
+  export type setoranCreateWithoutKomponen_setoranInput = {
     id?: string
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
@@ -9127,7 +9171,7 @@ export namespace Prisma {
     dosen: dosenCreateNestedOneWithoutSetoranInput
   }
 
-  export type setoranUncheckedCreateWithoutSurahInput = {
+  export type setoranUncheckedCreateWithoutKomponen_setoranInput = {
     id?: string
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
@@ -9135,30 +9179,30 @@ export namespace Prisma {
     nip: string
   }
 
-  export type setoranCreateOrConnectWithoutSurahInput = {
+  export type setoranCreateOrConnectWithoutKomponen_setoranInput = {
     where: setoranWhereUniqueInput
-    create: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput>
+    create: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput>
   }
 
-  export type setoranCreateManySurahInputEnvelope = {
-    data: setoranCreateManySurahInput | setoranCreateManySurahInput[]
+  export type setoranCreateManyKomponen_setoranInputEnvelope = {
+    data: setoranCreateManyKomponen_setoranInput | setoranCreateManyKomponen_setoranInput[]
     skipDuplicates?: boolean
   }
 
-  export type setoranUpsertWithWhereUniqueWithoutSurahInput = {
+  export type setoranUpsertWithWhereUniqueWithoutKomponen_setoranInput = {
     where: setoranWhereUniqueInput
-    update: XOR<setoranUpdateWithoutSurahInput, setoranUncheckedUpdateWithoutSurahInput>
-    create: XOR<setoranCreateWithoutSurahInput, setoranUncheckedCreateWithoutSurahInput>
+    update: XOR<setoranUpdateWithoutKomponen_setoranInput, setoranUncheckedUpdateWithoutKomponen_setoranInput>
+    create: XOR<setoranCreateWithoutKomponen_setoranInput, setoranUncheckedCreateWithoutKomponen_setoranInput>
   }
 
-  export type setoranUpdateWithWhereUniqueWithoutSurahInput = {
+  export type setoranUpdateWithWhereUniqueWithoutKomponen_setoranInput = {
     where: setoranWhereUniqueInput
-    data: XOR<setoranUpdateWithoutSurahInput, setoranUncheckedUpdateWithoutSurahInput>
+    data: XOR<setoranUpdateWithoutKomponen_setoranInput, setoranUncheckedUpdateWithoutKomponen_setoranInput>
   }
 
-  export type setoranUpdateManyWithWhereWithoutSurahInput = {
+  export type setoranUpdateManyWithWhereWithoutKomponen_setoranInput = {
     where: setoranScalarWhereInput
-    data: XOR<setoranUpdateManyMutationInput, setoranUncheckedUpdateManyWithoutSurahInput>
+    data: XOR<setoranUpdateManyMutationInput, setoranUncheckedUpdateManyWithoutKomponen_setoranInput>
   }
 
   export type mahasiswaCreateWithoutLog_setoran_hafalanInput = {
@@ -9268,13 +9312,13 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     nim: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type log_setoran_hafalanCreateManyDosenInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -9308,7 +9352,7 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mahasiswa?: mahasiswaUpdateOneRequiredWithoutSetoranNestedInput
-    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
+    komponen_setoran?: komponen_setoranUpdateOneRequiredWithoutSetoranNestedInput
   }
 
   export type setoranUncheckedUpdateWithoutDosenInput = {
@@ -9316,7 +9360,7 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nim?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
   export type setoranUncheckedUpdateManyWithoutDosenInput = {
@@ -9324,12 +9368,12 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nim?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
   export type log_setoran_hafalanUpdateWithoutDosenInput = {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9339,7 +9383,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateWithoutDosenInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9349,7 +9393,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateManyWithoutDosenInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9361,13 +9405,13 @@ export namespace Prisma {
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
     nip: string
-    nomor_surah: number
+    id_komponen_setoran: string
   }
 
   export type log_setoran_hafalanCreateManyMahasiswaInput = {
     id?: number
     keterangan?: string | null
-    aksi: $Enums.Aksi
+    aksi: $Enums.type_aksi_log_setoran_hafalan
     ip?: string | null
     user_agent?: string | null
     timestamp?: Date | string
@@ -9379,7 +9423,7 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     dosen?: dosenUpdateOneRequiredWithoutSetoranNestedInput
-    surah?: surahUpdateOneRequiredWithoutSetoranNestedInput
+    komponen_setoran?: komponen_setoranUpdateOneRequiredWithoutSetoranNestedInput
   }
 
   export type setoranUncheckedUpdateWithoutMahasiswaInput = {
@@ -9387,7 +9431,7 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nip?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
   export type setoranUncheckedUpdateManyWithoutMahasiswaInput = {
@@ -9395,12 +9439,12 @@ export namespace Prisma {
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nip?: StringFieldUpdateOperationsInput | string
-    nomor_surah?: IntFieldUpdateOperationsInput | number
+    id_komponen_setoran?: StringFieldUpdateOperationsInput | string
   }
 
   export type log_setoran_hafalanUpdateWithoutMahasiswaInput = {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9410,7 +9454,7 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateWithoutMahasiswaInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9420,14 +9464,14 @@ export namespace Prisma {
   export type log_setoran_hafalanUncheckedUpdateManyWithoutMahasiswaInput = {
     id?: IntFieldUpdateOperationsInput | number
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    aksi?: EnumAksiFieldUpdateOperationsInput | $Enums.Aksi
+    aksi?: Enumtype_aksi_log_setoran_hafalanFieldUpdateOperationsInput | $Enums.type_aksi_log_setoran_hafalan
     ip?: NullableStringFieldUpdateOperationsInput | string | null
     user_agent?: NullableStringFieldUpdateOperationsInput | string | null
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
     nip?: StringFieldUpdateOperationsInput | string
   }
 
-  export type setoranCreateManySurahInput = {
+  export type setoranCreateManyKomponen_setoranInput = {
     id?: string
     tgl_setoran?: Date | string | null
     tgl_validasi?: Date | string | null
@@ -9435,7 +9479,7 @@ export namespace Prisma {
     nip: string
   }
 
-  export type setoranUpdateWithoutSurahInput = {
+  export type setoranUpdateWithoutKomponen_setoranInput = {
     id?: StringFieldUpdateOperationsInput | string
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9443,7 +9487,7 @@ export namespace Prisma {
     dosen?: dosenUpdateOneRequiredWithoutSetoranNestedInput
   }
 
-  export type setoranUncheckedUpdateWithoutSurahInput = {
+  export type setoranUncheckedUpdateWithoutKomponen_setoranInput = {
     id?: StringFieldUpdateOperationsInput | string
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -9451,7 +9495,7 @@ export namespace Prisma {
     nip?: StringFieldUpdateOperationsInput | string
   }
 
-  export type setoranUncheckedUpdateManyWithoutSurahInput = {
+  export type setoranUncheckedUpdateManyWithoutKomponen_setoranInput = {
     id?: StringFieldUpdateOperationsInput | string
     tgl_setoran?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tgl_validasi?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

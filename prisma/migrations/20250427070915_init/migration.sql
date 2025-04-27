@@ -1,8 +1,11 @@
 -- CreateEnum
-CREATE TYPE "type_label_surah" AS ENUM ('KP', 'SEMKP', 'DAFTAR_TA', 'SEMPRO', 'SIDANG_TA');
+CREATE TYPE "type_jenis_komponen_setoran" AS ENUM ('SURAH', 'DOA', 'BACAAN_SHOLAT', 'HADIST');
 
 -- CreateEnum
-CREATE TYPE "Aksi" AS ENUM ('Validasi', 'Batalkan');
+CREATE TYPE "type_label_komponen_setoran" AS ENUM ('KP', 'SEMKP', 'DAFTAR_TA', 'SEMPRO', 'SIDANG_TA');
+
+-- CreateEnum
+CREATE TYPE "type_aksi_log_setoran_hafalan" AS ENUM ('VALIDASI', 'BATALKAN');
 
 -- CreateTable
 CREATE TABLE "dosen" (
@@ -30,32 +33,34 @@ CREATE TABLE "setoran" (
     "tgl_validasi" DATE DEFAULT CURRENT_TIMESTAMP,
     "nim" VARCHAR(11) NOT NULL,
     "nip" VARCHAR(18) NOT NULL,
-    "nomor_surah" INTEGER NOT NULL,
+    "id_komponen_setoran" UUID NOT NULL,
 
     CONSTRAINT "pk_id_setoran" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "surah" (
-    "nomor" INTEGER NOT NULL,
-    "nama" VARCHAR(25) NOT NULL,
-    "label" "type_label_surah",
+CREATE TABLE "komponen_setoran" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "nama" VARCHAR(35) NOT NULL,
+    "external_id" VARCHAR(35),
+    "jenis" "type_jenis_komponen_setoran" NOT NULL,
+    "label" "type_label_komponen_setoran",
 
-    CONSTRAINT "pk_nomor_surah" PRIMARY KEY ("nomor")
+    CONSTRAINT "pk_id_komponen_setoran" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "log_setoran_hafalan" (
     "id" SERIAL NOT NULL,
     "keterangan" TEXT,
-    "aksi" "Aksi" NOT NULL,
+    "aksi" "type_aksi_log_setoran_hafalan" NOT NULL,
     "ip" VARCHAR(45),
     "user_agent" VARCHAR(255),
     "timestamp" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "nim" VARCHAR(11) NOT NULL,
     "nip" VARCHAR(18) NOT NULL,
 
-    CONSTRAINT "log_setoran_hafalan_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "pk_id_log_setoran_hafalan" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -65,7 +70,7 @@ CREATE UNIQUE INDEX "dosen_email_key" ON "dosen"("email");
 CREATE UNIQUE INDEX "mahasiswa_email_key" ON "mahasiswa"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "setoran_nim_nomor_surah_key" ON "setoran"("nim", "nomor_surah");
+CREATE UNIQUE INDEX "setoran_nim_id_komponen_setoran_key" ON "setoran"("nim", "id_komponen_setoran");
 
 -- AddForeignKey
 ALTER TABLE "mahasiswa" ADD CONSTRAINT "fk_nip_mahasiswa" FOREIGN KEY ("nip") REFERENCES "dosen"("nip") ON DELETE NO ACTION ON UPDATE CASCADE;
@@ -77,7 +82,7 @@ ALTER TABLE "setoran" ADD CONSTRAINT "fk_nim_setoran" FOREIGN KEY ("nim") REFERE
 ALTER TABLE "setoran" ADD CONSTRAINT "fk_nip_setoran" FOREIGN KEY ("nip") REFERENCES "dosen"("nip") ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "setoran" ADD CONSTRAINT "fk_nomor_surah_setoran" FOREIGN KEY ("nomor_surah") REFERENCES "surah"("nomor") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "setoran" ADD CONSTRAINT "fk_id_komponen_setoran" FOREIGN KEY ("id_komponen_setoran") REFERENCES "komponen_setoran"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
 ALTER TABLE "log_setoran_hafalan" ADD CONSTRAINT "fk_nim_log_setoran_hafalan" FOREIGN KEY ("nim") REFERENCES "mahasiswa"("nim") ON DELETE NO ACTION ON UPDATE CASCADE;
