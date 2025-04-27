@@ -8,10 +8,10 @@ export const postSetoranSchema = z.object({
 				invalid_type_error:
 					"Waduh, tiap id_komponen_setoran wajib berupa string yak, mas! 😁",
 			}),
-			nama_surah: z.string({
-				required_error: "Maaf, tiap nama_surah wajib diisi yak, mas! 😁",
+			nama_komponen_setoran: z.string({
+				required_error: "Maaf, tiap nama_komponen_setoran wajib diisi yak, mas! 😁",
 				invalid_type_error:
-					"Waduh, tiap nama_surah wajib berupa string yak, mas! 😁",
+					"Waduh, tiap nama_komponen_setoran wajib berupa string yak, mas! 😁",
 			}),
 		})
 	),
@@ -43,10 +43,10 @@ export const deleteSetoranSchema = z.object({
 				invalid_type_error:
 					"Waduh, tiap id_komponen_setoran wajib berupa string yak, mas! 😁",
 			}),
-			nama_surah: z.string({
-				required_error: "Maaf, tiap nama_surah wajib diisi yak, mas! 😁",
+			nama_komponen_setoran: z.string({
+				required_error: "Maaf, tiap nama_komponen_setoran wajib diisi yak, mas! 😁",
 				invalid_type_error:
-					"Waduh, tiap nama_surah wajib berupa string yak, mas! 😁",
+					"Waduh, tiap nama_komponen_setoran wajib berupa string yak, mas! 😁",
 			}),
 		})
 	),
