@@ -59,13 +59,14 @@ export interface CreateSetoranParamsInterface {
 	nip: string;
 	data_setoran: {
 		id_komponen_setoran: string;
-		nama_surah: string;
+		nama_komponen_setoran: string;
 	}[];
 }
 
 export interface DeleteSetoranParamsInterface {	
 	data_setoran: {
 		id: string;
-		nama_surah: string;
+		id_komponen_setoran: string;
+		nama_komponen_setoran: string;
 	}[];
 }
