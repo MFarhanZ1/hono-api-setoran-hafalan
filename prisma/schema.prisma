@@ -42,7 +42,7 @@ model setoran {
 }
 
 model komponen_setoran {
-  id          String                       @id(map: "pk_nomor_surah") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String                       @id(map: "pk_id_komponen_setoran") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nama        String                       @db.VarChar(35)
   external_id String?                      @db.VarChar(35)
   jenis       type_jenis_komponen_setoran
@@ -51,7 +51,7 @@ model komponen_setoran {
 }
 
 model log_setoran_hafalan {
-  id         Int                           @id @default(autoincrement()) @db.Integer
+  id         Int                           @id(map: "pk_id_log_setoran_hafalan") @default(autoincrement()) @db.Integer
   keterangan String?                       @db.Text
   aksi       type_aksi_log_setoran_hafalan
   ip         String?                       @db.VarChar(45)
