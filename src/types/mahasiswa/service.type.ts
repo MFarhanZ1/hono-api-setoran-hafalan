@@ -34,3 +34,8 @@ export interface GetInfoMahasiswaPAByNIPResponseInterface {
     ringkasan: FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface[];
     daftar: FindAllMahasiswaPAByDosenNIPReturnInterface[];
 }
+
+export interface CheckValidPAPRequestInterface {
+    nip: string;
+    nim: string;
+}
