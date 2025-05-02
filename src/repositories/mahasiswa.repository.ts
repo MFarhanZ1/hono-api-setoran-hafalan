@@ -1,5 +1,5 @@
 import prisma from "../infrastructures/db.infrastructure";
-import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindAllMahasiswaPAByDosenNIPParamsInterface, FindAllMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface, FindByNIMParamsInterface, FindByNIMReturnInterface } from "../types/mahasiswa/repository.type";
+import { FindByEmailParamsInterface, FindByEmailReturnInterface, FindAllMahasiswaPAByDosenNIPParamsInterface, FindAllMahasiswaPAByDosenNIPReturnInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPParamsInterface, FindRingkasanMahasiswaPAPerAngkatanByDosenNIPReturnInterface, FindByNIMParamsInterface, FindByNIMReturnInterface, CheckValidPAParamsInterface } from "../types/mahasiswa/repository.type";
 
 export default class MahasiswaRepository {
     
@@ -80,6 +80,16 @@ export default class MahasiswaRepository {
                 SUBSTRING(mahasiswa.nim FROM 2 FOR 2) DESC, 
                 mahasiswa.nama ASC;
         `
+    }
+
+    public static async checkValidPA({nim, nip}: CheckValidPAParamsInterface): Promise<boolean> {
+        const exists = await prisma.mahasiswa.findFirst({
+            where: {
+                nim,
+                nip,
+            },
+        });        
+        return !!exists;
     }
 
 }
