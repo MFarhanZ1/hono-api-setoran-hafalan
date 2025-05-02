@@ -44,3 +44,8 @@ export interface FindAllMahasiswaPAByDosenNIPReturnInterface {
 	angkatan: string;
 	semester: number;
 }
+
+export interface CheckValidPAParamsInterface {
+	nim: string;
+	nip: string;
+}
