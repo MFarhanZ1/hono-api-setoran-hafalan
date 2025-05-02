@@ -1,5 +1,5 @@
 import MahasiswaRepository from "../repositories/mahasiswa.repository";
-import { GetByEmailRequestInterface, GetByEmailResponseInterface, GetByNIMRequestInterface, GetByNIMResponseInterface, GetInfoMahasiswaPAByNIPRequestInterface, GetInfoMahasiswaPAByNIPResponseInterface } from "../types/mahasiswa/service.type";
+import { CheckValidPAPRequestInterface, GetByEmailRequestInterface, GetByEmailResponseInterface, GetByNIMRequestInterface, GetByNIMResponseInterface, GetInfoMahasiswaPAByNIPRequestInterface, GetInfoMahasiswaPAByNIPResponseInterface } from "../types/mahasiswa/service.type";
 
 export default class MahasiswaService {
     public static async getByEmail({email}: GetByEmailRequestInterface): Promise<GetByEmailResponseInterface | null> {
@@ -18,6 +18,10 @@ export default class MahasiswaService {
             ringkasan,
             daftar
         }
+    }
+
+    public static async checkValidPA({nim, nip}: CheckValidPAPRequestInterface): Promise<boolean> {
+        return await MahasiswaRepository.checkValidPA({nim, nip});
     }
 
 }
