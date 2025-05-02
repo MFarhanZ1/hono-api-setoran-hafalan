@@ -120,6 +120,10 @@ export default class SetoranService {
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
 
+		// cek bener ga mhs ini emang bimbingan dosen tersebut
+		const validPA = await MahasiswaService.checkValidPA({ nim, nip });
+		if (!validPA) throw new APIError("Heh, kamu bukan PA dari mahasiswa ini, mau ngapain mas! 😡", 403);
+
 		// simpan data setoran
 		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
 
@@ -140,6 +144,10 @@ export default class SetoranService {
 		const dosen = await DosenService.getByEmail({ email });
 		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
 		const { nip } = dosen;
+
+		// cek bener ga mhs ini emang bimbingan dosen tersebut
+		const validPA = await MahasiswaService.checkValidPA({ nim, nip });
+		if (!validPA) throw new APIError("Heh, kamu bukan PA dari mahasiswa ini, mau ngapain mas! 😡", 403);
 		
 		// simpan data setoran
 		await SetoranRepository.deleteSetoran({ data_setoran });
