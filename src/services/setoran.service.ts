@@ -57,7 +57,7 @@ export default class SetoranService {
 		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
 		const data = await this.getDetailSetoranMahasiswa({ nim });
 	
-		// kembalikan response yang sudah ktia atur
+		// kembalikan response yang sudah kita atur
 		return {
 			response: true,
 			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",
@@ -65,7 +65,16 @@ export default class SetoranService {
 		};
 	}
 	
-	public static async getSetoranMahasiswa({ nim }: { nim: string }) {		
+	public static async getSetoranMahasiswa({ nim, email }: { nim: string; email: string }) {		
+		// ambil data dosen berdasarkan email buat ngambil nip nya
+		const dosen = await DosenService.getByEmail({ email });
+		if (!dosen) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
+		const { nip } = dosen;
+
+		// cek bener ga mhs ini emang bimbingan dosen tersebut
+		const validPA = await MahasiswaService.checkValidPA({ nim, nip });
+		if (!validPA) throw new APIError("Heh, kamu bukan PA dari mahasiswa ini, mau ngapain mas! 😡", 403);
+
 		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
 		const data = await this.getDetailSetoranMahasiswa({ nim });
 	
