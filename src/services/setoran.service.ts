@@ -143,7 +143,7 @@ export default class SetoranService {
 		// kembalikan response
 		return {
 			response: true,
-			message: "Yeay, proses validasi setoran berhasil! ✨",
+			message: "Yeay, proses validasi muroja'ah berhasil! ✨",
 		};
 	}
 	
@@ -168,7 +168,7 @@ export default class SetoranService {
 		// kembalikan response
 		return {
 			response: true,
-			message: "Yeay, proses pembatalan setoran telah berhasil! ✨",
+			message: "Yeay, proses pembatalan validasi muroja'ah telah berhasil! ✨",
 		};
 	}
 
