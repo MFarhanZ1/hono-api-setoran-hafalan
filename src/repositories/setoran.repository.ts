@@ -81,6 +81,8 @@ export default class SetoranRepository {
             SELECT 
                 ks.id,
                 ks.nama,
+                ks.external_id,
+                ks.nama_arab,
                 ks.label,
                 CASE 
                     WHEN COUNT(st.id) > 0 THEN true
