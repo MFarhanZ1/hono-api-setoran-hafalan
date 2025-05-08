@@ -51,7 +51,8 @@ export default class MahasiswaRepository {
             FROM 
                 mahasiswa 
             WHERE 
-                nip=${nip}
+                nip = ${nip} AND
+                aktif = true
             GROUP BY 
                 substring(nim FROM 2 FOR 2) 
             ORDER BY 
