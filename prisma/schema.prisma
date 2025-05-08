@@ -22,6 +22,7 @@ model mahasiswa {
   nama                String                @db.VarChar(255)
   email               String                @unique @db.VarChar(36)
   nip                 String                @db.VarChar(18)
+  aktif               Boolean               @default(true)
   dosen               dosen                 @relation(fields: [nip], references: [nip], onDelete: NoAction, onUpdate: Cascade, map: "fk_nip_mahasiswa")
   setoran             setoran[]
   log_setoran_hafalan log_setoran_hafalan[]
@@ -44,6 +45,7 @@ model setoran {
 model komponen_setoran {
   id          String                       @id(map: "pk_id_komponen_setoran") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nama        String                       @db.VarChar(35)
+  nama_arab   String?                      @db.Text
   external_id String?                      @db.VarChar(35)
   jenis       type_jenis_komponen_setoran
   label       type_label_komponen_setoran?
