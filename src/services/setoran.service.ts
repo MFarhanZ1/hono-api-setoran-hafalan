@@ -60,7 +60,7 @@ export default class SetoranService {
 		// kembalikan response yang sudah kita atur
 		return {
 			response: true,
-			message: "Berikut ini info detail kamu dengan riwayat setoran-nya! 😁",
+			message: "Berikut ini info detail kamu dengan riwayat muroja'ah-nya! 😁",
 			data
 		};
 	}
@@ -81,7 +81,7 @@ export default class SetoranService {
 		// kembalikan response yang sudah ktia atur
 		return {
 			response: true,
-			message: "Berikut ini info detail mahasiswa dengan riwayat setoran-nya 📚",
+			message: "Berikut ini info detail mahasiswa dengan riwayat muroja'ah-nya 📚",
 			data
 		};
 	}	
@@ -137,7 +137,7 @@ export default class SetoranService {
 		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
 
 		// email dosen pa, nim mhs, nip, dan nama komponen setoran di data_setoran untuk log
-		const keterangan = data_setoran.map((item: any) => item.nama_komponen_setoran).join(', ') + ', serta memilih tanggal setoran ' + tgl_setoran;
+		const keterangan = `${data_setoran.map((item: any) => item.nama_komponen_setoran).join(', ')}, serta memilih tanggal muroja'ah ${tgl_setoran}`;
 		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'VALIDASI' });
 		
 		// kembalikan response
