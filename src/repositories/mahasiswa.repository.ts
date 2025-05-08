@@ -73,7 +73,8 @@ export default class MahasiswaRepository {
 				END as semester
             FROM 
                 mahasiswa
-            WHERE 
+            WHERE
+                mahasiswa.aktif = true AND 
                 mahasiswa.nip = ${nip} AND
                 (EXTRACT (YEAR FROM CURRENT_DATE)::int - CONCAT('20', SUBSTRING(mahasiswa.nim FROM 2 FOR 2))::int) <= 8
             ORDER BY 
