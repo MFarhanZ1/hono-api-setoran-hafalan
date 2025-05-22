@@ -48,6 +48,32 @@ export default class SetoranService {
 		};
 	}
 
+	public static async getKartuMurojaahSaya({ email }: { email: string }) {
+		// ambil data mahasiswa berdasarkan email buat ngambil nim nya
+		const mhs = await MahasiswaService.getByEmail({ email });
+		if (!mhs) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
+		const { nim } = mhs;
+
+		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
+		const data = await this.getDetailSetoranMahasiswa({ nim });
+
+		const props: any = {
+			nama: data?.info.nama,
+			nim: data?.info.nim,
+			dataSurah: data?.setoran.detail,
+			dosen_pa: data?.info.dosen_pa.nama,
+			nip_dosen: data?.info.dosen_pa.nip,
+		}
+
+		const kartuMurojaah = SetoranHelper.createKartuMurojaah(props);
+	
+		// kembalikan response yang sudah kita atur
+		return {
+			kartuMurojaah,
+			namaFile: `"[Kartu Muroja'ah] ${props.nama} - ${props.nim}.pdf"`,
+		};
+	}
+
 	public static async getSetoranSaya({ email }: { email: string }) {
 		// ambil data mahasiswa berdasarkan email buat ngambil nim nya
 		const mhs = await MahasiswaService.getByEmail({ email });
