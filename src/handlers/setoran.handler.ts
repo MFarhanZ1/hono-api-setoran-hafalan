@@ -10,6 +10,17 @@ export default class SetoranHandler {
         return c.json(await SetoranService.getPASaya({email}));
     }
 
+    public static async getKartuMurojaahSaya(c: Context) {
+        const { email } = c.get("user");
+        if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
+        const { kartuMurojaah, namaFile } = await SetoranService.getKartuMurojaahSaya({email});
+        
+        return c.body(kartuMurojaah, 200, {
+            "Content-Type": "application/pdf",
+            "Content-Disposition": `attachment; filename=${namaFile}`,
+        });
+    }
+
     public static async getSetoranSaya(c: Context) {
         const { email } = c.get("user");
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
