@@ -18,6 +18,7 @@ export default class SetoranHandler {
         return c.body(kartuMurojaah, 200, {
             "Content-Type": "application/pdf",
             "Content-Disposition": `attachment; filename=${namaFile}`,
+            "Access-Control-Expose-Headers": "Content-Disposition",
         });
     }
 
