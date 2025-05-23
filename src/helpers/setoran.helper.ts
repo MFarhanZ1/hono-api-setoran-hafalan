@@ -117,6 +117,10 @@ export default class SetoranHelper {
 
 		return KartuMurojaahHelper.create(doc, props);
 	}
+
+	public static decryptIDToNIM(id: string) {
+		return KartuMurojaahHelper.decryptIDToNIM(id).toString();
+	}
 }
 
 class KartuMurojaahHelper {
@@ -242,13 +246,19 @@ class KartuMurojaahHelper {
 	}
 
 	private static generateValidatorLinkByEncryptedID(encryptedID: string) {
-		return `${process.env.VALIDATOR_BASE_URL}/${encryptedID}`
+		return `${process.env.VALIDATOR_BASE_URL}/${encodeURIComponent(encryptedID)}`
 	}
 
 	private static generateEncryptedIDByNIM(nim: string) {
 		const secretKey = process.env.SECRET_KEY_PDF_VALIDATOR
 		const simpleCrypto = new SimpleCrypto(secretKey)
 		return simpleCrypto.encrypt(nim)
+	}
+
+	public static decryptIDToNIM(id: string) {
+		const secretKey = process.env.SECRET_KEY_PDF_VALIDATOR
+		const simpleCrypto = new SimpleCrypto(secretKey)
+		return simpleCrypto.decrypt(id)
 	}
 
 	private static parseLabelingCategory = (label: string) => {				
