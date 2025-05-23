@@ -1,3 +1,4 @@
+import SimpleCrypto from "simple-crypto-js";
 import { UINSuskaLogo } from "../../public/assets/images/uin-suska-logo.images";
 import { GeistSansBold, GeistSansRegular } from "../../public/fonts/custom.fonts";
 import { FindAllByNIPReturnInterface } from "../types/dosen/repository.type";
@@ -7,6 +8,7 @@ import { FindAllRingkasanByNIMReturnInterface, FindDetailByNIMReturnInterface } 
 
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import * as QRCode from "qrcode";
 
 export default class SetoranHelper {
     public static formatHumanizeDateDiff(tanggal: Date | null | undefined): string {
@@ -106,7 +108,7 @@ export default class SetoranHelper {
 		})
 	}
 
-	public static createKartuMurojaah(props: PDFGeneratorProps): Uint8Array<ArrayBufferLike> {
+	public static createKartuMurojaah(props: PDFGeneratorProps): Promise<Uint8Array<ArrayBufferLike>> {
 		const doc = new jsPDF({
 			encryption: {
 				userPermissions: ["print", "modify", "annot-forms"],
@@ -119,12 +121,13 @@ export default class SetoranHelper {
 
 class KartuMurojaahHelper {
 
-	public static create(doc: jsPDF, props: PDFGeneratorProps): Uint8Array<ArrayBufferLike> {			
+	public static async create(doc: jsPDF, props: PDFGeneratorProps): Promise<Uint8Array<ArrayBufferLike>> {			
 		doc.addFileToVFS("Geist-Bold.ttf", GeistSansBold);
 		doc.addFileToVFS("Geist-Regular.ttf", GeistSansRegular);
 		doc.addFont("Geist-Bold.ttf", "Geist-Bold", "bold");
 		doc.addFont("Geist-Regular.ttf", "Geist-Regular", "regular");
-	
+
+		await KartuMurojaahHelper.addQRCode(doc, props);
 		KartuMurojaahHelper.addHeader(doc);
 		doc.line(
 			KartuMurojaahHelper.PDF_CONFIG.margin,
@@ -157,64 +160,64 @@ class KartuMurojaahHelper {
 			body: tableData,
 			theme: "grid",
 			headStyles: {
-			fillColor: [0, 0, 0],
-			textColor: [255, 255, 255],
-			halign: "center",
-			fontStyle: "bold",
-			font: "Geist-Bold",
+				fillColor: [0, 0, 0],
+				textColor: [255, 255, 255],
+				halign: "center",
+				fontStyle: "bold",
+				font: "Geist-Bold",
 			},
 			bodyStyles: {
-			halign: "center",
-			fontStyle: "bold",
-			fontSize: 8,
-			cellPadding: 0.6,
+				halign: "center",
+				fontStyle: "bold",
+				fontSize: 8,
+				cellPadding: 0.6,
 			},
 			styles: {
-			fontSize: 9,
-			cellPadding: 1,
-			font: "Geist-Regular",
-			textColor: [0, 0, 0],
+				fontSize: 9,
+				cellPadding: 1,
+				font: "Geist-Regular",
+				textColor: [0, 0, 0],
 			},
 			didParseCell: function (data) {
 			if (data.section === "body" && data.column.index === 3) {
 				// Kelompok 1: Baris 1-8
 				if (data.row.index === 0) {
-				data.cell.rowSpan = 8;
-				data.cell.styles.valign = "middle";
+					data.cell.rowSpan = 8;
+					data.cell.styles.valign = "middle";
 				} else if (data.row.index > 0 && data.row.index <= 7) {
-				data.cell.text = [];
+					data.cell.text = [];
 				}
 	
 				// Kelompok 2: Baris 9-16
 				else if (data.row.index === 8) {
-				data.cell.rowSpan = 8;
-				data.cell.styles.valign = "middle";
+					data.cell.rowSpan = 8;
+					data.cell.styles.valign = "middle";
 				} else if (data.row.index > 8 && data.row.index <= 15) {
-				data.cell.text = [];
+					data.cell.text = [];
 				}
 	
 				// Kelompok 3: Baris 17-22
 				else if (data.row.index === 16) {
-				data.cell.rowSpan = 6;
-				data.cell.styles.valign = "middle";
+					data.cell.rowSpan = 6;
+					data.cell.styles.valign = "middle";
 				} else if (data.row.index > 16 && data.row.index <= 21) {
-				data.cell.text = [];
+					data.cell.text = [];
 				}
 	
 				// Kelompok 4: Baris 23-34
 				else if (data.row.index === 22) {
-				data.cell.rowSpan = 12;
-				data.cell.styles.valign = "middle";
+					data.cell.rowSpan = 12;
+					data.cell.styles.valign = "middle";
 				} else if (data.row.index > 22 && data.row.index <= 33) {
-				data.cell.text = [];
+					data.cell.text = [];
 				}
 	
 				// Kelompok 5: Baris 35-37
 				else if (data.row.index === 34) {
-				data.cell.rowSpan = 3;
-				data.cell.styles.valign = "middle";
+					data.cell.rowSpan = 3;
+					data.cell.styles.valign = "middle";
 				} else if (data.row.index > 34 && data.row.index <= 36) {
-				data.cell.text = [];
+					data.cell.text = [];
 				}
 			}
 			if (data.row.index === 7) {
@@ -222,10 +225,10 @@ class KartuMurojaahHelper {
 				doc.setDrawColor(0, 0, 0);
 				doc.setLineWidth(4);
 				doc.line(
-				data.cell.x,
-				data.cell.y + data.cell.height, // Garis di bawah sel
-				data.cell.x + data.cell.width,
-				data.cell.y + data.cell.height
+					data.cell.x,
+					data.cell.y + data.cell.height, // Garis di bawah sel
+					data.cell.x + data.cell.width,
+					data.cell.y + data.cell.height
 				);
 			}
 			},
@@ -236,6 +239,16 @@ class KartuMurojaahHelper {
 		// Tambahkan nip dosen setelah tanda tangan (di tengah garis)'
 		const arrayBuffer = doc.output("arraybuffer");
 		return new Uint8Array(arrayBuffer);	
+	}
+
+	private static generateValidatorLinkByEncryptedID(encryptedID: string) {
+		return `${process.env.VALIDATOR_BASE_URL}/${encryptedID}`
+	}
+
+	private static generateEncryptedIDByNIM(nim: string) {
+		const secretKey = process.env.SECRET_KEY_PDF_VALIDATOR
+		const simpleCrypto = new SimpleCrypto(secretKey)
+		return simpleCrypto.encrypt(nim)
 	}
 
 	private static parseLabelingCategory = (label: string) => {				
@@ -278,6 +291,34 @@ class KartuMurojaahHelper {
 			})
 			.replace(/^(\d+)\s(\w+)\s(\d+)$/, "$1 $2, $3");
 	};
+
+	private static addQRCode = async (doc: jsPDF, props: PDFGeneratorProps) => {
+
+		const nim = props.nim;
+		const validationId = this.generateEncryptedIDByNIM(nim);
+		const validationLink = this.generateValidatorLinkByEncryptedID(validationId);
+
+		// 1. Buat QR code base64
+		const qrDataUrl = await QRCode.toDataURL(validationLink);
+
+		// 2. Posisi gambar QR di tengah
+		const qrX = 172;
+		const qrY = 46;
+		const qrSize = 19;
+
+		doc.setDrawColor(0); // warna hitam
+		doc.setLineWidth(0.3); // ketebalan garis
+		doc.rect(qrX, qrY, qrSize, qrSize); // kotak mengelilingi QR
+
+		// 3. Tambahkan QR ke PDF
+		doc.addImage(qrDataUrl, "PNG", qrX, qrY, qrSize, qrSize);
+
+		// 4. Tambahkan teks di bawah QR
+		doc.setFontSize(8);
+		doc.text(`QR-Code Validator`, qrX + qrSize / 2, qrY + qrSize + 3, {
+			align: "center",
+		});
+	}
 	
 	// Separate components for different sections
 	private static addHeader = (doc: jsPDF) => {
