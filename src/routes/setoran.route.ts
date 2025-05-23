@@ -20,6 +20,10 @@ setoranRoute.get(
 	SetoranHandler.getKartuMurojaahSaya
 );
 setoranRoute.get(
+	"/mahasiswa/kartu-murojaah-digital/:id",
+	SetoranHandler.getKartuMurojaahDigital
+);
+setoranRoute.get(
 	"/mahasiswa/setoran-saya",
 	AuthMiddleware.JWTBearerTokenExtraction,
 	SetoranHandler.getSetoranSaya
