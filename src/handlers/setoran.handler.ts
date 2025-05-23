@@ -22,6 +22,12 @@ export default class SetoranHandler {
         });
     }
 
+    public static async getKartuMurojaahDigital(c: Context) {
+        const { id } = c.req.param();
+        
+        return c.json(await SetoranService.getKartuMurojaahDigital({id}));
+    }
+
     public static async getSetoranSaya(c: Context) {
         const { email } = c.get("user");
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
