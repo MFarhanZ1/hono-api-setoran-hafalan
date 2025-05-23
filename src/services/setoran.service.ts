@@ -65,7 +65,7 @@ export default class SetoranService {
 			nip_dosen: data?.info.dosen_pa.nip,
 		}
 
-		const kartuMurojaah = SetoranHelper.createKartuMurojaah(props);
+		const kartuMurojaah = await SetoranHelper.createKartuMurojaah(props);
 	
 		// kembalikan response yang sudah kita atur
 		return {
