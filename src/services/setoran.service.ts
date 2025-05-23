@@ -74,6 +74,22 @@ export default class SetoranService {
 		};
 	}
 
+	public static async getKartuMurojaahDigital({ id }: { id: string; }) {
+		// decode uri dulu id nya, terus decrypt buat ambil nim-nya
+		const decodedID = decodeURIComponent(id);
+		const nim = SetoranHelper.decryptIDToNIM(decodedID);
+		
+		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
+		const data = await this.getDetailSetoranMahasiswa({ nim });
+	
+		// kembalikan response yang sudah ktia atur
+		return {
+			response: true,
+			message: "Berikut ini info detail mahasiswa dengan riwayat muroja'ah-nya 📚",
+			data
+		};
+	}
+
 	public static async getSetoranSaya({ email }: { email: string }) {
 		// ambil data mahasiswa berdasarkan email buat ngambil nim nya
 		const mhs = await MahasiswaService.getByEmail({ email });
