@@ -113,31 +113,36 @@ export default class SetoranRepository {
         `
 	}
 
-    public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: CreateSetoranParamsInterface): Promise<void> {
+    public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: CreateSetoranParamsInterface): Promise<unknown> {
 
         const values = data_setoran.map((data: {id_komponen_setoran: string}) =>
             Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.id_komponen_setoran}::uuid)`
         );
 
-        await prisma.$executeRaw(
+        const result = await prisma.$queryRaw(
             Prisma.sql`
             INSERT INTO setoran (tgl_setoran, nim, nip, id_komponen_setoran)
             VALUES ${Prisma.join(values)}
-            ON CONFLICT (nim, id_komponen_setoran) DO NOTHING;
-        `
+            ON CONFLICT (nim, id_komponen_setoran) DO NOTHING
+            RETURNING id_komponen_setoran;`
         );
+
+        return result
     }
 
-    public static async deleteSetoran({ data_setoran }: DeleteSetoranParamsInterface): Promise<void> {
+    public static async deleteSetoran({ data_setoran }: DeleteSetoranParamsInterface): Promise<unknown> {
 
         const id_setoran = data_setoran.map((data: { id: string }) => data.id);
 
-        await prisma.$executeRaw(
+        const result = await prisma.$queryRaw(
             Prisma.sql`
                 DELETE FROM setoran
                 WHERE id IN (${Prisma.join(id_setoran.map(id => Prisma.sql`${id}::uuid`))})
+                RETURNING id_komponen_setoran
             `
-        );          
+        );
+
+        return result
     }
 
     public static async createLogSetoran({keterangan, aksi, ip, user_agent, nim, nip}: any) {
