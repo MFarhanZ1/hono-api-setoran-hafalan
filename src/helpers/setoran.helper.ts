@@ -347,7 +347,7 @@ class KartuMurojaahHelper {
 		doc.setFontSize(7.5); // Ukuran font mungkin perlu sedikit lebih kecil
 		doc.setTextColor(0); // Warna teks hitam
 
-		const infoText = 'Dokumen ini diterbitkan secara otomatis oleh sistem. Untuk verifikasi keaslian, kunjungi tautan berikut:';
+		const infoText = 'Dokumen ini diterbitkan secara otomatis oleh sistem, untuk verifikasi keaslian-nya, silahkan kunjungi tautan dibawah ini:';
 		doc.text(infoText, boxX + padding, boxY + padding + 1, {
 			maxWidth: boxWidth - (padding * 2) // Beri batas agar teks tidak keluar kotak
 		});
@@ -370,6 +370,14 @@ class KartuMurojaahHelper {
 		const logTextY = boxY + padding + 25; // Posisikan di bawah link
 		const ipAddress = props.network_log_data.ip;
 		const userAgent = props.network_log_data.user_agent;
+
+		// --- MENAMBAHKAN METADATA (TIDAK TERLIHAT) ---
+		doc.setProperties({
+			title: `[Kartu Muroja'ah] ${props.nama} - ${props.nim}`,
+			author: 'instagram @mfarhanz1',
+			subject: `Developed by @mfarhanz1 - Dokumen PDF Kartu Muroja'ah Resmi Diterbitkan oleh dashboard.tif.uin-suska.ac.id`,
+			keywords: `ip:${ipAddress}, ua:${userAgent}, @mfarhanz1`
+		});
 
 		doc.text(`PDF Generated Request from IP: ${ipAddress}`, boxX, logTextY);
 		doc.text(`Client User Agent: ${userAgent.substring(0, 70)}...`, boxX, logTextY + 3);
