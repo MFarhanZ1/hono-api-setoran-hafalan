@@ -11,6 +11,7 @@ export interface PDFGeneratorProps {
 	dataSurah: SurahData[];
 	dosen_pa: string;
 	nip_dosen: string;
+	network_log_data: any
 }
 
 export interface SurahData {
