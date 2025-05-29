@@ -177,7 +177,7 @@ export default class SetoranService {
 
 		// simpan data setoran
 		const insertedSetoran = await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
-		if ((insertedSetoran as any).length == 0) throw new APIError("Waduh, data muroja'ah-nya udah tercatat, mau ngapain lagi mas! 😡", 404);
+		if ((insertedSetoran as any).length == 0) throw new APIError("Waduh, data muroja'ah-nya udah tercatat, mau ngapain lagi mas! 😡", 400);
 
 		// filter data setoran, buat email dosen pa, nim mhs, nip, dan nama komponen setoran di data_setoran untuk log
 		const idSetoranYangAda = new Set((insertedSetoran as any).map((setoran: any) => setoran.id_komponen_setoran));
