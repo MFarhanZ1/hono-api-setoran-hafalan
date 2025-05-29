@@ -176,10 +176,15 @@ export default class SetoranService {
 		if (!validPA) throw new APIError("Heh, kamu bukan PA dari mahasiswa ini, mau ngapain mas! 😡", 403);
 
 		// simpan data setoran
-		await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
+		const insertedSetoran = await SetoranRepository.createSetoran({ tgl_setoran, nim, nip, data_setoran });
+		if ((insertedSetoran as any).length == 0) throw new APIError("Waduh, data muroja'ah-nya udah tercatat, mau ngapain lagi mas! 😡", 404);
 
-		// email dosen pa, nim mhs, nip, dan nama komponen setoran di data_setoran untuk log
-		const keterangan = `${data_setoran.map((item: any) => item.nama_komponen_setoran).join(', ')}, serta memilih tanggal muroja'ah ${tgl_setoran}`;
+		// filter data setoran, buat email dosen pa, nim mhs, nip, dan nama komponen setoran di data_setoran untuk log
+		const idSetoranYangAda = new Set((insertedSetoran as any).map((setoran: any) => setoran.id_komponen_setoran));
+		const hasilFilterDataSetoran = data_setoran.filter((komponen: any) => 
+			idSetoranYangAda.has(komponen.id_komponen_setoran)
+		);
+		const keterangan = `${hasilFilterDataSetoran.map((item: any) => item.nama_komponen_setoran).join(', ')}, serta memilih tanggal muroja'ah ${tgl_setoran}`;
 		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'VALIDASI' });
 		
 		// kembalikan response
@@ -200,11 +205,16 @@ export default class SetoranService {
 		const validPA = await MahasiswaService.checkValidPA({ nim, nip });
 		if (!validPA) throw new APIError("Heh, kamu bukan PA dari mahasiswa ini, mau ngapain mas! 😡", 403);
 		
-		// simpan data setoran
-		await SetoranRepository.deleteSetoran({ data_setoran });
+		// hapus data setoran
+		const deletedSetoran = await SetoranRepository.deleteSetoran({ data_setoran });
+		if ((deletedSetoran as any).length === 0) throw new APIError("Waduh, data muroja'ah yang mau di-batalin kagak ada, mau ngapain mas! 😭", 404);
 		
-		// email dosen pa, nim mhs, nip, dan nama komponen di data_setoran untuk log
-		const keterangan = data_setoran.map((item: any) => item.nama_komponen_setoran).join(', ');
+		// filter data setoran, buat email dosen pa, nim mhs, nip, dan nama komponen setoran di data_setoran untuk log
+		const idSetoranYangAda = new Set((deletedSetoran as any).map((setoran: any) => setoran.id_komponen_setoran));
+		const hasilFilterDataSetoran = data_setoran.filter((komponen: any) => 
+			idSetoranYangAda.has(komponen.id_komponen_setoran)
+		);
+		const keterangan = hasilFilterDataSetoran.map((item: any) => item.nama_komponen_setoran).join(', ');
 		await SetoranRepository.createLogSetoran({ ...network_log_data, nim, nip, keterangan, aksi: 'BATALKAN' });
 
 		// kembalikan response
