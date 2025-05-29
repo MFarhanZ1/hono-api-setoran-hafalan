@@ -48,7 +48,7 @@ export default class SetoranService {
 		};
 	}
 
-	public static async getKartuMurojaahSaya({ email }: { email: string }) {
+	public static async getKartuMurojaahSaya({ email, network_log_data }: { email: string, network_log_data: any }) {
 		// ambil data mahasiswa berdasarkan email buat ngambil nim nya
 		const mhs = await MahasiswaService.getByEmail({ email });
 		if (!mhs) throw new APIError("Waduh, datanya gak ditemukan, kamu siapa sih mas? 😭", 404);
@@ -63,6 +63,7 @@ export default class SetoranService {
 			dataSurah: data?.setoran.detail,
 			dosen_pa: data?.info.dosen_pa.nama,
 			nip_dosen: data?.info.dosen_pa.nip,
+			network_log_data
 		}
 
 		const kartuMurojaah = await SetoranHelper.createKartuMurojaah(props);
