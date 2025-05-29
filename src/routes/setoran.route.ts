@@ -15,6 +15,16 @@ setoranRoute.get(
 	SetoranHandler.getPASaya
 );
 setoranRoute.get(
+	"/mahasiswa/kartu-murojaah-saya",
+	LogMiddleware.extractNetworkInformation,
+	AuthMiddleware.JWTBearerTokenExtraction,
+	SetoranHandler.getKartuMurojaahSaya
+);
+setoranRoute.get(
+	"/mahasiswa/kartu-murojaah-digital/:id",
+	SetoranHandler.getKartuMurojaahDigital
+);
+setoranRoute.get(
 	"/mahasiswa/setoran-saya",
 	AuthMiddleware.JWTBearerTokenExtraction,
 	SetoranHandler.getSetoranSaya

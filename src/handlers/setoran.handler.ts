@@ -10,6 +10,28 @@ export default class SetoranHandler {
         return c.json(await SetoranService.getPASaya({email}));
     }
 
+    public static async getKartuMurojaahSaya(c: Context) {
+        const { email } = c.get("user");
+        if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
+
+        // dapatkan user agent dan ip user buat log
+        const network_log_data = c.get("network_log_data");
+
+        const { kartuMurojaah, namaFile } = await SetoranService.getKartuMurojaahSaya({email, network_log_data});
+        
+        return c.body(kartuMurojaah, 200, {
+            "Content-Type": "application/pdf",
+            "Content-Disposition": `attachment; filename=${namaFile}`,
+            "Access-Control-Expose-Headers": "Content-Disposition",
+        });
+    }
+
+    public static async getKartuMurojaahDigital(c: Context) {
+        const { id } = c.req.param();
+        
+        return c.json(await SetoranService.getKartuMurojaahDigital({id}));
+    }
+
     public static async getSetoranSaya(c: Context) {
         const { email } = c.get("user");
         if (!email) throw new APIError("Waduh, email kamu kosong cuy! 😭", 404);
