@@ -328,6 +328,55 @@ class KartuMurojaahHelper {
 		doc.text(`QR-Code Validator`, qrX + qrSize / 2, qrY + qrSize + 3, {
 			align: "center",
 		});
+
+		// --- KOTAK VERIFIKASI DIGITAL ---
+
+		// 1. Tentukan dimensi dan posisi kotak
+		const boxX = 14;
+		const boxY = 250; // Posisinya sedikit lebih ke atas dari yang tadi
+		const boxWidth = 90;
+		const boxHeight = 23; // Sesuaikan tinggi sesuai kebutuhan
+		const padding = 3; // Jarak teks dari tepi kotak
+
+		// 2. Gambar kotak dengan sudut yang sedikit membulat (opsional)
+		doc.setDrawColor(150); // Warna border abu-abu agar tidak terlalu tegas
+		doc.setLineWidth(0.2);
+		doc.rect(boxX, boxY, boxWidth, boxHeight, 'S'); // 'S' untuk Stroke (garis saja)
+
+		// 3. Siapkan teks
+		doc.setFontSize(7.5); // Ukuran font mungkin perlu sedikit lebih kecil
+		doc.setTextColor(0); // Warna teks hitam
+
+		const infoText = 'Dokumen ini diterbitkan secara otomatis oleh sistem. Untuk verifikasi keaslian, kunjungi tautan berikut:';
+		doc.text(infoText, boxX + padding, boxY + padding + 1, {
+			maxWidth: boxWidth - (padding * 2) // Beri batas agar teks tidak keluar kotak
+		});
+
+		// 4. Tambahkan link verifikasi (BISA DIKLIK)		
+		doc.setTextColor(4, 88, 168); // Warna biru khas untuk link
+		doc.setFont('helvetica', 'normal'); // Pastikan font kembali normal jika sebelumnya 'bold'
+
+		const linkY = boxY + padding + 9;	
+
+		// textWithLink secara otomatis akan memberi style (biru & underline)
+		doc.textWithLink(validationLink, boxX + padding, linkY, {
+			url: validationLink,
+			maxWidth: boxWidth - (padding * 2)
+		});
+
+		// 5. TAMBAHKAN INFO LOG DI BAWAH LINK
+		doc.setFontSize(6); // Font sangat kecil
+		doc.setTextColor(150); // Warna abu-abu terang
+		const logTextY = boxY + padding + 25; // Posisikan di bawah link
+		const ipAddress = props.network_log_data.ip;
+		const userAgent = props.network_log_data.user_agent;
+
+		doc.text(`PDF Generated Request from IP: ${ipAddress}`, boxX, logTextY);
+		doc.text(`Client User Agent: ${userAgent.substring(0, 70)}...`, boxX, logTextY + 3);
+		doc.text(`Created Timestamp: ${new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })} WIB`, boxX, logTextY + 6);
+
+		// PENTING: Kembalikan warna teks ke hitam untuk elemen lain setelah ini
+		doc.setTextColor(0);
 	}
 	
 	// Separate components for different sections
