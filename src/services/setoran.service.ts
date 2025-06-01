@@ -78,7 +78,12 @@ export default class SetoranService {
 	public static async getKartuMurojaahDigital({ id }: { id: string; }) {
 		// decode uri dulu id nya, terus decrypt buat ambil nim-nya
 		const decodedID = decodeURIComponent(id);
-		const nim = SetoranHelper.decryptIDToNIM(decodedID);
+		let nim;
+		try {
+			nim = SetoranHelper.decryptIDToNIM(decodedID);
+		} catch (error) {
+			throw new APIError("Waduh, datanya gak ditemukan, mau nyari apa sih mas? 😭", 404);
+		}
 		
 		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
 		const data = await this.getDetailSetoranMahasiswa({ nim });
