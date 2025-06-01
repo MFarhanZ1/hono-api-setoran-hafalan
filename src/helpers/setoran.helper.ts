@@ -347,7 +347,7 @@ class KartuMurojaahHelper {
 		doc.setFontSize(7.5); // Ukuran font mungkin perlu sedikit lebih kecil
 		doc.setTextColor(0); // Warna teks hitam
 
-		const infoText = 'Dokumen ini diterbitkan secara otomatis oleh sistem, untuk verifikasi keaslian-nya, silahkan kunjungi tautan dibawah ini:';
+		const infoText = 'Dokumen PDF ini diterbitkan otomatis secara langsung oleh sistem, untuk verifikasi keaslian-nya, kunjungi tautan dibawah ini:';
 		doc.text(infoText, boxX + padding, boxY + padding + 1, {
 			maxWidth: boxWidth - (padding * 2) // Beri batas agar teks tidak keluar kotak
 		});
