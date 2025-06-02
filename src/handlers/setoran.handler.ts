@@ -56,7 +56,7 @@ export default class SetoranHandler {
         // dapatkan user agent dan ip user buat log
         const network_log_data = c.get("network_log_data");
 
-        return c.json(await SetoranService.postSetoranMahasiswa({email, nim, data_setoran, tgl_setoran, network_log_data}));
+        return c.json(await SetoranService.postSetoranMahasiswa({email, nim, data_setoran, tgl_setoran, network_log_data}), 201);
     }
 
     public static async deleteSetoranMahasiswa(c: Context) {     
