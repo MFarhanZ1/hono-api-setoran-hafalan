@@ -116,7 +116,7 @@ export default class SetoranRepository {
     public static async createSetoran({ tgl_setoran, nim, nip, data_setoran }: CreateSetoranParamsInterface): Promise<unknown> {
 
         const values = data_setoran.map((data: {id_komponen_setoran: string}) =>
-            Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.id_komponen_setoran}::uuid)`
+            Prisma.sql`(${tgl_setoran ? new Date(tgl_setoran) : new Date()}, ${nim}, ${nip}, ${data.id_komponen_setoran})`
         );
 
         const result = await prisma.$queryRaw(
