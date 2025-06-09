@@ -34,16 +34,16 @@ model setoran {
   tgl_validasi        DateTime?        @default(now()) @db.Date
   nim                 String           @db.VarChar(11)
   nip                 String           @db.VarChar(18)
-  id_komponen_setoran String           @db.Uuid
-  mahasiswa           mahasiswa        @relation(fields: [nim], references: [nim], onDelete: NoAction, onUpdate: NoAction, map: "fk_nim_setoran")
+  id_komponen_setoran String           @db.VarChar(36)
+  mahasiswa           mahasiswa        @relation(fields: [nim], references: [nim], onDelete: NoAction, onUpdate: Cascade, map: "fk_nim_setoran")
   dosen               dosen            @relation(fields: [nip], references: [nip], onDelete: NoAction, onUpdate: Cascade, map: "fk_nip_setoran")
-  komponen_setoran    komponen_setoran @relation(fields: [id_komponen_setoran], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_id_komponen_setoran")
+  komponen_setoran    komponen_setoran @relation(fields: [id_komponen_setoran], references: [id], onDelete: NoAction, onUpdate: Cascade, map: "fk_id_komponen_setoran")
 
   @@unique([nim, id_komponen_setoran])
 }
 
 model komponen_setoran {
-  id          String                       @id(map: "pk_id_komponen_setoran") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String                       @id(map: "pk_id_komponen_setoran") @db.VarChar(36)
   nama        String                       @db.VarChar(35)
   nama_arab   String?                      @db.Text
   external_id String?                      @db.VarChar(35)
