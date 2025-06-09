@@ -7,6 +7,8 @@ import {
 import SetoranRepository from "../repositories/setoran.repository";
 import DosenService from "./dosen.service";
 import MahasiswaService from "./mahasiswa.service";
+import KartuMurojaahHelper from "../helpers/kartu-murojaah.helper";
+import CryptoHelper from "../helpers/crypto.helper";
 
 export default class SetoranService {
 	public static async getPASaya({
@@ -66,7 +68,8 @@ export default class SetoranService {
 			network_log_data
 		}
 
-		const kartuMurojaah = await SetoranHelper.createKartuMurojaah(props);
+		// buat kartu murojaah pdf dari props sebelumnya
+		const kartuMurojaah = await KartuMurojaahHelper.create(props);
 	
 		// kembalikan response yang sudah kita atur
 		return {
@@ -80,7 +83,7 @@ export default class SetoranService {
 		const decodedID = decodeURIComponent(id);
 		let nim;
 		try {
-			nim = SetoranHelper.decryptIDToNIM(decodedID);
+			nim = CryptoHelper.decryptIDToNIM(decodedID);
 		} catch (error) {
 			throw new APIError("Waduh, datanya gak ditemukan, mau nyari apa sih mas? 😭", 404);
 		}
