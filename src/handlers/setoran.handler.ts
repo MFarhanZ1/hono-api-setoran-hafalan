@@ -3,6 +3,24 @@ import SetoranService from "../services/setoran.service";
 import { APIError } from "../utils/api-error.util";
 
 export default class SetoranHandler {
+    
+    public static async getCheckMurojaah(c: Context) {
+        const { nim } = c.req.param();
+        const { syarat } = c.req.query();
+        
+        const listSyarat = syarat.split(".");
+        if (!listSyarat || listSyarat.length === 0 || listSyarat[0] === "") {
+			throw new APIError("Waduh, sertain dulu dong syarat yang mau di-cek mas! 😡", 404);
+        }
+        
+        return c.json(await SetoranService.getCheckMurojaah({nim, listSyarat}));
+    }
+
+    public static async getKartuMurojaahDigital(c: Context) {
+        const { id } = c.req.param();
+        
+        return c.json(await SetoranService.getKartuMurojaahDigital({id}));
+    }
 
     public static async getPASaya(c: Context) {
         const { email } = c.get("user");
@@ -24,12 +42,6 @@ export default class SetoranHandler {
             "Content-Disposition": `attachment; filename=${namaFile}`,
             "Access-Control-Expose-Headers": "Content-Disposition",
         });
-    }
-
-    public static async getKartuMurojaahDigital(c: Context) {
-        const { id } = c.req.param();
-        
-        return c.json(await SetoranService.getKartuMurojaahDigital({id}));
     }
 
     public static async getSetoranSaya(c: Context) {
