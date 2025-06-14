@@ -169,4 +169,60 @@ export default class SetoranRepository {
         })
     }
     
+    public static async checkMurojaahByNIM({nim, listSyarat}: {nim: string, listSyarat: string[]}): Promise<any> {
+        return await prisma.$queryRaw<any[]>`
+            -- Langkah 1: CTE (tidak ada perubahan di sini)
+            WITH PerComponentStats AS (
+                SELECT
+                ks.label,
+                COUNT(DISTINCT ks.id)::INTEGER AS wajib_per_label,
+                COUNT(DISTINCT s.id_komponen_setoran)::INTEGER AS sudah_per_label
+                FROM
+                komponen_setoran ks
+                LEFT JOIN
+                setoran s ON ks.id = s.id_komponen_setoran AND s.nim = ${nim}
+                WHERE
+                ks.label::text IN (${Prisma.join(listSyarat)})
+                GROUP BY
+                ks.label
+            )
+            -- Langkah 2: Akumulasi dan pembuatan JSON (dengan tambahan)
+            SELECT
+                mhs.nim,
+                mhs.nama,
+                SUM(pcs.sudah_per_label)::INTEGER AS total_sudah_setor,
+                SUM(pcs.wajib_per_label)::INTEGER AS total_wajib_setor,
+                (SUM(pcs.wajib_per_label) - SUM(pcs.sudah_per_label))::INTEGER AS total_belum_setor,
+                CASE
+                    WHEN SUM(pcs.wajib_per_label) = 0 THEN 0.00
+                ELSE ROUND(
+                    (SUM(pcs.sudah_per_label)::numeric / SUM(pcs.wajib_per_label)::numeric) * 100,
+                2)::FLOAT
+                END AS persentase_progres_setor,
+                    (SUM(pcs.sudah_per_label) = SUM(pcs.wajib_per_label)) AS is_done,
+                
+                -- Kunci Perbaikan ada di sini
+                json_agg(
+                json_build_object(
+                    'label', pcs.label,
+                    'total_sudah_setor', pcs.sudah_per_label,
+                    'total_wajib_setor', pcs.wajib_per_label,
+                    'total_belum_setor', (pcs.wajib_per_label - pcs.sudah_per_label),
+                    
+                    -- TAMBAHKAN DUA BARIS INI
+                    'persentase_progres_setor', CASE WHEN pcs.wajib_per_label = 0 THEN 0.00 ELSE ROUND((pcs.sudah_per_label::numeric / pcs.wajib_per_label::numeric) * 100, 2) END,
+                    'is_done', (pcs.sudah_per_label = pcs.wajib_per_label)
+
+                ) ORDER BY pcs.label
+            ) AS detail
+            FROM
+                PerComponentStats pcs
+            CROSS JOIN
+                mahasiswa mhs
+            WHERE
+                mhs.nim = ${nim}
+            GROUP BY
+                mhs.nim, mhs.nama;
+        `;
+    }
 }
