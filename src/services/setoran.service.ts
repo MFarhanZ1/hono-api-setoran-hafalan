@@ -11,6 +11,39 @@ import KartuMurojaahHelper from "../helpers/kartu-murojaah.helper";
 import CryptoHelper from "../helpers/crypto.helper";
 
 export default class SetoranService {
+	
+	public static async getCheckMurojaah({ nim, listSyarat }: any) {
+		const checkMurojaah = await SetoranRepository.checkMurojaahByNIM({ nim, listSyarat });
+		if (checkMurojaah.length === 0) throw new APIError("Waduh, syarat yang mau di-cek kagak ada mas! 😭", 404);
+
+		return {
+			response: true,
+			message: "Berikut ini info muroja'ah-nya! 📚",
+			data: checkMurojaah[0]
+		}
+	}
+
+	public static async getKartuMurojaahDigital({ id }: { id: string; }) {
+		// decode uri dulu id nya, terus decrypt buat ambil nim-nya
+		const decodedID = decodeURIComponent(id);
+		let nim;
+		try {
+			nim = CryptoHelper.decryptIDToNIM(decodedID);
+		} catch (error) {
+			throw new APIError("Waduh, datanya gak ditemukan, mau nyari apa sih mas? 😭", 404);
+		}
+		
+		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
+		const data = await this.getDetailSetoranMahasiswa({ nim });
+	
+		// kembalikan response yang sudah ktia atur
+		return {
+			response: true,
+			message: "Berikut ini info detail mahasiswa dengan riwayat muroja'ah-nya 📚",
+			data
+		};
+	}
+
 	public static async getPASaya({
 		email,
 	}: GetPASayaRequestInterface): Promise<GetPASayaResponseInterface> {
@@ -75,27 +108,6 @@ export default class SetoranService {
 		return {
 			kartuMurojaah,
 			namaFile: `"[Kartu Muroja'ah] ${props.nama} - ${props.nim}.pdf"`,
-		};
-	}
-
-	public static async getKartuMurojaahDigital({ id }: { id: string; }) {
-		// decode uri dulu id nya, terus decrypt buat ambil nim-nya
-		const decodedID = decodeURIComponent(id);
-		let nim;
-		try {
-			nim = CryptoHelper.decryptIDToNIM(decodedID);
-		} catch (error) {
-			throw new APIError("Waduh, datanya gak ditemukan, mau nyari apa sih mas? 😭", 404);
-		}
-		
-		// ambil detail setoran mahasiswa sesuai nim yang udah di ambil tadi
-		const data = await this.getDetailSetoranMahasiswa({ nim });
-	
-		// kembalikan response yang sudah ktia atur
-		return {
-			response: true,
-			message: "Berikut ini info detail mahasiswa dengan riwayat muroja'ah-nya 📚",
-			data
 		};
 	}
 
