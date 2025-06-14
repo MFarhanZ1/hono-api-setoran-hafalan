@@ -142,11 +142,11 @@ export default class KartuMurojaahHelper {
 	private static parseLabelingCategory = (label: string) => {				
 		switch (label) {
 			case "KP":
-				return "Kerja Praktek";
+				return "Kerja Praktik";
 			case "SEMKP":
 				return "Seminar Kerja Praktik";
 			case "DAFTAR_TA":
-				return "Tugas Akhir";
+				return "Pendaftaran Tugas Akhir";
 			case "SEMPRO":
 				return "Seminar Proposal";
 			case "SIDANG_TA":
