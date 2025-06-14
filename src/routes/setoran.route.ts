@@ -9,6 +9,19 @@ import LogMiddleware from "../middlewares/log.middleware";
 
 const setoranRoute = new Hono({ router: new RegExpRouter() });
 
+// Internal Routes
+setoranRoute.get(
+	"/mahasiswa/check-murojaah/:nim",
+	SetoranHandler.getCheckMurojaah
+)
+
+// Public Routes
+setoranRoute.get(
+	"/mahasiswa/kartu-murojaah-digital/:id",
+	SetoranHandler.getKartuMurojaahDigital
+);
+
+// Object Based Routes
 setoranRoute.get(
 	"/dosen/pa-saya",
 	AuthMiddleware.JWTBearerTokenExtraction,
@@ -19,10 +32,6 @@ setoranRoute.get(
 	LogMiddleware.extractNetworkInformation,
 	AuthMiddleware.JWTBearerTokenExtraction,
 	SetoranHandler.getKartuMurojaahSaya
-);
-setoranRoute.get(
-	"/mahasiswa/kartu-murojaah-digital/:id",
-	SetoranHandler.getKartuMurojaahDigital
 );
 setoranRoute.get(
 	"/mahasiswa/setoran-saya",
